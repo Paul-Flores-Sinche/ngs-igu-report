@@ -1029,9 +1029,9 @@ function submitReport() {
     s97: getPF('s9', 6), s98: getPF('s9', 7), s99: getPF('s9', 8), s910: getPF('s9', 9),
     s101: getPF('s10', 0), s102: getPF('s10', 1), s103: getPF('s10', 2),
 
-    photoCaptured_41: (img41 && img41.src && img41.src.length > 100) ? 'Yes' : 'No',
-    photoCaptured_51: (img51 && img51.src && img51.src.length > 100) ? 'Yes' : 'No',
-    photoCaptured_61: (img61 && img61.src && img61.src.length > 100) ? 'Yes' : 'No',
+    photo41: (img41 && img41.src && img41.src.length > 100) ? img41.src : '',
+    photo51: (img51 && img51.src && img51.src.length > 100) ? img51.src : '',
+    photo61: (img61 && img61.src && img61.src.length > 100) ? img61.src : '',
 
     pfResults: pfAll.join(' | '),
     activities: actAll.join(' | '),
