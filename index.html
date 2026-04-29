@@ -961,25 +961,41 @@ function updateSummary() {
   document.getElementById('sumPct').textContent = Math.round((total/allItems)*100) + '%';
 }
 
+function getPF(sectionId, itemIndex) {
+  const items = document.querySelectorAll('#' + sectionId + ' .pf-row');
+  if (!items[itemIndex]) return 'N/A';
+  const active = items[itemIndex].querySelector('.pf-btn.active');
+  return active ? (active.classList.contains('pass') ? 'Pass' : active.classList.contains('fail') ? 'Fail' : 'N/A') : 'Not checked';
+}
+
+function getAct(sectionId, itemIndex) {
+  const items = document.querySelectorAll('#' + sectionId + ' .toggle-group');
+  if (!items[itemIndex]) return 'N/A';
+  const active = items[itemIndex].querySelector('.toggle.yes, .toggle.no');
+  return active ? (active.classList.contains('yes') ? 'Yes' : 'No') : 'Not completed';
+}
+
 function submitReport() {
   const status = document.getElementById('submitStatus');
   status.style.display = 'block';
   status.className = 'submit-status';
   status.textContent = '⏳ Submitting report...';
 
-  // Collect all pass/fail results
-  const pfResults = [];
-  document.querySelectorAll('.pf-row').forEach((row, i) => {
+  const pfAll = [];
+  document.querySelectorAll('.pf-row').forEach(row => {
     const active = row.querySelector('.pf-btn.active');
-    pfResults.push(active ? active.textContent.trim() : 'Not checked');
+    pfAll.push(active ? (active.classList.contains('pass') ? 'Pass' : 'Fail') : 'Not checked');
   });
 
-  // Collect activity completed
-  const activities = [];
+  const actAll = [];
   document.querySelectorAll('.toggle-group').forEach(g => {
     const active = g.querySelector('.toggle.yes, .toggle.no');
-    activities.push(active ? (active.classList.contains('yes') ? 'Yes' : 'No') : 'Not completed');
+    actAll.push(active ? (active.classList.contains('yes') ? 'Yes' : 'No') : '-');
   });
+
+  const img41 = document.getElementById('img41');
+  const img51 = document.getElementById('img51');
+  const img61 = document.getElementById('img61');
 
   const data = {
     date: document.getElementById('f_date').value,
@@ -993,15 +1009,37 @@ function submitReport() {
       document.getElementById('f_person3').value,
       document.getElementById('f_person4').value,
     ].filter(Boolean).join(', '),
-    pfResults: pfResults.join(' | '),
-    activities: activities.join(' | '),
+
+    // Section results
+    s1: getAct('s1', 0),
+    s2: getAct('s2', 0),
+    s31: getPF('s3', 0), s32: getPF('s3', 1), s33: getPF('s3', 2),
+    s34: getPF('s3', 3), s35: getPF('s3', 4),
+    s41: getPF('s4', 0), s42: getPF('s4', 1), s43: getPF('s4', 2),
+    s44: getPF('s4', 3), s45: getPF('s4', 4), s46: getPF('s4', 5), s47: getPF('s4', 6),
+    s51: getPF('s5', 0), s52: getPF('s5', 1), s53: getPF('s5', 2),
+    s54: getPF('s5', 3), s55: getPF('s5', 4), s56: getPF('s5', 5),
+    s61: getPF('s6', 0), s62: getPF('s6', 1), s63: getPF('s6', 2),
+    s64: getPF('s6', 3), s65: getPF('s6', 4), s66: getPF('s6', 5),
+    s67: getPF('s6', 6), s68: getPF('s6', 7), s69: getPF('s6', 8),
+    s71: getPF('s7', 0), s72: getPF('s7', 1), s73: getPF('s7', 2), s74: getPF('s7', 3),
+    s81: getPF('s8', 0), s82: getAct('s8', 1),
+    s91: getAct('s9', 0), s92: getPF('s9', 1), s93: getPF('s9', 2),
+    s94: getPF('s9', 3), s95: getPF('s9', 4), s96: getPF('s9', 5),
+    s97: getPF('s9', 6), s98: getPF('s9', 7), s99: getPF('s9', 8), s910: getPF('s9', 9),
+    s101: getPF('s10', 0), s102: getPF('s10', 1), s103: getPF('s10', 2),
+
+    photoCaptured_41: (img41 && img41.src && img41.src.length > 100) ? 'Yes' : 'No',
+    photoCaptured_51: (img51 && img51.src && img51.src.length > 100) ? 'Yes' : 'No',
+    photoCaptured_61: (img61 && img61.src && img61.src.length > 100) ? 'Yes' : 'No',
+
+    pfResults: pfAll.join(' | '),
+    activities: actAll.join(' | '),
     passCount: document.querySelectorAll('.pf-btn.pass.active').length,
     failCount: document.querySelectorAll('.pf-btn.fail.active').length,
-    overallResult: document.querySelectorAll('.pf-btn.fail.active').length === 0 ? 'ALL PASS' : 'FAIL — ' + document.querySelectorAll('.pf-btn.fail.active').length + ' item(s) failed',
-    photoCaptured_41: document.getElementById('img41').src ? 'Yes' : 'No',
-    photoCaptured_51: document.getElementById('img51').src ? 'Yes' : 'No',
-    photoCaptured_61: document.getElementById('img61').src ? 'Yes' : 'No',
-    timestamp: new Date().toLocaleString('en-AU'),
+    overallResult: document.querySelectorAll('.pf-btn.fail.active').length === 0
+      ? 'ALL PASS'
+      : 'FAIL — ' + document.querySelectorAll('.pf-btn.fail.active').length + ' item(s) failed',
   };
 
   fetch(SHEET_URL, {
@@ -1013,7 +1051,7 @@ function submitReport() {
   .then(() => {
     status.className = 'submit-status success';
     status.textContent = '✅ Report submitted successfully to Google Sheets!';
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   })
   .catch(() => {
     status.className = 'submit-status error';
