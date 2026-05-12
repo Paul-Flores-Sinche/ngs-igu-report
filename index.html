@@ -158,6 +158,16 @@ input[type="file"] { display:none; }
 .reset-btn { background:#fff; color:var(--red); border:1.5px solid var(--red); }
 .reset-btn:hover { background:var(--fail); }
 
+/* OCR STATUS BADGE */
+.ocr-status { margin-top:8px; padding:8px 12px; border-radius:6px; font-size:12.5px; font-weight:500; line-height:1.4; }
+.ocr-status.loading { background:rgba(27,107,138,0.1); color:var(--teal); }
+.ocr-status.success { background:var(--pass); color:var(--pass-text); }
+.ocr-status.warn    { background:#fff3cd; color:#856404; }
+.ocr-status.error   { background:var(--fail); color:var(--fail-text); }
+/* Fields auto-filled by OCR get a mint highlight until edited */
+.ocr-filled { border-color:var(--mint) !important; background:rgba(79,195,161,0.08) !important; }
+.ocr-filled:focus { border-color:var(--teal) !important; background:#fff !important; }
+
 /* PRINT STYLES */
 @media print {
   @page { margin: 15mm; }
@@ -371,15 +381,15 @@ input[type="file"] { display:none; }
       </div>
 
       <div class="info-grid">
-        <div class="field"><label>Manufacturer</label><input type="text" placeholder="Spacer Bar Manufacturer"></div>
-        <div class="field"><label>Batch Number</label><input type="text" placeholder="Batch No."></div>
-        <div class="field"><label>Product Name / Code</label><input type="text" placeholder="Product Name or Code"></div>
-        <div class="field"><label>Date of Receipt</label><input type="date"></div>
-        <div class="field"><label>Spacer Bar Size (L x W x H)</label><input type="text" placeholder="e.g. 6m x 16mm x 10mm"></div>
-        <div class="field"><label>Wall Thickness</label><input type="text" placeholder="mm"></div>
-        <div class="field"><label>Quantity</label><input type="text" placeholder="units"></div>
-        <div class="field"><label>Grade</label><input type="text" placeholder="Grade"></div>
-        <div class="field"><label>Finish / Colour</label><input type="text" placeholder="Finish or Colour"></div>
+        <div class="field"><label>Manufacturer</label><input type="text" id="s41_manufacturer" placeholder="Spacer Bar Manufacturer"></div>
+        <div class="field"><label>Batch Number</label><input type="text" id="s41_batch" placeholder="Batch No."></div>
+        <div class="field"><label>Product Name / Code</label><input type="text" id="s41_product" placeholder="Product Name or Code"></div>
+        <div class="field"><label>Date of Receipt</label><input type="date" id="s41_date_receipt"></div>
+        <div class="field"><label>Spacer Bar Size (L x W x H)</label><input type="text" id="s41_size" placeholder="e.g. 6m x 16mm x 10mm"></div>
+        <div class="field"><label>Wall Thickness</label><input type="text" id="s41_wall_thickness" placeholder="mm"></div>
+        <div class="field"><label>Quantity</label><input type="text" id="s41_quantity" placeholder="units"></div>
+        <div class="field"><label>Grade</label><input type="text" id="s41_grade" placeholder="Grade"></div>
+        <div class="field"><label>Finish / Colour</label><input type="text" id="s41_finish" placeholder="Finish or Colour"></div>
       </div>
       <div class="pf-row">
         <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
@@ -486,12 +496,12 @@ input[type="file"] { display:none; }
       </div>
 
       <div class="info-grid">
-        <div class="field"><label>Manufacturer</label><input type="text" placeholder="Desiccant Manufacturer"></div>
-        <div class="field"><label>Batch Number</label><input type="text" placeholder="Batch No."></div>
-        <div class="field"><label>Product Name / Code</label><input type="text" placeholder="Product Name or Code"></div>
-        <div class="field"><label>Molecular Sieve</label><input type="text" placeholder="e.g. 3Å / 4Å"></div>
-        <div class="field"><label>Date of Receipt</label><input type="date"></div>
-        <div class="field"><label>Product Expiry Date</label><input type="date"></div>
+        <div class="field"><label>Manufacturer</label><input type="text" id="s51_manufacturer" placeholder="Desiccant Manufacturer"></div>
+        <div class="field"><label>Batch Number</label><input type="text" id="s51_batch" placeholder="Batch No."></div>
+        <div class="field"><label>Product Name / Code</label><input type="text" id="s51_product" placeholder="Product Name or Code"></div>
+        <div class="field"><label>Molecular Sieve</label><input type="text" id="s51_mol_sieve" placeholder="e.g. 3Å / 4Å"></div>
+        <div class="field"><label>Date of Receipt</label><input type="date" id="s51_date_receipt"></div>
+        <div class="field"><label>Product Expiry Date</label><input type="date" id="s51_expiry"></div>
       </div>
       <div class="pf-row">
         <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
@@ -590,11 +600,11 @@ input[type="file"] { display:none; }
       </div>
 
       <div class="info-grid">
-        <div class="field"><label>Manufacturer</label><input type="text" placeholder="Sealant Manufacturer"></div>
-        <div class="field"><label>Batch Number</label><input type="text" placeholder="Batch No."></div>
-        <div class="field"><label>Product Name / Code</label><input type="text" placeholder="Product Name or Code"></div>
-        <div class="field"><label>Date of Receipt</label><input type="date"></div>
-        <div class="field"><label>Product Expiry Date</label><input type="date"></div>
+        <div class="field"><label>Manufacturer</label><input type="text" id="s61_manufacturer" placeholder="Sealant Manufacturer"></div>
+        <div class="field"><label>Batch Number</label><input type="text" id="s61_batch" placeholder="Batch No."></div>
+        <div class="field"><label>Product Name / Code</label><input type="text" id="s61_product" placeholder="Product Name or Code"></div>
+        <div class="field"><label>Date of Receipt</label><input type="date" id="s61_date_receipt"></div>
+        <div class="field"><label>Product Expiry Date</label><input type="date" id="s61_expiry"></div>
       </div>
       <div class="pf-row">
         <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
@@ -941,6 +951,7 @@ input[type="file"] { display:none; }
   <p style="text-align:center;font-size:11px;color:#aaa;margin-top:14px;">TRF-IGU-Test-Report-Alum-Spacer-Bar · Northern Glass Solutions Pty Ltd · CSi ID 7709</p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbzsYNNlx2iSA4GSJyYh2vxelULn4yhk8MvFbWU7VLqVDDIoQZkAxn5Q1ee-fAu9fNR-/exec";
 const DRAFT_KEY = 'ngs_igu_draft';
@@ -1066,11 +1077,13 @@ function triggerCamera(id) {
 function showPhoto(input, prevId) {
   if (input.files && input.files[0]) {
     const reader = new FileReader();
-    reader.onload = e => {
+    reader.onload = async e => {
       const prev = document.getElementById(prevId);
       const img = prev.querySelector('img');
       img.src = e.target.result;
       prev.style.display = 'block';
+      const section = prevId.replace('prev', ''); // 'prev41' → '41'
+      await runOCR(e.target.result, prevId, section);
     };
     reader.readAsDataURL(input.files[0]);
   }
@@ -1114,6 +1127,148 @@ function getAct(sectionId, itemIndex) {
   const active = items[itemIndex].querySelector('.toggle.yes, .toggle.no');
   return active ? (active.classList.contains('yes') ? 'Yes' : 'No') : 'Not completed';
 }
+
+// ─── OCR ─────────────────────────────────────────────────────────────────────
+
+const OCR_FIELDS = {
+  '41': {
+    manufacturer: 's41_manufacturer', batch: 's41_batch', product: 's41_product',
+    dateReceipt: 's41_date_receipt',  size: 's41_size',   wallThickness: 's41_wall_thickness',
+    quantity: 's41_quantity',         grade: 's41_grade', finish: 's41_finish',
+  },
+  '51': {
+    manufacturer: 's51_manufacturer', batch: 's51_batch', product: 's51_product',
+    molSieve: 's51_mol_sieve', dateReceipt: 's51_date_receipt', expiry: 's51_expiry',
+  },
+  '61': {
+    manufacturer: 's61_manufacturer', batch: 's61_batch', product: 's61_product',
+    dateReceipt: 's61_date_receipt',  expiry: 's61_expiry',
+  },
+};
+
+function normaliseDate(s) {
+  // Convert dd/mm/yy or dd-mm-yyyy → yyyy-mm-dd for <input type="date">
+  const p = s.split(/[\/\-\.]/);
+  if (p.length === 3) {
+    let [d, m, y] = p;
+    if (y.length === 2) y = '20' + y;
+    return `${y.padStart(4,'0')}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
+  }
+  return s;
+}
+
+function parseLabel(raw, section) {
+  const t = raw;
+  const lines = t.split('\n').map(l => l.trim()).filter(Boolean);
+  const r = {};
+
+  // Batch / lot number
+  const bm = t.match(/(?:batch|lot)\s*(?:no\.?|num(?:ber)?|#)?\s*[:\-]?\s*([A-Z0-9][\w\-\/\.]{1,30})/i);
+  if (bm) r.batch = bm[1].trim();
+
+  // Product name / code
+  const pm = t.match(/(?:product|prod\.?|p\/n|part|item|code)\s*(?:no\.?|#|code)?\s*[:\-]?\s*([A-Z0-9][\w\-\/\.]{1,30})/i);
+  if (pm) r.product = pm[1].trim();
+
+  // Manufacturer — heuristic: first short line that doesn't look like a field label
+  const skipRe = /^(?:batch|lot|product|prod|code|item|date|exp|mfg|qty|grade|size|colou?r|weight|net|wall|finish|mol|sieve|use\s+by|best\s+before)/i;
+  const mfr = lines.find(l => l.length >= 3 && l.length <= 50 && !skipRe.test(l) && /[a-zA-Z]/.test(l));
+  if (mfr) r.manufacturer = mfr;
+
+  // Manufacture / receipt date
+  const dm = t.match(/(?:mfg\.?|manufactured?|date\s+of\s+(?:mfg|manufacture|receipt|receiv))\s*(?:date)?\s*[:\-]?\s*(\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})/i);
+  if (dm) r.dateReceipt = normaliseDate(dm[1]);
+
+  // Expiry date
+  const em = t.match(/(?:expir(?:y|es?|ation)|exp\.?|best\s*before|use\s*by)\s*(?:date)?\s*[:\-]?\s*(\d{1,2}[\/\-\.]\d{1,2}[\/\-\.]\d{2,4})/i);
+  if (em) r.expiry = normaliseDate(em[1]);
+
+  // ── Section 4.1 specifics (spacer bar) ──────────────────────────────────────
+  if (section === '41') {
+    // Dimensions  e.g. "12mm × 16mm × 6m" or "16 x 10 x 6000"
+    const szm = t.match(/(\d+(?:\.\d+)?\s*(?:mm|m))\s*[×xX\*]\s*(\d+(?:\.\d+)?\s*(?:mm|m))(?:\s*[×xX\*]\s*(\d+(?:\.\d+)?\s*(?:mm|m)))?/i);
+    if (szm) r.size = szm[0].replace(/\s+/g,' ').trim();
+
+    const wm = t.match(/wall\s*(?:thickness)?\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*mm/i);
+    if (wm) r.wallThickness = wm[1] + ' mm';
+
+    const qm = t.match(/(?:qty|quantity)\s*[:\-]?\s*(\d+)/i);
+    if (qm) r.quantity = qm[1];
+
+    const gm = t.match(/(?:grade|alloy)\s*[:\-]?\s*([A-Z0-9][\w\s\-]{1,20})/i);
+    if (gm) r.grade = gm[1].trim();
+
+    const cm = t.match(/(?:colou?r|finish)\s*[:\-]?\s*([A-Za-z][\w\s\/\-]{1,20})/i);
+    if (cm) r.finish = cm[1].trim();
+  }
+
+  // ── Section 5.1 specifics (desiccant) ───────────────────────────────────────
+  if (section === '51') {
+    // Common types: 3A, 4A, 5A, 13X
+    const mm = t.match(/\b(3\s*[AaÅå]|4\s*[AaÅå]|5\s*[AaÅå]|13\s*X)\b/)
+            || t.match(/mol(?:ecular)?\s*sieve\s*[:\-]?\s*([^\n,;]{1,20})/i);
+    if (mm) r.molSieve = (mm[1] || mm[0]).replace(/\s+/g, '');
+  }
+
+  return r;
+}
+
+function fillFromOCR(parsed, section) {
+  const map = OCR_FIELDS[section];
+  let count = 0;
+  Object.entries(parsed).forEach(([key, val]) => {
+    if (!map[key] || !val) return;
+    const el = document.getElementById(map[key]);
+    if (!el || el.value) return;          // never overwrite existing data
+    el.value = val;
+    el.classList.add('ocr-filled');
+    count++;
+  });
+  return count;
+}
+
+async function runOCR(dataUrl, prevId, section) {
+  const prevEl = document.getElementById(prevId);
+  if (!prevEl) return;
+  const photoSec = prevEl.closest('.photo-section');
+
+  // Remove any stale badge from a previous scan
+  const old = photoSec.querySelector('.ocr-status');
+  if (old) old.remove();
+
+  const badge = document.createElement('div');
+  badge.className = 'ocr-status loading';
+  badge.textContent = 'Reading label…';
+  photoSec.appendChild(badge);
+
+  try {
+    const { data: { text } } = await Tesseract.recognize(dataUrl, 'eng', {
+      logger: m => {
+        if (m.status === 'recognizing text')
+          badge.textContent = `Reading label… ${Math.round(m.progress * 100)}%`;
+      },
+    });
+
+    const parsed = parseLabel(text, section);
+    const filled = fillFromOCR(parsed, section);
+
+    if (filled > 0) {
+      badge.className = 'ocr-status success';
+      badge.innerHTML = `✓ <strong>${filled} field${filled > 1 ? 's' : ''}</strong> auto-filled — edit if needed`;
+      saveState();
+    } else {
+      badge.className = 'ocr-status warn';
+      badge.textContent = '⚠ Label scanned — no fields matched. Please fill manually.';
+    }
+  } catch (_) {
+    badge.className = 'ocr-status error';
+    badge.textContent = '✗ Could not read label. Please fill manually.';
+  }
+
+  setTimeout(() => badge.isConnected && badge.remove(), 8000);
+}
+
+// ─── END OCR ─────────────────────────────────────────────────────────────────
 
 function submitReport() {
   const status = document.getElementById('submitStatus');
