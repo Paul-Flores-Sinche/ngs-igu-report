@@ -149,6 +149,35 @@ input[type="file"] { display:none; }
   .meta-grid, .meta-grid.three, .ns-row, .info-grid, .info-grid.three, .cb-grid, .summary-grid { grid-template-columns:1fr; }
   .readings-grid { grid-template-columns:1fr 1fr 1fr; }
 }
+
+/* ACTION BUTTONS (print / reset) */
+.action-btns { display:flex; gap:10px; margin-top:10px; }
+.action-btn { flex:1; padding:13px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; }
+.print-btn { background:#fff; color:var(--dark); border:1.5px solid var(--border); }
+.print-btn:hover { background:var(--light); }
+.reset-btn { background:#fff; color:var(--red); border:1.5px solid var(--red); }
+.reset-btn:hover { background:var(--fail); }
+
+/* PRINT STYLES */
+@media print {
+  @page { margin: 15mm; }
+  body { background:#fff; font-size:12px; }
+  .header { position:static; border-bottom:2px solid #1B6B8A; }
+  .progress-wrap { display:none; }
+  #progressText { display:none; }
+  .sec-body { display:block !important; }
+  .sec-header { background:#1B6B8A !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .photo-btn, input[type="file"] { display:none !important; }
+  .submit-wrap { display:none; }
+  .summary { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .pf-btn.pass.active { background:var(--pass) !important; color:var(--pass-text) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .pf-btn.fail.active { background:var(--fail) !important; color:var(--fail-text) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .toggle.yes { background:var(--pass) !important; color:var(--pass-text) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .toggle.no { background:var(--fail) !important; color:var(--fail-text) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .section { break-inside:avoid; margin-bottom:8px; }
+  .item { break-inside:avoid; }
+  .photo-section { border:1px solid #ccc; }
+}
 </style>
 </head>
 <body>
@@ -215,7 +244,7 @@ input[type="file"] { display:none; }
       <table class="sampling">
         <thead><tr><th>Production Lot Size</th><th>Units to Check Per Shift</th></tr></thead>
         <tbody>
-          <tr><td>2 – 15</td><td>1</td></tr><tr><td>16 – 25</td><td>2</td></tr>
+          <tr><td>2 – 5</td><td>1</td></tr><tr><td>16 – 25</td><td>2</td></tr>
           <tr><td>26 – 90</td><td>3</td></tr><tr><td>91 – 150</td><td>4</td></tr>
           <tr><td>151 – 500</td><td>6</td></tr><tr><td>501 – 1200</td><td>10</td></tr>
           <tr><td>1201 – 9999</td><td>16</td></tr>
@@ -508,11 +537,14 @@ input[type="file"] { display:none; }
     </div>
     <div class="item">
       <div class="item-head"><span class="item-num">5.5</span><span class="item-std">§5.5.7</span><span class="item-title">Desiccant Exposure: Maximum 2 hours exposure to atmosphere (recommended 40 min). Time of filling and assembly recorded.</span></div>
-      <div class="item-desc">One check per customer order or every 2 hours, whichever is less.</div>
+      <div class="item-desc">One check per customer order or every 2 hours, whichever is less. Max exposure: <strong>2 hours</strong> (recommended 40 min).</div>
+      <div class="info-grid" style="margin-bottom:14px;">
+        <div class="field"><label>Time of Filling</label><input type="time" id="s55_fill_time"></div>
+        <div class="field"><label>Time of Assembly</label><input type="time" id="s55_assem_time"></div>
+      </div>
       <div class="pf-row">
         <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
         <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
-        
       </div>
       <div class="act-row"><span class="act-label">Activity Completed:</span><div class="toggle-group"><button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button><button class="toggle" onclick="setToggle(this,'no')">✗ No</button></div></div>
       <div class="ns-row"><div class="field"><label>Notes</label><textarea placeholder="Notes..."></textarea></div><div class="field"><label>Signature</label><input type="text" placeholder="Name & sign"></div></div>
@@ -599,6 +631,17 @@ input[type="file"] { display:none; }
     <div class="item">
       <div class="item-head"><span class="item-num">6.3</span><span class="item-std">§5.6.4</span><span class="item-title">Minimum Sealant Dimensions: Verified to Table 5.7. Dual or Single Seal unit.</span></div>
       <div class="item-desc">One check per production shift. Random samples per Table 6.1.</div>
+      <div class="field" style="margin-bottom:14px;">
+        <label>Type of Sealed Unit</label>
+        <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--light);border:1.5px solid var(--border);border-radius:6px;cursor:pointer;font-size:13px;color:var(--dark);">
+            <input type="radio" name="sealType63" id="seal_dual" style="width:16px;height:16px;accent-color:var(--teal);"> Dual Seal
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--light);border:1.5px solid var(--border);border-radius:6px;cursor:pointer;font-size:13px;color:var(--dark);">
+            <input type="radio" name="sealType63" id="seal_single" style="width:16px;height:16px;accent-color:var(--teal);"> Single Seal
+          </label>
+        </div>
+      </div>
       <div class="pf-row">
         <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
         <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
@@ -647,17 +690,6 @@ input[type="file"] { display:none; }
       <div class="ns-row"><div class="field"><label>Notes</label><textarea placeholder="Notes..."></textarea></div><div class="field"><label>Signature</label><input type="text" placeholder="Name & sign"></div></div>
     </div>
     <div class="item">
-      <div class="item-head"><span class="item-num">6.9</span><span class="item-std">§5.6.10.2</span><span class="item-title">Sealant Storage: Stored per manufacturer specification.</span></div>
-      <div class="item-desc">One check per production shift.</div>
-      <div class="pf-row">
-        <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-        <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
-      </div>
-      <div class="act-row"><span class="act-label">Activity Completed:</span><div class="toggle-group"><button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button><button class="toggle" onclick="setToggle(this,'no')">✗ No</button></div></div>
-      <div class="ns-row"><div class="field"><label>Notes</label><textarea placeholder="Notes..."></textarea></div><div class="field"><label>Signature</label><input type="text" placeholder="Name & sign"></div></div>
-    </div>
-
-    <div class="item">
       <div class="item-head"><span class="item-num">6.8</span><span class="item-std">§5.6.9, App. N</span><span class="item-title">Sealant Cure Rate: Single or secondary sealants tested. Records maintained.</span></div>
       <div class="item-desc">One check per production shift. Record initial hardness readings.</div>
       <div class="readings-grid">
@@ -675,6 +707,17 @@ input[type="file"] { display:none; }
       </div>
       <div class="act-row"><span class="act-label">Activity Completed:</span><div class="toggle-group"><button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button><button class="toggle" onclick="setToggle(this,'no')">✗ No</button></div></div>
       <div class="ns-row"><div class="field"><label>Notes</label><textarea></textarea></div><div class="field"><label>Signature</label><input type="text" placeholder="Name & sign"></div></div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-num">6.9</span><span class="item-std">§5.6.10.2</span><span class="item-title">Sealant Storage: Stored per manufacturer specification.</span></div>
+      <div class="item-desc">One check per production shift.</div>
+      <div class="pf-row">
+        <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
+        <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
+      </div>
+      <div class="act-row"><span class="act-label">Activity Completed:</span><div class="toggle-group"><button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button><button class="toggle" onclick="setToggle(this,'no')">✗ No</button></div></div>
+      <div class="ns-row"><div class="field"><label>Notes</label><textarea placeholder="Notes..."></textarea></div><div class="field"><label>Signature</label><input type="text" placeholder="Name & sign"></div></div>
     </div>
   </div>
 </div>
@@ -890,6 +933,10 @@ input[type="file"] { display:none; }
 <!-- SUBMIT -->
 <div class="submit-wrap">
   <button class="submit-btn" onclick="submitReport()">✓ Submit Report to Google Sheets</button>
+  <div class="action-btns">
+    <button class="action-btn print-btn" onclick="window.print()">🖨 Print / Export PDF</button>
+    <button class="action-btn reset-btn" onclick="resetForm()">↺ Reset Form</button>
+  </div>
   <div class="submit-status" id="submitStatus"></div>
   <p style="text-align:center;font-size:11px;color:#aaa;margin-top:14px;">TRF-IGU-Test-Report-Alum-Spacer-Bar · Northern Glass Solutions Pty Ltd · CSi ID 7709</p>
 </div>
@@ -919,6 +966,27 @@ function setToggle(btn, val) {
   updateSummary();
 }
 
+function resetForm() {
+  if (!confirm('Reset all form data? This cannot be undone.')) return;
+  document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="date"]').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="time"]').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
+  document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+  document.querySelectorAll('.pf-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.toggle').forEach(btn => btn.classList.remove('yes','no'));
+  ['cam41','cam51','cam61'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['prev41','prev51','prev61'].forEach(id => {
+    const el = document.getElementById(id); if (!el) return;
+    el.style.display = 'none';
+    const img = el.querySelector('img'); if (img) img.src = '';
+  });
+  document.getElementById('f_date').valueAsDate = new Date();
+  document.getElementById('submitStatus').style.display = 'none';
+  updateProgress();
+  updateSummary();
+}
+
 function triggerCamera(id) {
   document.getElementById(id).click();
 }
@@ -944,7 +1012,7 @@ function removePhoto(camId, prevId) {
 
 function updateProgress() {
   const total = document.querySelectorAll('.toggle-group').length;
-  const done = document.querySelectorAll('.toggle.yes, .toggle.no').length / 2;
+  const done = document.querySelectorAll('.toggle.yes, .toggle.no').length;
   const pct = total > 0 ? Math.round((done/total)*100) : 0;
   document.getElementById('progressBar').style.width = pct + '%';
   document.getElementById('progressText').textContent = pct + '% complete';
@@ -1028,6 +1096,10 @@ function submitReport() {
     s94: getPF('s9', 3), s95: getPF('s9', 4), s96: getPF('s9', 5),
     s97: getPF('s9', 6), s98: getPF('s9', 7), s99: getPF('s9', 8), s910: getPF('s9', 9),
     s101: getPF('s10', 0), s102: getPF('s10', 1), s103: getPF('s10', 2),
+
+    desiccantFillTime: document.getElementById('s55_fill_time').value,
+    desiccantAssemTime: document.getElementById('s55_assem_time').value,
+    sealUnitType63: (function(){ const r = document.querySelector('input[name="sealType63"]:checked'); return r ? r.parentElement.textContent.trim() : 'Not selected'; })(),
 
     photo41: (img41 && img41.src && img41.src.length > 100) ? img41.src : '',
     photo51: (img51 && img51.src && img51.src.length > 100) ? img51.src : '',
