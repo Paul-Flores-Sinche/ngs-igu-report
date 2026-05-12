@@ -943,9 +943,78 @@ input[type="file"] { display:none; }
 
 <script>
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbzsYNNlx2iSA4GSJyYh2vxelULn4yhk8MvFbWU7VLqVDDIoQZkAxn5Q1ee-fAu9fNR-/exec";
+const DRAFT_KEY = 'ngs_igu_draft';
 
-// Set today's date
+// --- DRAFT SAVE / RESTORE ---
+function saveState() {
+  try {
+    const s = {};
+    s.textValues = [...document.querySelectorAll(
+      'input[type="text"], input[type="number"], input[type="date"], input[type="time"], select, textarea'
+    )].map(el => el.value);
+    s.checked = [...document.querySelectorAll('input[type="checkbox"], input[type="radio"]')]
+      .map(el => el.checked);
+    s.pfStates = [...document.querySelectorAll('.pf-row')].map(row => {
+      const a = row.querySelector('.pf-btn.active');
+      return a ? (a.classList.contains('pass') ? 'pass' : 'fail') : null;
+    });
+    s.toggleStates = [...document.querySelectorAll('.toggle-group')].map(g => {
+      if (g.querySelector('.toggle.yes')) return 'yes';
+      if (g.querySelector('.toggle.no')) return 'no';
+      return null;
+    });
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(s));
+  } catch(e) {}
+}
+
+function restoreState() {
+  let s;
+  try { s = JSON.parse(localStorage.getItem(DRAFT_KEY)); } catch(e) {}
+  if (!s) return false;
+  if (s.textValues) {
+    [...document.querySelectorAll(
+      'input[type="text"], input[type="number"], input[type="date"], input[type="time"], select, textarea'
+    )].forEach((el, i) => { if (s.textValues[i] !== undefined) el.value = s.textValues[i]; });
+  }
+  if (s.checked) {
+    [...document.querySelectorAll('input[type="checkbox"], input[type="radio"]')]
+      .forEach((el, i) => { if (s.checked[i] !== undefined) el.checked = s.checked[i]; });
+  }
+  if (s.pfStates) {
+    [...document.querySelectorAll('.pf-row')].forEach((row, i) => {
+      if (!s.pfStates[i]) return;
+      const btn = row.querySelector('.pf-btn.' + s.pfStates[i]);
+      if (btn) btn.classList.add('active');
+    });
+  }
+  if (s.toggleStates) {
+    [...document.querySelectorAll('.toggle-group')].forEach((g, i) => {
+      if (!s.toggleStates[i]) return;
+      const btns = [...g.querySelectorAll('.toggle')];
+      if (s.toggleStates[i] === 'yes' && btns[0]) btns[0].classList.add('yes');
+      if (s.toggleStates[i] === 'no'  && btns[1]) btns[1].classList.add('no');
+    });
+  }
+  updateProgress();
+  updateSummary();
+  return true;
+}
+
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0b2e40;color:#fff;padding:10px 22px;border-radius:8px;font-size:13px;font-family:"DM Sans",sans-serif;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.25);white-space:nowrap;';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// Auto-save on any text input or select change
+document.addEventListener('input', saveState);
+document.addEventListener('change', saveState);
+
+// Set today's date then restore draft (restore may overwrite date if one was saved)
 document.getElementById('f_date').valueAsDate = new Date();
+if (restoreState()) showToast('Draft restored from last session');
 
 function toggleSec(id) {
   document.getElementById(id).classList.toggle('open');
@@ -956,6 +1025,7 @@ function setPF(btn) {
   row.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   updateSummary();
+  saveState();
 }
 
 function setToggle(btn, val) {
@@ -964,10 +1034,12 @@ function setToggle(btn, val) {
   btn.classList.add(val);
   updateProgress();
   updateSummary();
+  saveState();
 }
 
 function resetForm() {
   if (!confirm('Reset all form data? This cannot be undone.')) return;
+  localStorage.removeItem(DRAFT_KEY);
   document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(el => el.value = '');
   document.querySelectorAll('input[type="date"]').forEach(el => el.value = '');
   document.querySelectorAll('input[type="time"]').forEach(el => el.value = '');
