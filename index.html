@@ -953,7 +953,7 @@ input[type="file"] { display:none; }
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzsYNNlx2iSA4GSJyYh2vxelULn4yhk8MvFbWU7VLqVDDIoQZkAxn5Q1ee-fAu9fNR-/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbyIBtPuUJfZvKc2zmUd8t-jBLlpsk22iQqLczLv7UE2e0l3h1VAVAUltBT1KrTjT_0/exec";
 const DRAFT_KEY = 'ngs_igu_draft';
 
 // --- DRAFT SAVE / RESTORE ---
@@ -1274,7 +1274,7 @@ function submitReport() {
   const status = document.getElementById('submitStatus');
   status.style.display = 'block';
   status.className = 'submit-status';
-  status.textContent = '⏳ Submitting report...';
+  status.textContent = '⏳ Submitting report…';
 
   const pfAll = [];
   document.querySelectorAll('.pf-row').forEach(row => {
@@ -1291,19 +1291,15 @@ function submitReport() {
   const img41 = document.getElementById('img41');
   const img51 = document.getElementById('img51');
   const img61 = document.getElementById('img61');
+  const g = id => { const el = document.getElementById(id); return el ? el.value : ''; };
 
   const data = {
-    date: document.getElementById('f_date').value,
-    shiftStart: document.getElementById('f_shift_start').value,
-    shiftFinish: document.getElementById('f_shift_finish').value,
-    totalUnits: document.getElementById('f_total_units').value,
-    productionLine: document.getElementById('f_line').value,
-    completedBy: [
-      document.getElementById('f_person1').value,
-      document.getElementById('f_person2').value,
-      document.getElementById('f_person3').value,
-      document.getElementById('f_person4').value,
-    ].filter(Boolean).join(', '),
+    date:           g('f_date'),
+    shiftStart:     g('f_shift_start'),
+    shiftFinish:    g('f_shift_finish'),
+    totalUnits:     g('f_total_units'),
+    productionLine: g('f_line'),
+    completedBy:    [g('f_person1'),g('f_person2'),g('f_person3'),g('f_person4')].filter(Boolean).join(', '),
 
     // Section results
     s1: getAct('s1', 0),
@@ -1318,24 +1314,51 @@ function submitReport() {
     s64: getPF('s6', 3), s65: getPF('s6', 4), s66: getPF('s6', 5),
     s67: getPF('s6', 6), s68: getPF('s6', 7), s69: getPF('s6', 8),
     s71: getPF('s7', 0), s72: getPF('s7', 1), s73: getPF('s7', 2), s74: getPF('s7', 3),
-    s81: getPF('s8', 0), s82: getAct('s8', 1),
-    s91: getAct('s9', 0), s92: getPF('s9', 1), s93: getPF('s9', 2),
-    s94: getPF('s9', 3), s95: getPF('s9', 4), s96: getPF('s9', 5),
-    s97: getPF('s9', 6), s98: getPF('s9', 7), s99: getPF('s9', 8), s910: getPF('s9', 9),
+    s81: getPF('s8', 0), s82: getAct('s8', 0),
+    s91: getAct('s9', 0), s92: getPF('s9', 0), s93: getPF('s9', 1),
+    s94: getPF('s9', 2), s95: getPF('s9', 3), s96: getPF('s9', 4),
+    s97: getPF('s9', 5), s98: getPF('s9', 6), s99: getPF('s9', 7), s910: getPF('s9', 8),
     s101: getPF('s10', 0), s102: getPF('s10', 1), s103: getPF('s10', 2),
 
-    desiccantFillTime: document.getElementById('s55_fill_time').value,
-    desiccantAssemTime: document.getElementById('s55_assem_time').value,
+    desiccantFillTime:  g('s55_fill_time'),
+    desiccantAssemTime: g('s55_assem_time'),
     sealUnitType63: (function(){ const r = document.querySelector('input[name="sealType63"]:checked'); return r ? r.parentElement.textContent.trim() : 'Not selected'; })(),
 
+    // Spacer bar detail fields
+    s41_manufacturer:   g('s41_manufacturer'),
+    s41_batch:          g('s41_batch'),
+    s41_product:        g('s41_product'),
+    s41_date_receipt:   g('s41_date_receipt'),
+    s41_size:           g('s41_size'),
+    s41_wall_thickness: g('s41_wall_thickness'),
+    s41_quantity:       g('s41_quantity'),
+    s41_grade:          g('s41_grade'),
+    s41_finish:         g('s41_finish'),
+
+    // Desiccant detail fields
+    s51_manufacturer:  g('s51_manufacturer'),
+    s51_batch:         g('s51_batch'),
+    s51_product:       g('s51_product'),
+    s51_mol_sieve:     g('s51_mol_sieve'),
+    s51_date_receipt:  g('s51_date_receipt'),
+    s51_expiry:        g('s51_expiry'),
+
+    // Sealant detail fields
+    s61_manufacturer:  g('s61_manufacturer'),
+    s61_batch:         g('s61_batch'),
+    s61_product:       g('s61_product'),
+    s61_date_receipt:  g('s61_date_receipt'),
+    s61_expiry:        g('s61_expiry'),
+
+    // Photos (base64) — embedded in PDF if present
     photo41: (img41 && img41.src && img41.src.length > 100) ? img41.src : '',
     photo51: (img51 && img51.src && img51.src.length > 100) ? img51.src : '',
     photo61: (img61 && img61.src && img61.src.length > 100) ? img61.src : '',
 
-    pfResults: pfAll.join(' | '),
-    activities: actAll.join(' | '),
-    passCount: document.querySelectorAll('.pf-btn.pass.active').length,
-    failCount: document.querySelectorAll('.pf-btn.fail.active').length,
+    pfResults:    pfAll.join(' | '),
+    activities:   actAll.join(' | '),
+    passCount:    document.querySelectorAll('.pf-btn.pass.active').length,
+    failCount:    document.querySelectorAll('.pf-btn.fail.active').length,
     overallResult: document.querySelectorAll('.pf-btn.fail.active').length === 0
       ? 'ALL PASS'
       : 'FAIL — ' + document.querySelectorAll('.pf-btn.fail.active').length + ' item(s) failed',
@@ -1343,18 +1366,22 @@ function submitReport() {
 
   fetch(SHEET_URL, {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data),
   })
-  .then(() => {
-    status.className = 'submit-status success';
-    status.textContent = '✅ Report submitted successfully to Google Sheets!';
+  .then(r => r.json())
+  .then(res => {
+    if (res.status === 'ok') {
+      status.className = 'submit-status success';
+      status.innerHTML = '✅ Report submitted. Report saved to Drive — <a href="' + res.driveUrl + '" target="_blank" style="color:var(--pass-text);font-weight:600;">Open Report</a>';
+    } else {
+      throw new Error(res.message || 'Unknown error');
+    }
     window.scrollTo(0, 0);
   })
-  .catch(() => {
+  .catch(err => {
     status.className = 'submit-status error';
-    status.textContent = '❌ Error submitting. Please check your connection and try again.';
+    status.textContent = '❌ Error: ' + err.message;
   });
 }
 </script>
