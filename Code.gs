@@ -104,23 +104,35 @@ function logToSheet(data) {
 }
 
 // ─── REPORT GENERATION ────────────────────────────────────────────────────────
-
+//
+// Requires the Drive API advanced service:
+//   Apps Script editor → left sidebar "Services" (+) → Drive API → Add
+//
 function generateAndSavePDF(data) {
   const tz         = Session.getScriptTimeZone();
   const dateStr    = data.date || Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd');
   const safeDate   = dateStr.replace(/\//g, '-');
   const safeAuthor = (data.completedBy || 'report').substring(0, 20).replace(/[^a-zA-Z0-9]/g, '_');
-  const fileName   = 'IGU_Report_' + safeDate + '_' + safeAuthor + '.html';
+  const fileName   = 'IGU_Report_' + safeDate + '_' + safeAuthor;
 
   const html = buildHtmlReport(data, dateStr, tz);
   console.log('HTML built, length:', html.length);
 
-  const blob   = Utilities.newBlob(html, MimeType.HTML, fileName);
-  const folder = DriveApp.getFolderById(CONFIG.FOLDER_ID);
-  const file   = folder.createFile(blob);
-  console.log('Report saved:', file.getId());
+  // Upload the HTML blob and ask Drive to convert it to a native Google Doc.
+  // The resulting file opens and renders correctly — no raw code shown.
+  const blob = Utilities.newBlob(html, MimeType.HTML, fileName + '.html');
+  const meta = Drive.Files.insert(
+    {
+      title   : fileName,
+      mimeType: 'application/vnd.google-apps.document',
+      parents : [{ id: CONFIG.FOLDER_ID }],
+    },
+    blob,
+    { convert: true }
+  );
+  console.log('Doc created:', meta.id);
 
-  return file;
+  return DriveApp.getFileById(meta.id);
 }
 
 // ─── HTML REPORT BUILDER ──────────────────────────────────────────────────────
