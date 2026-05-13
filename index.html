@@ -41,6 +41,8 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
 .doc-right  { text-align:right; }
 .doc-number { font-size:10px; color:rgba(255,255,255,0.5); line-height:1.6; font-family:monospace; }
 .doc-csi    { font-size:14px; font-weight:700; color:var(--pass); margin-top:4px; letter-spacing:1px; }
+.pas-mark   { font-size:11px; color:rgba(255,255,255,0.6); margin-top:4px; }
+.pas-grade  { display:inline-block; background:var(--pass); color:#fff; font-weight:700; border-radius:3px; padding:1px 5px; margin-left:4px; }
 
 /* ── PROGRESS STRIP ── */
 .progress-strip { height:4px; background:rgba(0,0,0,0.15); }
@@ -126,6 +128,7 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
 .item-hdr-text { flex:1; }
 .item-title { font-size:13.5px; font-weight:700; color:#1a2a36; line-height:1.4; }
 .item-desc  { font-size:12px; color:var(--gray); line-height:1.5; margin-top:3px; font-style:italic; }
+.compliance-note { font-size:11.5px; color:#b71c1c; font-weight:600; margin-top:5px; line-height:1.5; border-left:3px solid #e53935; padding-left:8px; background:#fff5f5; border-radius:0 4px 4px 0; padding:4px 8px; }
 
 /* Special content inside items */
 .item-body { padding:12px 18px; }
@@ -144,6 +147,18 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
 .atm-tbl td { padding:5px 6px; border-bottom:1px solid var(--border); }
 .atm-tbl td input { width:100%; border:1.5px solid var(--border); border-radius:4px; padding:8px; font-size:14px; font-family:inherit; background:var(--light); }
 .atm-tbl td input:focus { outline:none; border-color:var(--accent); background:#fff; }
+
+/* Reference / measurement table */
+.ref-tbl { width:100%; border-collapse:collapse; font-size:13px; margin-top:6px; }
+.ref-tbl caption { text-align:left; font-size:11px; font-weight:700; color:var(--dark); margin-bottom:4px; letter-spacing:0.5px; caption-side:top; padding-bottom:4px; }
+.ref-tbl th { background:var(--dark2); color:rgba(255,255,255,0.75); padding:7px 10px; font-size:10px; letter-spacing:1px; text-transform:uppercase; text-align:left; }
+.ref-tbl td { padding:4px 6px; border-bottom:1px solid var(--border); text-align:center; }
+.ref-tbl td:first-child { font-weight:700; color:var(--dark); }
+.ref-tbl td input { width:100%; border:1.5px solid var(--border); border-radius:4px; padding:7px; font-size:13px; font-family:inherit; background:var(--light); text-align:center; }
+.ref-tbl td input:focus { outline:none; border-color:var(--accent); background:#fff; }
+
+/* Shift info row (inside Section 2) */
+.shift-info-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px; }
 
 /* Info grid (spacer/desiccant/sealant detail fields) */
 .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
@@ -305,6 +320,7 @@ input[type="file"] { display:none; }
   <div class="doc-right">
     <div class="doc-number">TRF-IGU-Test-Report<br>Alum-Spacer-Bar</div>
     <div class="doc-csi">CSi ID 7709</div>
+    <div class="pas-mark">PAS-Mark <span class="pas-grade">A</span></div>
   </div>
 </div>
 <div class="progress-strip"><div class="progress-fill" id="progressBar"></div></div>
@@ -314,7 +330,7 @@ input[type="file"] { display:none; }
 <div class="meta-wrap">
   <div class="meta-company">
     <span>Company: Northern Glass Solutions Pty Ltd</span>
-    <span>Location: Darwin, NT</span>
+    <span>Location: 84 O'Sullivan Cres, East Arm, NT 0822</span>
     <span>Product Standard: AS 4666:2012</span>
   </div>
   <div class="meta-fields">
@@ -322,17 +338,9 @@ input[type="file"] { display:none; }
       <span class="meta-label">Date</span>
       <input type="date" id="f_date">
     </div>
-    <div class="meta-cell">
-      <span class="meta-label">Shift Start</span>
-      <input type="time" id="f_shift_start">
-    </div>
-    <div class="meta-cell">
-      <span class="meta-label">Shift Finish</span>
-      <input type="time" id="f_shift_finish">
-    </div>
-    <div class="meta-cell">
-      <span class="meta-label">Total Units</span>
-      <input type="number" id="f_total_units" placeholder="e.g. 45">
+    <div class="meta-cell wide2">
+      <span class="meta-label">Applicable Certificate</span>
+      <input type="text" id="f_cert" placeholder="Certificate No.">
     </div>
     <div class="meta-cell">
       <span class="meta-label">Production Line</span>
@@ -386,7 +394,7 @@ input[type="file"] { display:none; }
         <span class="item-badge std">§5.8.2 &amp; §6.0</span>
       </div>
       <div class="item-hdr-text">
-        <div class="item-title">Number of IGU units to sample from production lot (Table 6.1)</div>
+        <div class="item-title">Number of IGU units to sample from production lot (Table 5.1, AS 4666)</div>
         <div class="item-desc">Permanent record of sampling maintained for each production shift.</div>
       </div>
     </div>
@@ -444,6 +452,11 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="item-body">
+      <div class="shift-info-row">
+        <div class="info-field"><label for="f_shift_start">Shift Start</label><input type="time" id="f_shift_start"></div>
+        <div class="info-field"><label for="f_shift_finish">Shift Finish</label><input type="time" id="f_shift_finish"></div>
+        <div class="info-field"><label for="f_total_units">Total Units</label><input type="number" id="f_total_units" placeholder="e.g. 45"></div>
+      </div>
       <table class="atm-tbl">
         <thead>
           <tr>
@@ -494,7 +507,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.1</span><span class="item-badge std">§5.3.1–5.3.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3</span><span class="item-badge std">§5.3.1–5.3.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Compliance with Order, Traceability &amp; Types of Substrates</div>
         <div class="item-desc">Permanent record of glazing materials, date of receipt, compliance with order. Traceable records maintained. Every customer order.</div>
@@ -520,7 +533,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.2</span><span class="item-badge std">§5.3.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.1</span><span class="item-badge std">§5.3.4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Edge Characteristics</div>
         <div class="item-desc">Visual inspection per Table 5.2. Every customer order or every 30 minutes, whichever is less.</div>
@@ -546,7 +559,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.3</span><span class="item-badge std">§5.3.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.2</span><span class="item-badge std">§5.3.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Dimensional Properties (Thickness, Flatness, Height/Width)</div>
         <div class="item-desc">Thickness tolerance per Table 5.1, flatness/bow per Table 5.3, height/width per §5.3.5.2–5.3.5.3. Every customer order or 30 minutes.</div>
@@ -572,10 +585,11 @@ input[type="file"] { display:none; }
   <!-- Item 3.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.4</span><span class="item-badge std">§5.3.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.3</span><span class="item-badge std">§5.3.6</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Cleanliness – Dryness, Stains/Films, Fingerprints</div>
         <div class="item-desc">100% inspection of all glazing materials. Particular attention to internal surfaces. Records required if stains cannot be removed.</div>
+        <div class="compliance-note">Records required if Stains! This cannot be removed, size &amp; location to be recorded.</div>
       </div>
     </div>
     <div class="pf-row">
@@ -598,7 +612,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.5</span><span class="item-badge std">§5.3.7</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.4</span><span class="item-badge std">§5.3.7</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Scratches, Blemishes, Marks &amp; Inclusions</div>
         <div class="item-desc">Visual inspection per Tables 5.5 &amp; 5.6. 100% inspection of all glazing materials.</div>
@@ -633,7 +647,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.1</span><span class="item-badge std">§5.4.1 &amp; §5.4.7.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4</span><span class="item-badge std">§5.4.1 &amp; §5.4.7.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar: Dimensional Properties &amp; Stock Record</div>
         <div class="item-desc">Permanent record identifying stock for each customer order. One check per production shift.</div>
@@ -682,7 +696,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.2</span><span class="item-badge std">§5.4.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.1</span><span class="item-badge std">§5.4.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar: Customer Stock Record Traceability</div>
         <div class="item-desc">Permanent record traceable to supplier. One check per customer order.</div>
@@ -708,7 +722,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.3</span><span class="item-badge std">§5.4.3.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.2</span><span class="item-badge std">§5.4.3.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Rigid Spacer Bar: Visual Inspection</div>
         <div class="item-desc">One check per production shift. Check all criteria below.</div>
@@ -742,7 +756,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.4</span><span class="item-badge std">§5.4.4 &amp; §5.4.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.3</span><span class="item-badge std">§5.4.4 &amp; §5.4.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Corner Keys &amp; Straight Line Connectors</div>
         <div class="item-desc">One check per production shift.</div>
@@ -775,7 +789,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.5</span><span class="item-badge std">§5.4.6, App. I</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.4</span><span class="item-badge std">§5.4.6, App. I</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar Cleanliness: Free from Dirt, Oil, Grease, Contaminants</div>
         <div class="item-desc">One check per production shift.</div>
@@ -801,7 +815,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.6</span><span class="item-badge std">§5.4.7.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.5</span><span class="item-badge std">§5.4.7.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Dimensional Properties: Compliance with Manufacturer Specifications</div>
         <div class="item-desc">One check per production shift.</div>
@@ -827,7 +841,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.7</span><span class="item-badge std">§5.4.8</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.6</span><span class="item-badge std">§5.4.8</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Post Assembly Inspection: No splitting, tearing or flare-out on bent corners</div>
         <div class="item-desc">One check per production shift.</div>
@@ -862,10 +876,11 @@ input[type="file"] { display:none; }
   <!-- Item 5.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.1</span><span class="item-badge std">§5.5.2 &amp; §5.5.8</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5</span><span class="item-badge std">§5.5.2 &amp; §5.5.8</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant: Origin, Compliance with Order &amp; Shelf Life</div>
         <div class="item-desc">Permanent record identifying stock. Check expiry date — desiccant exceeding expiry date shall be discarded. One check per production shift.</div>
+        <div class="compliance-note">Records to be maintained if desiccant material exceeding its specified in-use-by date shall be discarded.</div>
       </div>
     </div>
     <div class="item-body">
@@ -908,7 +923,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.2</span><span class="item-badge std">§5.5.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.1</span><span class="item-badge std">§5.5.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Traceability: Traceable back to supplier for each customer order</div>
         <div class="item-desc">One check per production shift.</div>
@@ -934,7 +949,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.3</span><span class="item-badge std">§5.5.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.2</span><span class="item-badge std">§5.5.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Effectiveness / Fit for Purpose: Tested per manufacturer specification before each production run</div>
         <div class="item-desc">One check per production shift.</div>
@@ -960,7 +975,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.4</span><span class="item-badge std">§5.5.6, App. J</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.3</span><span class="item-badge std">§5.5.6, App. J</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Volume: Adequate volume employed in spacer bar cavity</div>
         <div class="item-desc">One check per production shift.</div>
@@ -986,7 +1001,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.5</span><span class="item-badge std">§5.5.7</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.4</span><span class="item-badge std">§5.5.7</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Exposure: Maximum 2 hours exposure to atmosphere (recommended 40 min). Time of filling and assembly recorded.</div>
         <div class="item-desc">One check per customer order or every 2 hours, whichever is less. Max exposure: <strong>2 hours</strong> (recommended 40 min).</div>
@@ -1018,7 +1033,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.6</span><span class="item-badge std">§5.5.9</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.5</span><span class="item-badge std">§5.5.9</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Suitability: Compatible with gas type used in IGU assembly (pore size &lt; gas molecular sieve)</div>
         <div class="item-desc">One check per customer order. Mark N/A for air-filled units.</div>
@@ -1054,10 +1069,11 @@ input[type="file"] { display:none; }
   <!-- Item 6.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.1</span><span class="item-badge std">§5.6.1 &amp; §5.6.10.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6</span><span class="item-badge std">§5.6.1 &amp; §5.6.10.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant: Origin, Compliance with Order &amp; Shelf Life</div>
         <div class="item-desc">Permanent record identifying stock. If sealant reaches in-use-by date, contact manufacturer and record all actions. One check per production shift.</div>
+        <div class="compliance-note">If sealant reaches or has exceeded its in-use-by date, consult manufacturer before use. All actions and manufacturer guidance must be recorded. Sealant outside of specification must not be used without manufacturer approval.</div>
       </div>
     </div>
     <div class="item-body">
@@ -1099,7 +1115,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.2</span><span class="item-badge std">§5.6.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.1</span><span class="item-badge std">§5.6.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Traceability: Primary &amp; Secondary Sealant Records</div>
         <div class="item-desc">Sealant Manufacturer/Type – Batch Number – Expiry Date. One check per production shift.</div>
@@ -1107,11 +1123,17 @@ input[type="file"] { display:none; }
     </div>
     <div class="item-body">
       <div style="font-weight:700;font-size:12px;color:var(--dark);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Primary Sealant</div>
-      <div class="info-grid g3" style="margin-bottom:12px;">
+      <div class="info-grid g3" style="margin-bottom:8px;">
         <div class="info-field"><label>Manufacturer / Type</label><input type="text" placeholder="Primary Sealant Manufacturer"></div>
         <div class="info-field"><label>Batch Number</label><input type="text" placeholder="Batch No."></div>
         <div class="info-field"><label>Expiry Date</label><input type="date"></div>
       </div>
+    </div>
+    <div class="pf-row">
+      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
+      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
+    </div>
+    <div class="item-body" style="padding-top:8px;">
       <div style="font-weight:700;font-size:12px;color:var(--dark);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Secondary Sealant</div>
       <div class="info-grid g3">
         <div class="info-field"><label>Manufacturer / Type</label><input type="text" placeholder="Secondary Sealant Manufacturer"></div>
@@ -1139,17 +1161,33 @@ input[type="file"] { display:none; }
   <!-- Item 6.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.3</span><span class="item-badge std">§5.6.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.2</span><span class="item-badge std">§5.6.4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Minimum Sealant Dimensions: Verified to Table 5.7. Dual or Single Seal unit.</div>
         <div class="item-desc">One check per production shift. Random samples per Table 6.1.</div>
       </div>
     </div>
     <div class="item-body">
-      <div class="radio-group">
+      <div class="radio-group" style="margin-bottom:10px;">
         <label class="radio-item"><input type="radio" name="sealType63" id="seal_dual"> Dual Seal</label>
         <label class="radio-item"><input type="radio" name="sealType63" id="seal_single"> Single Seal</label>
       </div>
+      <table class="ref-tbl">
+        <caption>Table 5.7 — Minimum Sealant Dimensions (AS 4666:2012)</caption>
+        <thead>
+          <tr>
+            <th>Sample #</th>
+            <th>Primary Width (mm) <span style="font-weight:400;font-size:10px;">min. 3 mm</span></th>
+            <th>Secondary Depth (mm) <span style="font-weight:400;font-size:10px;">min. 6 mm</span></th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="Pass/Fail"></td></tr>
+          <tr><td>2</td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="Pass/Fail"></td></tr>
+          <tr><td>3</td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="Pass/Fail"></td></tr>
+        </tbody>
+      </table>
     </div>
     <div class="pf-row">
       <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
@@ -1171,7 +1209,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.4</span><span class="item-badge std">§5.6.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.3</span><span class="item-badge std">§5.6.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Compatibility with Glass: Confirmed as compatible and approved for use</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1197,9 +1235,9 @@ input[type="file"] { display:none; }
   <!-- Item 6.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.5</span><span class="item-badge std">§5.6.6, App. K</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.4</span><span class="item-badge std">§5.6.6, App. K</span></div>
       <div class="item-hdr-text">
-        <div class="item-title">Sealant Adhesion: To glass surface and spacer bar. Records maintained.</div>
+        <div class="item-title">Secondary Adhesion: To glass surface and spacer bar. Records maintained.</div>
         <div class="item-desc">One check per production shift.</div>
       </div>
     </div>
@@ -1223,7 +1261,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.6</span><span class="item-badge std">§5.6.7, App. L</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.5</span><span class="item-badge std">§5.6.7, App. L</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Mix Ratio: Two-part secondary sealant mix ratio tested. Records maintained.</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1249,7 +1287,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.7</span><span class="item-badge std">§5.6.8, App. M</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.6</span><span class="item-badge std">§5.6.8, App. M</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Mix Homogeneity: Tested once per shift. Results recorded.</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1275,7 +1313,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.8 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.8</span><span class="item-badge std">§5.6.9, App. N</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.7</span><span class="item-badge std">§5.6.9, App. N</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Cure Rate: Single or secondary sealants tested. Records maintained.</div>
         <div class="item-desc">One check per production shift. Record initial hardness readings.</div>
@@ -1314,7 +1352,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.9 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.9</span><span class="item-badge std">§5.6.10.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.8</span><span class="item-badge std">§5.6.10.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Storage: Stored per manufacturer specification.</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1349,7 +1387,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.1</span><span class="item-badge std">§5.7.1 &amp; §5.7.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7</span><span class="item-badge std">§5.7.1 &amp; §5.7.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Gas: Origin, Compliance with Order &amp; Gas Type</div>
         <div class="item-desc">Permanent record identifying gas supplier and type. One check per production shift.</div>
@@ -1388,7 +1426,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.2</span><span class="item-badge std">§5.7.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.1</span><span class="item-badge std">§5.7.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Gas Traceability: Traceable to supplier for each customer order</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1414,7 +1452,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.3</span><span class="item-badge std">§5.7.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.2</span><span class="item-badge std">§5.7.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant &amp; Gas Compatibility: Desiccant pore size smaller than gas molecular sieve size</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1440,7 +1478,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.4</span><span class="item-badge std">§5.7.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.3</span><span class="item-badge std">§5.7.6</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Gas Fill Volume: Minimum 90% of IGU cavity volume. Calculated or measured per Appendix O.</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1475,7 +1513,7 @@ input[type="file"] { display:none; }
   <!-- Item 8.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">8.1</span><span class="item-badge std">§4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">8</span><span class="item-badge std">§4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Compliance Marking: Company name/logo, CSi ID 7709, AS 4666, Date of manufacture</div>
         <div class="item-desc">100% check per production shift. Visual inspection of all items below.</div>
@@ -1509,7 +1547,7 @@ input[type="file"] { display:none; }
   <!-- Item 8.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">8.2</span><span class="item-badge std">§4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">8.1</span><span class="item-badge std">§4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Work Order / Customer Order Label Affixed to Finished Product</div>
       </div>
@@ -1539,14 +1577,10 @@ input[type="file"] { display:none; }
   <!-- Item 9.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.1</span><span class="item-badge std">§5.8.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9</span><span class="item-badge std">§5.8.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Test Format: Random samples (Table 6.1) before shipment. Non-conforming product rectified or replaced.</div>
       </div>
-    </div>
-    <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
     </div>
     <div class="ns-row">
       <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
@@ -1564,7 +1598,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.2</span><span class="item-badge std">§5.8.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.1</span><span class="item-badge std">§5.8.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Cured: Visual &amp; mechanical hardness check. No uncured sealant on units ready for shipment.</div>
         <div class="item-desc">Check sealant hardness against manufacturer spec for a fully cured sealant.</div>
@@ -1590,7 +1624,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.3</span><span class="item-badge std">§5.8.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.2</span><span class="item-badge std">§5.8.4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4.2–5.8.4.4 and Table 5.8</div>
         <div class="item-desc">Random samples per Table 6.1.</div>
@@ -1616,7 +1650,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.4</span><span class="item-badge std">§5.8.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.3</span><span class="item-badge std">§5.8.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Uniformity of Spacer Depth: Minimum sealant depth per Table 5.7</div>
         <div class="item-desc">Random samples per Table 6.1.</div>
@@ -1642,7 +1676,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.5</span><span class="item-badge std">§5.8.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.4</span><span class="item-badge std">§5.8.6</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Voids in Sealants: Visual inspection. Random samples per Table 6.1.</div>
       </div>
@@ -1667,7 +1701,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.6</span><span class="item-badge std">§5.8.7</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.5</span><span class="item-badge std">§5.8.7</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass Alignment / Offset: Visual inspection. Random samples per Table 6.1.</div>
       </div>
@@ -1692,7 +1726,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.7</span><span class="item-badge std">§5.8.9</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.6</span><span class="item-badge std">§5.8.9</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Cleanliness: Max 1mm proud on face, max 2mm on edge, max 3mm on corner (±20mm).</div>
       </div>
@@ -1717,7 +1751,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.8 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.8</span><span class="item-badge std">§5.8.10</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.7</span><span class="item-badge std">§5.8.10</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Marks, Scratches &amp; Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.</div>
       </div>
@@ -1742,7 +1776,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.9 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.9</span><span class="item-badge std">§5.8.11, App. P</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.8</span><span class="item-badge std">§5.8.11, App. P</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Moisture Content (Dew Point Test): Conducted on previous day production lot. Random samples per Table 6.1.</div>
       </div>
@@ -1767,7 +1801,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.10 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.10</span><span class="item-badge std">§5.8.12</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.9</span><span class="item-badge std">§5.8.12</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Storage &amp; Handling: Support (§5.8.12.1), Angle (§5.8.12.2), Spacing/Interleaving (§5.8.12.3). Lifting to thickest face.</div>
       </div>
@@ -1801,7 +1835,7 @@ input[type="file"] { display:none; }
   <!-- Item 10.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">10.1</span><span class="item-badge std">App. A</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">10</span><span class="item-badge std">App. A</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Mandatory Equipment for Dimensional Properties</div>
         <div class="item-desc">All equipment listed below must be present and functional at the start of each production shift.</div>
@@ -1837,7 +1871,7 @@ input[type="file"] { display:none; }
   <!-- Item 10.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">10.2</span><span class="item-badge std">§5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">10.1</span><span class="item-badge std">§5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Additional Equipment for Compliance Checks</div>
         <div class="item-desc">All equipment required for sealant, gas, atmospheric, and dew point testing.</div>
@@ -1882,9 +1916,9 @@ input[type="file"] { display:none; }
   <!-- Item 10.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">10.3</span><span class="item-badge std">§5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">10.2</span><span class="item-badge std">§5</span></div>
       <div class="item-hdr-text">
-        <div class="item-title">Equipment Calibration: Within tolerance of 0.01mm and functional. Records maintained.</div>
+        <div class="item-title">Equipment Calibrated and Functional: Within tolerance of 0.01mm. Records maintained.</div>
       </div>
     </div>
     <div class="pf-row">
@@ -1926,7 +1960,7 @@ input[type="file"] { display:none; }
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbyIBtPuUJfZvKc2zmUd8t-jBLlpsk22iQqLczLv7UE2e0l3h1VAVAUltBT1KrTjT_0/exec";
-const DRAFT_KEY = 'ngs_igu_v2';
+const DRAFT_KEY = 'ngs_igu_v3';
 
 // --- DRAFT SAVE / RESTORE ---
 function saveState() {
@@ -2218,6 +2252,7 @@ function submitReport() {
 
   const data = {
     date:           g('f_date'),
+    applicableCert: g('f_cert'),
     shiftStart:     g('f_shift_start'),
     shiftFinish:    g('f_shift_finish'),
     totalUnits:     g('f_total_units'),
@@ -2232,9 +2267,9 @@ function submitReport() {
     s44:  getPF('s4', 3), s45: getPF('s4', 4), s46: getPF('s4', 5), s47: getPF('s4', 6),
     s51:  getPF('s5', 0), s52: getPF('s5', 1), s53: getPF('s5', 2),
     s54:  getPF('s5', 3), s55: getPF('s5', 4), s56: getPF('s5', 5),
-    s61:  getPF('s6', 0), s62: getPF('s6', 1), s63: getPF('s6', 2),
-    s64:  getPF('s6', 3), s65: getPF('s6', 4), s66: getPF('s6', 5),
-    s67:  getPF('s6', 6), s68: getPF('s6', 7), s69: getPF('s6', 8),
+    s61:  getPF('s6', 0), s62: getPF('s6', 1), s62b: getPF('s6', 2), s63: getPF('s6', 3),
+    s64:  getPF('s6', 4), s65: getPF('s6', 5), s66: getPF('s6', 6),
+    s67:  getPF('s6', 7), s68: getPF('s6', 8), s69: getPF('s6', 9),
     s71:  getPF('s7', 0), s72: getPF('s7', 1), s73: getPF('s7', 2), s74: getPF('s7', 3),
     s81:  getPF('s8', 0), s82: getAct('s8', 0),
     s91:  getAct('s9', 0), s92: getPF('s9', 0), s93: getPF('s9', 1),
