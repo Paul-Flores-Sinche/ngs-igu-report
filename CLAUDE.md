@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Single-file web form for NGS NT's IGU Daily Test Report (AS 4666:2012). Deployed on GitHub Pages. The entire frontend is `index.html`. The backend is a Google Apps Script web app that lives outside this repo.
+Single-file web form for NGS NT's IGU Daily Test Report (AS 4666:2012). The entire frontend is `index.html`. The backend (`Code.gs`) is a Google Apps Script web app — it lives in this repo for reference but is deployed separately via the Apps Script editor.
 
 - **Live URL:** https://ngs-daily-report.vercel.app
 - **GitHub remote:** https://github.com/Paul-Flores-Sinche/ngs-igu-report.git
-- **Drive folder for PDFs:** `12YgmAFL5sYvTqwgD3MYsuOlbxU6K_F1B`
+- **Drive folder for saved reports:** `12YgmAFL5sYvTqwgD3MYsuOlbxU6K_F1B`
 
 ## Deploying changes
 
@@ -20,20 +20,20 @@ git commit -m "..."
 git push origin main
 ```
 
-GitHub Pages serves `main` directly. Changes are live within ~60 seconds.
+Vercel auto-deploys from `main`. Changes are live within ~60 seconds.
 
 To preview locally, open `index.html` in a browser (`file://` works for everything except the submit/photo flows which require HTTPS).
 
 ## Architecture of index.html
 
-All HTML, CSS, and JavaScript live in this one file (~1400 lines):
+All HTML, CSS, and JavaScript live in this one file (~1450 lines):
 
 | Lines | Content |
 |-------|---------|
-| 1–191 | `<style>` block — CSS variables, layout, section/item components, print styles |
-| 192–941 | HTML body — header, summary card, 10 collapsible sections |
-| 942–952 | Submit button, print/reset buttons, status div |
-| 954–1387 | `<script>` block — all JS logic |
+| 1–200 | `<style>` block — CSS variables, layout, section/item components, print styles |
+| 200–960 | HTML body — header, summary card, 10 collapsible sections |
+| 960–970 | Submit button, print/reset buttons, status div |
+| 970–end | `<script>` block — all JS logic |
 
 ### Key constants (top of `<script>`)
 
@@ -73,17 +73,41 @@ Photos (base64 data URLs from `img41`, `img51`, `img61`) are embedded inline in 
 
 `parseLabel()` uses regex heuristics. Section-specific patterns (spacer dimensions, molecular sieve type) are guarded by `if (section === '41')` / `if (section === '51')` blocks.
 
-## Google Apps Script backend
+## Google Apps Script backend (`Code.gs`)
 
-The script is managed separately in the Google Apps Script editor (not in this repo). Key points for working on it:
+`Code.gs` is the canonical source for the backend. Changes must be pasted into the Apps Script editor and redeployed — the file in this repo is kept in sync manually.
+
+### Deployment rules
 
 - Deploy as **Web App → Execute as: Me → Access: Anyone**
-- Every change requires a **new deployment** (not editing an existing one); the new URL must be pasted into `SHEET_URL` in `index.html`
-- Use the **Executions** panel (left sidebar) in the editor to read `console.log` output and diagnose errors
-- The `testDoPost()` function (if present in the script) can be run directly from the editor to test PDF generation without a browser form submission
+- Every change requires a **new deployment** (not editing an existing one); paste the new URL into `SHEET_URL` in `index.html`
+- The **Drive API advanced service** must be enabled: Apps Script editor → Services (+) → Drive API → Add. Required by `generateAndSavePDF()`.
+- Use the **Executions** panel to read `console.log` output and diagnose errors
+
+### Key functions
+
+| Function | Purpose |
+|----------|---------|
+| `doPost(e)` | Web app entry point — parses JSON, calls `logToSheet` then `generateAndSavePDF` |
+| `logToSheet(data)` | Appends a row to the "IGU Reports" sheet (creates sheet + headers on first run) |
+| `generateAndSavePDF(data)` | Builds HTML via `buildHtmlReport`, uploads to Drive, converts to Google Doc |
+| `buildHtmlReport(data, ...)` | Returns a full HTML string for the report document |
+| `testDoPost()` | Run directly from the editor to test the full flow without a browser submission |
+
+`CONFIG.FOLDER_ID` and `CONFIG.SHEET_NAME` are the only values that need changing if the Drive folder or sheet name ever changes.
 
 ### Apps Script data contract
 
-The script receives the full `data` object from `submitReport()`. Field names that feed into the Google Sheet columns are:
+The script receives the full `data` object from `submitReport()`. Fields consumed by `logToSheet` and `buildHtmlReport`:
 
-`date`, `shiftStart`, `shiftFinish`, `totalUnits`, `productionLine`, `completedBy`, `overallResult`, `passCount`, `failCount` — plus section results `s31`…`s103`, spacer bar fields `s41_*`, desiccant fields `s51_*`, sealant fields `s61_*`, and photos `photo41`/`photo51`/`photo61`.
+**Header fields:** `date`, `applicableCert`, `shiftStart`, `shiftFinish`, `totalUnits`, `productionLine`, `completedBy`, `overallResult`, `passCount`, `failCount`
+
+**Section 1 (sampling):** `s1` (activity), `s1_actual_lot` (worker's actual lot size), `s1_actual_units` (worker's actual units checked)
+
+**Section results:** `s31`–`s35`, `s41`–`s47`, `s51`–`s56`, `s61`–`s69`, `s71`–`s74`, `s81`, `s82`, `s91`–`s910`, `s101`–`s103`
+
+**Material detail fields:** `s41_manufacturer`, `s41_batch`, `s41_product`, `s41_size`, `s41_wall_thickness`, `s41_quantity`, `s41_grade`, `s41_finish`, `s41_date_receipt` — `s51_manufacturer`, `s51_batch`, `s51_product`, `s51_mol_sieve`, `s51_date_receipt`, `s51_expiry` — `s61_manufacturer`, `s61_batch`, `s61_product`, `s61_date_receipt`, `s61_expiry`
+
+**Other:** `desiccantFillTime`, `desiccantAssemTime`, `sealUnitType63`, `photo41`, `photo51`, `photo61`
+
+When adding new fields to `index.html`'s `data` object, also add them to `logToSheet`'s header array and `appendRow` call in `Code.gs`, then redeploy.
