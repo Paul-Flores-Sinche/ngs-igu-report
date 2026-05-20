@@ -140,6 +140,10 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
 .sampling-tbl td { padding:8px 14px; border-bottom:1px solid var(--border); }
 .sampling-tbl tr:last-child td { border-bottom:none; }
 .sampling-tbl tr:nth-child(even) td { background:var(--light); }
+.sampling-tbl td.actual-cell { padding:4px 8px; }
+.sampling-tbl input.actual-input { width:100%; border:1px solid var(--border); border-radius:4px; padding:5px 8px; font-size:13px; background:#fff; box-sizing:border-box; }
+.sampling-tbl input.actual-input:focus { outline:none; border-color:var(--accent); }
+.sampling-tbl th.actual-th { color:var(--accent); }
 
 /* Atmospheric conditions table */
 .atm-tbl { width:100%; border-collapse:collapse; font-size:13px; }
@@ -400,9 +404,18 @@ input[type="file"] { display:none; }
     </div>
     <div class="item-body">
       <table class="sampling-tbl">
-        <thead><tr><th>Production Lot Size</th><th>Units to Check Per Shift</th></tr></thead>
+        <thead><tr><th>Production Lot Size (Ref.)</th><th>Units to Check Per Shift (Ref.)</th><th class="actual-th">Actual This Shift</th></tr></thead>
         <tbody>
-          <tr><td>2 – 5</td><td>1</td></tr>
+          <tr><td>2 – 5</td><td>1</td><td class="actual-cell" rowspan="7">
+            <div style="margin-bottom:8px">
+              <div style="font-size:11px;color:#666;margin-bottom:3px">Lot Size</div>
+              <input class="actual-input" type="number" id="s1_actual_lot" min="0" placeholder="e.g. 48">
+            </div>
+            <div>
+              <div style="font-size:11px;color:#666;margin-bottom:3px">Units Checked</div>
+              <input class="actual-input" type="number" id="s1_actual_units" min="0" placeholder="e.g. 3">
+            </div>
+          </td></tr>
           <tr><td>16 – 25</td><td>2</td></tr>
           <tr><td>26 – 90</td><td>3</td></tr>
           <tr><td>91 – 150</td><td>4</td></tr>
@@ -2259,6 +2272,8 @@ function submitReport() {
     productionLine: g('f_line'),
     completedBy:    [g('f_person1'),g('f_person2'),g('f_person3'),g('f_person4')].filter(Boolean).join(', '),
 
+    s1_actual_lot:   g('s1_actual_lot'),
+    s1_actual_units: g('s1_actual_units'),
     s1:   getAct('s1', 0),
     s2:   getAct('s2', 0),
     s31:  getPF('s3', 0), s32: getPF('s3', 1), s33: getPF('s3', 2),
