@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Single-file web form for NGS NT's IGU Daily Test Report (AS 4666:2012). Deployed on GitHub Pages. The entire frontend is `index.html`. The backend is a Google Apps Script web app that lives outside this repo.
 
-- **Live URL:** https://paul-flores-sinche.github.io/ngs-igu-report/
+- **Live URL:** https://ngs-daily-report.vercel.app
 - **GitHub remote:** https://github.com/Paul-Flores-Sinche/ngs-igu-report.git
 - **Drive folder for PDFs:** `12YgmAFL5sYvTqwgD3MYsuOlbxU6K_F1B`
 
