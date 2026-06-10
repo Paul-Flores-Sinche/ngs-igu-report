@@ -248,19 +248,41 @@ input[type="file"] { display:none; }
 /* N/A spans both columns */
 .pf-btn.na { grid-column:1 / -1; margin:0 8px 8px; min-height:38px; font-size:13px; }
 
-/* ── MERGED PASS/FAIL + NOTES (compact PDF-style) ── */
-.pf-row.pf-ns-merged { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border); }
-.pf-ns-col { display:flex; flex-direction:column; }
-.pf-ns-col:first-child { border-right:1px solid var(--border); }
-.pf-ns-col .pf-btn { margin:0; border-radius:0; border:none; border-bottom:1px solid var(--border); min-height:36px; font-size:12px; font-weight:700; justify-content:flex-start; padding:7px 12px; width:100%; text-align:left; }
-.pf-ns-content { padding:8px 12px; flex:1; display:flex; flex-direction:column; gap:6px; }
-.pf-ns-fixed { font-size:11px; color:#333; line-height:1.55; }
-.pf-ns-fixed p { margin:0 0 4px; }
-.pf-ns-fixed p:last-child { margin:0; }
-.pf-ns-content textarea, .pf-ns-content input[type="text"] { width:100%; border:1.5px solid var(--border); border-radius:5px; padding:7px 10px; font-size:13px; font-family:inherit; color:#1a2a36; background:var(--light); box-sizing:border-box; }
-.pf-ns-content textarea { resize:vertical; min-height:46px; }
-.pf-ns-content textarea:focus, .pf-ns-content input[type="text"]:focus { outline:none; border-color:var(--accent); background:#fff; }
-.pf-ns-sig-lbl { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gray); margin-bottom:4px; }
+/* ── MERGED PASS/FAIL + NOTES (compact PDF-style, full width) ── */
+.pf-row.pf-ns-merged {
+  display: table; width: 100%; table-layout: fixed;
+  border-collapse: collapse; border-bottom: 1px solid var(--border);
+}
+.pf-ns-col {
+  display: table-cell; vertical-align: top;
+  word-wrap: break-word; overflow-wrap: break-word;
+}
+.pf-ns-col:first-child { width: 60%; border-right: 1px solid var(--border); }
+.pf-ns-col:last-child  { width: 40%; }
+.pf-ns-col .pf-btn {
+  display: block; width: 100%; margin: 0; border-radius: 0;
+  border: none; border-bottom: 1px solid var(--border);
+  min-height: 34px; font-size: 12px; font-weight: 700;
+  text-align: left; padding: 7px 12px; cursor: pointer;
+  background: #fff; color: var(--gray); font-family: inherit;
+  transition: all 0.15s;
+}
+.pf-ns-col .pf-btn.pass:hover  { border-color: var(--pass); color: var(--pass); }
+.pf-ns-col .pf-btn.fail:hover  { border-color: var(--fail); color: var(--fail); }
+.pf-ns-col .pf-btn.pass.active { background: var(--pass-bg); border-color: var(--pass); color: var(--pass-text); }
+.pf-ns-col .pf-btn.fail.active { background: var(--fail-bg); border-color: var(--fail); color: var(--fail-text); }
+.pf-ns-content { padding: 8px 12px; display: flex; flex-direction: column; gap: 6px; }
+.pf-ns-fixed { font-size: 11px; color: #333; line-height: 1.55; word-wrap: break-word; overflow-wrap: break-word; }
+.pf-ns-fixed p { margin: 0 0 4px; }
+.pf-ns-fixed p:last-child { margin: 0; }
+.pf-ns-content textarea, .pf-ns-content input[type="text"] {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 5px;
+  padding: 7px 10px; font-size: 12px; font-family: inherit;
+  color: #1a2a36; background: var(--light); box-sizing: border-box;
+}
+.pf-ns-content textarea { resize: vertical; min-height: 44px; }
+.pf-ns-content textarea:focus, .pf-ns-content input[type="text"]:focus { outline: none; border-color: var(--accent); background: #fff; }
+.pf-ns-sig-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
 
 /* ── NOTES / SIGNATURE ── */
 .ns-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border); }
@@ -410,7 +432,7 @@ input[type="file"] { display:none; }
 
 /* ─ Simple check items → compact 4-column table rows ─ */
 @media(min-width: 641px) {
-  .check-item:not(:has(.item-body)) {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) {
     display: grid;
     grid-template-columns: 1fr 92px 1fr 72px;
     align-items: stretch;
@@ -418,14 +440,14 @@ input[type="file"] { display:none; }
   }
 
   /* Column 1: description */
-  .check-item:not(:has(.item-body)) .item-hdr {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .item-hdr {
     grid-column: 1; grid-row: 1;
     border-bottom: none;
     border-right: 1px solid var(--border);
   }
 
   /* Column 2: Pass / Fail buttons stacked */
-  .check-item:not(:has(.item-body)) .pf-row {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .pf-row {
     grid-column: 2; grid-row: 1;
     display: flex; flex-direction: column;
     justify-content: center; gap: 4px;
@@ -434,43 +456,43 @@ input[type="file"] { display:none; }
     border-right: 1px solid var(--border);
     background: var(--light);
   }
-  .check-item:not(:has(.item-body)) .pf-btn {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .pf-btn {
     padding: 5px 4px; min-height: 26px;
     font-size: 11px; margin: 0; border-radius: 3px;
     width: 100%;
   }
-  .check-item:not(:has(.item-body)) .pf-btn.na {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .pf-btn.na {
     grid-column: unset; margin: 0; min-height: 22px;
   }
 
   /* Column 3: Notes / Signature (keeps its own 2-column inner grid) */
-  .check-item:not(:has(.item-body)) .ns-row {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row {
     grid-column: 3; grid-row: 1;
     border-bottom: none;
     border-right: 1px solid var(--border);
   }
-  .check-item:not(:has(.item-body)) .ns-row .ns-cell { padding: 5px 8px; }
-  .check-item:not(:has(.item-body)) .ns-row textarea { min-height: 28px; font-size: 11px; }
-  .check-item:not(:has(.item-body)) .ns-row input[type="text"] { padding: 4px 6px; font-size: 11px; }
-  .check-item:not(:has(.item-body)) .ns-lbl { font-size: 9px; margin-bottom: 2px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row .ns-cell { padding: 5px 8px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row textarea { min-height: 28px; font-size: 11px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row input[type="text"] { padding: 4px 6px; font-size: 11px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-lbl { font-size: 9px; margin-bottom: 2px; }
 
   /* Column 4: Activity Done Yes / No */
-  .check-item:not(:has(.item-body)) .act-row {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .act-row {
     grid-column: 4; grid-row: 1;
     flex-direction: column;
     justify-content: center; align-items: center;
     gap: 3px; padding: 5px 4px;
     background: var(--light);
   }
-  .check-item:not(:has(.item-body)) .act-label {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .act-label {
     font-size: 9px; text-align: center; font-style: normal;
     color: var(--gray); font-weight: 700; letter-spacing: 0.5px;
     text-transform: uppercase;
   }
-  .check-item:not(:has(.item-body)) .toggle-group {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .toggle-group {
     flex-direction: column; gap: 3px;
   }
-  .check-item:not(:has(.item-body)) .toggle {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .toggle {
     padding: 4px 6px; min-height: 26px; font-size: 11px;
     width: 58px; text-align: center;
   }
