@@ -292,6 +292,100 @@ input[type="file"] { display:none; }
   .readings-grid { grid-template-columns:repeat(3,1fr); }
 }
 
+/* ══════════════════════════════════════════════════════════
+   PDF FIDELITY — compact document / table-row style
+   Simple items (no .item-body) become 4-column table rows
+   on screens wider than 640 px, matching the paper form.
+   ══════════════════════════════════════════════════════════ */
+
+/* ─ Global density reductions ─ */
+.section-banner   { padding: 7px 16px; }
+.sec-badge        { width: 24px; height: 24px; font-size: 11px; }
+.sec-title        { font-size: 12px; }
+.comp-banner      { padding: 3px 16px; font-size: 9px; letter-spacing: 1.5px; }
+
+.item-hdr         { padding: 6px 12px; background: #fff; }
+.item-title       { font-size: 12.5px; }
+.item-desc        { font-size: 11px; margin-top: 2px; }
+.compliance-note  { font-size: 11px; padding: 3px 7px; }
+
+.ns-cell          { padding: 6px 10px; }
+.ns-row textarea  { min-height: 36px; font-size: 12px; resize: none; }
+.ns-row input[type="text"] { padding: 6px 8px; font-size: 12px; }
+.ns-lbl           { font-size: 9px; margin-bottom: 3px; }
+
+.act-row    { padding: 6px 12px; }
+.act-label  { font-size: 11px; }
+.toggle     { padding: 6px 14px; min-height: 32px; font-size: 12px; }
+
+/* ─ Simple check items → compact 4-column table rows ─ */
+@media(min-width: 641px) {
+  .check-item:not(:has(.item-body)) {
+    display: grid;
+    grid-template-columns: 1fr 92px 1fr 72px;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Column 1: description */
+  .check-item:not(:has(.item-body)) .item-hdr {
+    grid-column: 1; grid-row: 1;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+
+  /* Column 2: Pass / Fail buttons stacked */
+  .check-item:not(:has(.item-body)) .pf-row {
+    grid-column: 2; grid-row: 1;
+    display: flex; flex-direction: column;
+    justify-content: center; gap: 4px;
+    padding: 6px 5px;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+    background: var(--light);
+  }
+  .check-item:not(:has(.item-body)) .pf-btn {
+    padding: 5px 4px; min-height: 26px;
+    font-size: 11px; margin: 0; border-radius: 3px;
+    width: 100%;
+  }
+  .check-item:not(:has(.item-body)) .pf-btn.na {
+    grid-column: unset; margin: 0; min-height: 22px;
+  }
+
+  /* Column 3: Notes / Signature (keeps its own 2-column inner grid) */
+  .check-item:not(:has(.item-body)) .ns-row {
+    grid-column: 3; grid-row: 1;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+  .check-item:not(:has(.item-body)) .ns-row .ns-cell { padding: 5px 8px; }
+  .check-item:not(:has(.item-body)) .ns-row textarea { min-height: 28px; font-size: 11px; }
+  .check-item:not(:has(.item-body)) .ns-row input[type="text"] { padding: 4px 6px; font-size: 11px; }
+  .check-item:not(:has(.item-body)) .ns-lbl { font-size: 9px; margin-bottom: 2px; }
+
+  /* Column 4: Activity Done Yes / No */
+  .check-item:not(:has(.item-body)) .act-row {
+    grid-column: 4; grid-row: 1;
+    flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 3px; padding: 5px 4px;
+    background: var(--light);
+  }
+  .check-item:not(:has(.item-body)) .act-label {
+    font-size: 9px; text-align: center; font-style: normal;
+    color: var(--gray); font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .check-item:not(:has(.item-body)) .toggle-group {
+    flex-direction: column; gap: 3px;
+  }
+  .check-item:not(:has(.item-body)) .toggle {
+    padding: 4px 6px; min-height: 26px; font-size: 11px;
+    width: 58px; text-align: center;
+  }
+}
+
 /* ── PRINT ── */
 @media print {
   @page { margin:12mm; }
