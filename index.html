@@ -767,23 +767,24 @@ input[type="file"] { display:none; }
         <div class="item-desc">AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3</div>
       </div>
     </div>
-    <div class="item-body" style="padding:10px 16px;">
-      <div style="font-size:12px;color:#333;line-height:1.7;">
-        <p style="margin:0 0 8px;"><strong>1. (5.3.1)</strong> The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666.</p>
-        <p style="margin:0 0 8px;"><strong>2. (5.3.2)</strong> The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained.</p>
-        <p style="margin:0;font-style:italic;color:#555;">To be conducted every customer order.</p>
-      </div>
-    </div>
     <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
+      <button class="pf-btn pass" onclick="setPF(this)">Compliance with order &#9744; Pass</button>
+      <button class="pf-btn fail" onclick="setPF(this)">Compliance with order &#9744; Fail</button>
     </div>
     <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
+      <div class="ns-cell">
+        <div class="ns-lbl">Notes</div>
+        <div style="font-size:11px;color:#333;line-height:1.6;margin-bottom:6px;">
+          <p style="margin:0 0 5px;"><strong>1. (5.3.1)</strong> The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666.</p>
+          <p style="margin:0 0 5px;"><strong>2. (5.3.2)</strong> The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained.</p>
+          <p style="margin:0;font-style:italic;color:#555;">To be conducted every customer order.</p>
+        </div>
+        <textarea placeholder="Notes..."></textarea>
+      </div>
       <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
     </div>
     <div class="act-row">
-      <span class="act-label">Activity Completed: <span style="font-size:11px;color:var(--accent);margin-left:6px;">Records maintained for §5.3.1 &amp; §5.3.2</span></span>
+      <span class="act-label">Activity Completed: <span style="font-size:11px;color:var(--accent);margin-left:6px;">(Records maintained for 5.3.1 &amp; 5.3.2)</span></span>
       <div class="toggle-group">
         <button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button>
         <button class="toggle" onclick="setToggle(this,'no')">✗ No</button>
@@ -800,17 +801,18 @@ input[type="file"] { display:none; }
         <div class="item-desc">AS 4666:2012 Section 5.3.4 — A visual inspection shall be conducted in accordance with Section 5.3.4 and Table 5.2</div>
       </div>
     </div>
-    <div class="item-body" style="padding:10px 16px;">
-      <div style="font-size:12px;color:#555;font-style:italic;line-height:1.6;">
-        To be conducted every customer order or every half hour whichever is the lesser.
-      </div>
-    </div>
     <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
+      <button class="pf-btn pass" onclick="setPF(this)">Edge Characteristics Check &#9744; Pass</button>
+      <button class="pf-btn fail" onclick="setPF(this)">Edge Characteristics Check &#9744; Fail</button>
     </div>
     <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
+      <div class="ns-cell">
+        <div class="ns-lbl">Notes</div>
+        <div style="font-size:11px;color:#555;font-style:italic;line-height:1.6;margin-bottom:6px;">
+          To be conducted every customer order or every half hour whichever is the lesser.
+        </div>
+        <textarea placeholder="Notes..."></textarea>
+      </div>
       <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
     </div>
     <div class="act-row">
@@ -2339,7 +2341,7 @@ document.querySelectorAll('.section-banner').forEach(banner => {
 const CLI_DATA = {
   '1':  { ref: 'AS 4666:2012 §5.8.2 &amp; §6.0',    desc: 'IGU Sampling Requirements — permanent record of sampling maintained for each production shift.' },
   '2':  { ref: 'AS 4666:2012 Section 5.2',            desc: 'Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift.' },
-  '3':  { ref: 'AS 4666:2012 §5.3.1–5.3.7',          desc: 'Verify glazing materials — compliance with order, traceability and types of substrates used.' },
+  '3':  { ref: 'AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3', desc: 'GLASS: Compliance with order – Traceability – Types of Substrates' },
   '4':  { ref: 'AS 4666:2012 §5.4.1–5.4.8',          desc: 'Verify spacer bar and connectors — compliance, dimensions and installation requirements.' },
   '5':  { ref: 'AS 4666:2012 §5.5.2–5.5.9',          desc: 'Verify desiccant — compliance with specifications, batch traceability and fill procedure.' },
   '6':  { ref: 'AS 4666:2012 §5.6.1–5.6.10',         desc: 'Verify sealants — compliance with specifications, batch traceability and application procedure.' },
