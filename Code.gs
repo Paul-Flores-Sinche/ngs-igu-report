@@ -54,14 +54,14 @@ function logToSheet(data) {
   if (!sheet) {
     sheet = ss.insertSheet(CONFIG.SHEET_NAME);
     const headers = [
-      'Timestamp','Date','Applicable Cert','Shift Start','Shift Finish','Total Units','Production Line',
+      'Timestamp','Date','Applicable Cert','Shift Start','Shift Finish','Time Finished','Total Units','Production Line',
       'Completed By','Overall Result','Pass Count','Fail Count',
-      'S3','S3.1','S3.2','S3.3','S3.4',
-      'S4','S4.1','S4.2','S4.3','S4.4','S4.5','S4.6',
+      'S3.1','S3.2','S3.3','S3.4','S3.5',
+      'S4.1','S4.2','S4.2 Trace','S4.3','S4.4','S4.5','S4.6','S4.7',
       'S5','S5.1','S5.2','S5.3','S5.4','S5.5',
       'S6','S6.1 Primary','S6.1 Secondary','S6.2','S6.3','S6.4','S6.5','S6.6','S6.7','S6.8',
       'S7','S7.1','S7.2','S7.3',
-      'S8 PF','S8.1 Act',
+      'S8 PF','S8.1 PF','S8.1 Act',
       'S9 Act','S9.1','S9.2','S9.3','S9.4','S9.5','S9.6','S9.7','S9.8','S9.9',
       'S10','S10.1','S10.2',
       'Spacer Manufacturer','Spacer Batch','Spacer Product','Spacer Size',
@@ -80,16 +80,16 @@ function logToSheet(data) {
 
   sheet.appendRow([
     new Date(), data.date||'', data.applicableCert||'',
-    data.shiftStart||'', data.shiftFinish||'',
+    data.shiftStart||'', data.shiftFinish||'', data.timeFinished||'',
     data.totalUnits||'', data.productionLine||'', data.completedBy||'',
     data.overallResult||'', data.passCount||0, data.failCount||0,
     data.s31||'', data.s32||'', data.s33||'', data.s34||'', data.s35||'',
-    data.s41||'', data.s42||'', data.s43||'', data.s44||'', data.s45||'', data.s46||'', data.s47||'',
+    data.s41||'', data.s42||'', data.s4_trace_confirmed||'', data.s43||'', data.s44||'', data.s45||'', data.s46||'', data.s47||'',
     data.s51||'', data.s52||'', data.s53||'', data.s54||'', data.s55||'', data.s56||'',
     data.s61||'', data.s62||'', data.s62b||'', data.s63||'', data.s64||'', data.s65||'',
     data.s66||'', data.s67||'', data.s68||'', data.s69||'',
     data.s71||'', data.s72||'', data.s73||'', data.s74||'',
-    data.s81||'', data.s82||'',
+    data.s81||'', data.s82||'', data.s82_act||'',
     data.s91||'', data.s92||'', data.s93||'', data.s94||'', data.s95||'',
     data.s96||'', data.s97||'', data.s98||'', data.s99||'', data.s910||'',
     data.s101||'', data.s102||'', data.s103||'',

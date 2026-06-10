@@ -559,10 +559,11 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="item-body">
-      <div class="shift-info-row">
+      <div class="shift-info-row" style="grid-template-columns:repeat(4,1fr);">
         <div class="info-field"><label for="f_shift_start">Shift Start</label><input type="time" id="f_shift_start"></div>
         <div class="info-field"><label for="f_shift_finish">Shift Finish</label><input type="time" id="f_shift_finish"></div>
-        <div class="info-field"><label for="f_total_units">Total Units</label><input type="number" id="f_total_units" placeholder="e.g. 45"></div>
+        <div class="info-field"><label for="f_time_finished">Time Finished</label><input type="time" id="f_time_finished"></div>
+        <div class="info-field"><label for="f_total_units">Total Units Produced</label><input type="number" id="f_total_units" placeholder="e.g. 45"></div>
       </div>
       <table class="atm-tbl">
         <thead>
@@ -614,7 +615,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3</span><span class="item-badge std">§5.3.1–5.3.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.1</span><span class="item-badge std">§5.3.1–5.3.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Compliance with Order, Traceability &amp; Types of Substrates</div>
         <div class="item-desc">Permanent record of glazing materials, date of receipt, compliance with order. Traceable records maintained. Every customer order.</div>
@@ -640,7 +641,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.1</span><span class="item-badge std">§5.3.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.2</span><span class="item-badge std">§5.3.4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Edge Characteristics</div>
         <div class="item-desc">Visual inspection per Table 5.2. Every customer order or every 30 minutes, whichever is less.</div>
@@ -666,7 +667,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.2</span><span class="item-badge std">§5.3.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.3</span><span class="item-badge std">§5.3.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Dimensional Properties (Thickness, Flatness, Height/Width)</div>
         <div class="item-desc">Thickness tolerance per Table 5.1, flatness/bow per Table 5.3, height/width per §5.3.5.2–5.3.5.3. Every customer order or 30 minutes.</div>
@@ -692,7 +693,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.3</span><span class="item-badge std">§5.3.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.4</span><span class="item-badge std">§5.3.6</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Cleanliness – Dryness, Stains/Films, Fingerprints</div>
         <div class="item-desc">100% inspection of all glazing materials. Particular attention to internal surfaces. Records required if stains cannot be removed.</div>
@@ -719,7 +720,7 @@ input[type="file"] { display:none; }
   <!-- Item 3.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.4</span><span class="item-badge std">§5.3.7</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.5</span><span class="item-badge std">§5.3.7 / Tbl 5.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass: Scratches, Blemishes, Marks &amp; Inclusions</div>
         <div class="item-desc">Visual inspection per Tables 5.5 &amp; 5.6. 100% inspection of all glazing materials.</div>
@@ -754,7 +755,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4</span><span class="item-badge std">§5.4.1 &amp; §5.4.7.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.1</span><span class="item-badge std">§5.4.1 &amp; §5.4.7.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar: Dimensional Properties &amp; Stock Record</div>
         <div class="item-desc">Permanent record identifying stock for each customer order. One check per production shift.</div>
@@ -803,10 +804,16 @@ input[type="file"] { display:none; }
   <!-- Item 4.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.1</span><span class="item-badge std">§5.4.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.2</span><span class="item-badge std">§5.4.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar: Customer Stock Record Traceability</div>
         <div class="item-desc">Permanent record traceable to supplier. One check per customer order.</div>
+        <div style="margin-top:6px;">
+          <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:#1a2a36;">
+            <input type="checkbox" id="s4_trace_confirmed" style="width:15px;height:15px;accent-color:var(--accent);flex-shrink:0;">
+            Records confirmed traceable to supplier ✓
+          </label>
+        </div>
       </div>
     </div>
     <div class="pf-row">
@@ -829,7 +836,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.2</span><span class="item-badge std">§5.4.3.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.3</span><span class="item-badge std">§5.4.3.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Rigid Spacer Bar: Visual Inspection</div>
         <div class="item-desc">One check per production shift. Check all criteria below.</div>
@@ -863,7 +870,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.3</span><span class="item-badge std">§5.4.4 &amp; §5.4.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.4</span><span class="item-badge std">§5.4.4 &amp; §5.4.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Corner Keys &amp; Straight Line Connectors</div>
         <div class="item-desc">One check per production shift.</div>
@@ -896,7 +903,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.4</span><span class="item-badge std">§5.4.6, App. I</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.5</span><span class="item-badge std">§5.4.6, App. I</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar Cleanliness: Free from Dirt, Oil, Grease, Contaminants</div>
         <div class="item-desc">One check per production shift.</div>
@@ -922,7 +929,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.5</span><span class="item-badge std">§5.4.7.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.6</span><span class="item-badge std">§5.4.7.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Dimensional Properties: Compliance with Manufacturer Specifications</div>
         <div class="item-desc">One check per production shift.</div>
@@ -948,7 +955,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.6</span><span class="item-badge std">§5.4.8</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.7</span><span class="item-badge std">§5.4.8</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Post Assembly Inspection: No splitting, tearing or flare-out on bent corners</div>
         <div class="item-desc">One check per production shift.</div>
@@ -1659,6 +1666,10 @@ input[type="file"] { display:none; }
         <div class="item-title">Work Order / Customer Order Label Affixed to Finished Product</div>
       </div>
     </div>
+    <div class="pf-row">
+      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
+      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
+    </div>
     <div class="ns-row">
       <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
       <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
@@ -2362,6 +2373,7 @@ function submitReport() {
     applicableCert: g('f_cert'),
     shiftStart:     g('f_shift_start'),
     shiftFinish:    g('f_shift_finish'),
+    timeFinished:   g('f_time_finished'),
     totalUnits:     g('f_total_units'),
     productionLine: g('f_line'),
     completedBy:    [g('f_person1'),g('f_person2'),g('f_person3'),g('f_person4')].filter(Boolean).join(', '),
@@ -2380,7 +2392,8 @@ function submitReport() {
     s64:  getPF('s6', 4), s65: getPF('s6', 5), s66: getPF('s6', 6),
     s67:  getPF('s6', 7), s68: getPF('s6', 8), s69: getPF('s6', 9),
     s71:  getPF('s7', 0), s72: getPF('s7', 1), s73: getPF('s7', 2), s74: getPF('s7', 3),
-    s81:  getPF('s8', 0), s82: getAct('s8', 0),
+    s81:  getPF('s8', 0), s82: getPF('s8', 1), s82_act: getAct('s8', 0),
+    s4_trace_confirmed: document.getElementById('s4_trace_confirmed') ? document.getElementById('s4_trace_confirmed').checked : false,
     s91:  getAct('s9', 0), s92: getPF('s9', 0), s93: getPF('s9', 1),
     s94:  getPF('s9', 2),  s95: getPF('s9', 3), s96: getPF('s9', 4),
     s97:  getPF('s9', 5),  s98: getPF('s9', 6), s99: getPF('s9', 7), s910: getPF('s9', 8),
