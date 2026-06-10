@@ -797,10 +797,10 @@ input[type="file"] { display:none; }
   <!-- Item 3.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.1</span><span class="item-badge std">§5.3.1–5.3.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.1</span></div>
       <div class="item-hdr-text">
-        <div class="item-title">GLASS: Compliance with Order – Traceability – Types of Substrates</div>
-        <div class="item-desc">AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3</div>
+        <div class="item-desc">&#9744; AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3</div>
+        <div class="item-title">GLASS: Compliance with order – Traceability – Types of Substrates</div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -835,10 +835,10 @@ input[type="file"] { display:none; }
   <!-- Item 3.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.2</span><span class="item-badge std">§5.3.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.2</span></div>
       <div class="item-hdr-text">
+        <div class="item-desc">&#9744; AS 4666:2012 Section 5.3.4</div>
         <div class="item-title">GLASS: Edge Characteristics</div>
-        <div class="item-desc">AS 4666:2012 Section 5.3.4 — A visual inspection shall be conducted in accordance with Section 5.3.4 and Table 5.2</div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -871,19 +871,29 @@ input[type="file"] { display:none; }
   <!-- Item 3.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.3</span><span class="item-badge std">§5.3.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.3</span></div>
       <div class="item-hdr-text">
-        <div class="item-title">Glass: Dimensional Properties (Thickness, Flatness, Height/Width)</div>
-        <div class="item-desc">Thickness tolerance per Table 5.1, flatness/bow per Table 5.3, height/width per §5.3.5.2–5.3.5.3. Every customer order or 30 minutes.</div>
+        <div class="item-desc">&#9744; AS 4666:2012 Section 5.3.5</div>
+        <div class="item-title">GLASS: Dimensional Properties: When measured in accordance with Appendix A, AS 4666 – THICKNESS tolerance monolithic glass see, Table 5.1, FLATNESS (Bow) see Table 5.3, HEIGHT/WIDTH, Refer to Section 5.3.5.2, Residential Units, Section 5.3.5.3, Commercial Units.</div>
       </div>
     </div>
-    <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
-    </div>
-    <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
-      <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
+    <div class="pf-row pf-ns-merged">
+      <div class="pf-ns-col">
+        <button class="pf-btn pass" onclick="setPF(this)">Dimensional Properties &#9744; Pass</button>
+        <div class="pf-ns-content">
+          <div class="pf-ns-fixed">
+            <p style="font-style:italic;color:#555;">Every customer order or every 30 minutes whichever is the lesser.</p>
+          </div>
+          <textarea placeholder="Notes..."></textarea>
+        </div>
+      </div>
+      <div class="pf-ns-col">
+        <button class="pf-btn fail" onclick="setPF(this)">Dimensional Properties &#9744; Fail</button>
+        <div class="pf-ns-content">
+          <div class="pf-ns-sig-lbl">Signature</div>
+          <input type="text" placeholder="Name &amp; sign">
+        </div>
+      </div>
     </div>
     <div class="act-row">
       <span class="act-label">Activity Completed:</span>
@@ -897,23 +907,32 @@ input[type="file"] { display:none; }
   <!-- Item 3.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.4</span><span class="item-badge std">§5.3.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.4</span></div>
       <div class="item-hdr-text">
-        <div class="item-title">Glass: Cleanliness – Dryness, Stains/Films, Fingerprints</div>
-        <div class="item-desc">100% inspection of all glazing materials. Particular attention to internal surfaces. Records required if stains cannot be removed.</div>
-        <div class="compliance-note">Records required if Stains! This cannot be removed, size &amp; location to be recorded.</div>
+        <div class="item-desc">&#9744; AS 4666:2012 Section 5.3.6</div>
+        <div class="item-title">GLASS: Cleanliness – Dryness, Stains/Films, Fingerprints</div>
       </div>
     </div>
-    <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
-    </div>
-    <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
-      <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
+    <div class="pf-row pf-ns-merged">
+      <div class="pf-ns-col">
+        <button class="pf-btn pass" onclick="setPF(this)">Cleanliness Check &#9744; Pass</button>
+        <div class="pf-ns-content">
+          <div class="pf-ns-fixed">
+            <p>100% inspection of all glazing materials. Particular attention to internal surfaces.</p>
+          </div>
+          <textarea placeholder="Notes..."></textarea>
+        </div>
+      </div>
+      <div class="pf-ns-col">
+        <button class="pf-btn fail" onclick="setPF(this)">Cleanliness Check &#9744; Fail</button>
+        <div class="pf-ns-content">
+          <div class="pf-ns-sig-lbl">Signature</div>
+          <input type="text" placeholder="Name &amp; sign">
+        </div>
+      </div>
     </div>
     <div class="act-row">
-      <span class="act-label">Activity Completed:</span>
+      <span class="act-label">Activity Completed: <span style="font-size:11px;color:var(--accent);margin-left:6px;">(Records required if Stains/Films cannot be removed, size &amp; location to be recorded)</span></span>
       <div class="toggle-group">
         <button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button>
         <button class="toggle" onclick="setToggle(this,'no')">✗ No</button>
@@ -924,19 +943,29 @@ input[type="file"] { display:none; }
   <!-- Item 3.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">3.5</span><span class="item-badge std">§5.3.7 / Tbl 5.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">3.5</span></div>
       <div class="item-hdr-text">
-        <div class="item-title">Glass: Scratches, Blemishes, Marks &amp; Inclusions</div>
-        <div class="item-desc">Visual inspection per Tables 5.5 &amp; 5.6. 100% inspection of all glazing materials.</div>
+        <div class="item-desc">&#9744; AS 4666:2012 Section 5.3.7 / Table 5.5</div>
+        <div class="item-title">GLASS: Scratches, Blemishes, Marks &amp; Inclusions</div>
       </div>
     </div>
-    <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
-    </div>
-    <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
-      <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
+    <div class="pf-row pf-ns-merged">
+      <div class="pf-ns-col">
+        <button class="pf-btn pass" onclick="setPF(this)">Visual Inspection &#9744; Pass</button>
+        <div class="pf-ns-content">
+          <div class="pf-ns-fixed">
+            <p>Visual inspection per Tables 5.5 &amp; 5.6. 100% inspection of all glazing materials.</p>
+          </div>
+          <textarea placeholder="Notes..."></textarea>
+        </div>
+      </div>
+      <div class="pf-ns-col">
+        <button class="pf-btn fail" onclick="setPF(this)">Visual Inspection &#9744; Fail</button>
+        <div class="pf-ns-content">
+          <div class="pf-ns-sig-lbl">Signature</div>
+          <input type="text" placeholder="Name &amp; sign">
+        </div>
+      </div>
     </div>
     <div class="act-row">
       <span class="act-label">Activity Completed:</span>
