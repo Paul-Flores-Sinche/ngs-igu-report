@@ -158,6 +158,7 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
 .sampling-tbl td { padding:8px 14px; border-bottom:1px solid var(--border); }
 .sampling-tbl tr:last-child td { border-bottom:none; }
 .sampling-tbl tr:nth-child(even) td { background:var(--light); }
+.sampling-tbl tr.stbl-active td { background:#e8f4fd !important; font-weight:600; color:var(--accent); }
 .sampling-tbl td.actual-cell { padding:4px 8px; }
 .sampling-tbl input.actual-input { width:100%; border:1px solid var(--border); border-radius:4px; padding:5px 8px; font-size:13px; background:#fff; box-sizing:border-box; }
 .sampling-tbl input.actual-input:focus { outline:none; border-color:var(--accent); }
@@ -624,22 +625,31 @@ input[type="file"] { display:none; }
       <table class="sampling-tbl">
         <thead><tr><th>Production Lot Size (Ref.)</th><th>Units to Check Per Shift (Ref.)</th><th class="actual-th">Actual This Shift</th></tr></thead>
         <tbody>
-          <tr><td>2 – 5</td><td>1</td><td class="actual-cell" rowspan="7">
-            <div style="margin-bottom:8px">
-              <div style="font-size:11px;color:#666;margin-bottom:3px">Lot Size</div>
-              <input class="actual-input" type="number" id="s1_actual_lot" min="0" placeholder="e.g. 48">
+          <tr id="stbl-r0"><td>2 – 5</td><td>1</td><td class="actual-cell" rowspan="7">
+            <div style="margin-bottom:10px">
+              <div style="font-size:11px;color:#666;margin-bottom:3px">Units to Check</div>
+              <select id="s1_actual_units" class="actual-input" onchange="s1AutoSelect(this.value)" style="cursor:pointer">
+                <option value="">— select —</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="10">10</option>
+                <option value="16">16</option>
+              </select>
             </div>
             <div>
-              <div style="font-size:11px;color:#666;margin-bottom:3px">Units Checked</div>
-              <input class="actual-input" type="number" id="s1_actual_units" min="0" placeholder="e.g. 3">
+              <div style="font-size:11px;color:#666;margin-bottom:3px">Lot Size (auto)</div>
+              <input class="actual-input" type="text" id="s1_actual_lot" readonly placeholder="auto-filled" style="background:#f4f4f4;color:#333;cursor:default">
             </div>
           </td></tr>
-          <tr><td>16 – 25</td><td>2</td></tr>
-          <tr><td>26 – 90</td><td>3</td></tr>
-          <tr><td>91 – 150</td><td>4</td></tr>
-          <tr><td>151 – 500</td><td>6</td></tr>
-          <tr><td>501 – 1200</td><td>10</td></tr>
-          <tr><td>1201 – 9999</td><td>16</td></tr>
+          <tr id="stbl-r1"><td>16 – 25</td><td>2</td></tr>
+          <tr id="stbl-r2"><td>26 – 90</td><td>3</td></tr>
+          <tr id="stbl-r3"><td>91 – 150</td><td>4</td></tr>
+          <tr id="stbl-r4"><td>151 – 500</td><td>6</td></tr>
+          <tr id="stbl-r5"><td>501 – 1200</td><td>10</td></tr>
+          <tr id="stbl-r6"><td>1201 – 9999</td><td>16</td></tr>
         </tbody>
       </table>
     </div>
@@ -678,22 +688,22 @@ input[type="file"] { display:none; }
         <span class="item-badge std">§5.2</span>
       </div>
       <div class="item-hdr-text">
-        <div class="item-title">Record atmospheric conditions at start of shift and every 4 hours</div>
+        <div class="item-title">Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift</div>
         <div class="item-desc">Temperature (°C), Relative Humidity (%), Barometric Pressure (hPa) — minimum 6 readings per shift.</div>
       </div>
     </div>
     <div class="item-body">
-      <div class="shift-info-row" style="grid-template-columns:repeat(4,1fr);">
-        <div class="info-field"><label for="f_shift_start">Shift Start</label><input type="time" id="f_shift_start"></div>
-        <div class="info-field"><label for="f_shift_finish">Shift Finish</label><input type="time" id="f_shift_finish"></div>
-        <div class="info-field"><label for="f_time_finished">Time Finished</label><input type="time" id="f_time_finished"></div>
+      <div class="shift-info-row" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px;">
+        <div class="info-field"><label>Date</label><input type="date" id="s2_date" readonly style="background:#f4f4f4;cursor:default;"></div>
+        <div class="info-field"><label for="f_shift_start">Time Shift Start</label><input type="time" id="f_shift_start"></div>
+        <div class="info-field"><label for="f_shift_finish">Time Shift Finish</label><input type="time" id="f_shift_finish"></div>
         <div class="info-field"><label for="f_total_units">Total Units Produced</label><input type="number" id="f_total_units" placeholder="e.g. 45"></div>
       </div>
       <table class="atm-tbl">
         <thead>
           <tr>
             <th>Time</th>
-            <th>Temp (°C)</th>
+            <th>Temp °C</th>
             <th>Relative Humidity (%)</th>
             <th>Barometric Pressure (hPa)</th>
           </tr>
@@ -719,7 +729,7 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="act-row">
-      <span class="act-label">Activity Completed:</span>
+      <span class="act-label">Activity Completed: <a href="#" onclick="return false;" style="font-size:11px;color:var(--accent);margin-left:6px;text-decoration:underline;">Records maintained for §5.2</a></span>
       <div class="toggle-group">
         <button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button>
         <button class="toggle" onclick="setToggle(this,'no')">✗ No</button>
@@ -2271,6 +2281,9 @@ function restoreState() {
       if (s.toggleStates[i] === 'no'  && btns[1]) btns[1].classList.add('no');
     });
   }
+  // Re-apply sampling row highlight after restore
+  const unitsEl = document.getElementById('s1_actual_units');
+  if (unitsEl && unitsEl.value) s1AutoSelect(unitsEl.value);
   updateProgress();
   updateSummary();
   return true;
@@ -2299,13 +2312,46 @@ document.querySelectorAll('.section-banner').forEach(banner => {
 });
 
 document.getElementById('f_date').valueAsDate = new Date();
-if (restoreState()) showToast('Draft restored from last session');
+(function syncS2Date() {
+  const src = document.getElementById('f_date');
+  const dst = document.getElementById('s2_date');
+  const sync = () => { dst.value = src.value; };
+  sync();
+  src.addEventListener('change', sync);
+})();
+if (restoreState()) {
+  showToast('Draft restored from last session');
+  // re-sync read-only mirrors after state restore
+  document.getElementById('s2_date').value = document.getElementById('f_date').value;
+}
 
 function setPF(btn) {
   const row = btn.closest('.pf-row');
   row.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   updateSummary();
+  saveState();
+}
+
+const S1_MAP = [
+  { units: '1',  lot: '2 – 5',        row: 'stbl-r0' },
+  { units: '2',  lot: '16 – 25',      row: 'stbl-r1' },
+  { units: '3',  lot: '26 – 90',      row: 'stbl-r2' },
+  { units: '4',  lot: '91 – 150',     row: 'stbl-r3' },
+  { units: '6',  lot: '151 – 500',    row: 'stbl-r4' },
+  { units: '10', lot: '501 – 1200',   row: 'stbl-r5' },
+  { units: '16', lot: '1201 – 9999',  row: 'stbl-r6' },
+];
+function s1AutoSelect(val) {
+  document.querySelectorAll('[id^="stbl-r"]').forEach(r => r.classList.remove('stbl-active'));
+  const entry = S1_MAP.find(m => m.units === val);
+  const lotEl = document.getElementById('s1_actual_lot');
+  if (entry) {
+    document.getElementById(entry.row).classList.add('stbl-active');
+    lotEl.value = entry.lot;
+  } else {
+    lotEl.value = '';
+  }
   saveState();
 }
 
@@ -2335,6 +2381,7 @@ function resetForm() {
     const img = el.querySelector('img'); if (img) img.src = '';
   });
   document.getElementById('f_date').valueAsDate = new Date();
+  document.getElementById('s2_date').value = document.getElementById('f_date').value;
   document.getElementById('submitStatus').style.display = 'none';
   updateProgress();
   updateSummary();
