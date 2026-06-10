@@ -360,6 +360,14 @@ input[type="file"] { display:none; }
 .col-hdr > span:last-child { border-right:none; }
 .ch-pf, .ch-act { text-align:center; }
 
+/* Check List Item compliance header table */
+.cli-tbl { width:100%; border-collapse:collapse; font-size:12px; }
+.cli-tbl th { background:#f0f4f8; padding:5px 14px; text-align:left; font-size:9.5px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#1e3a5f; border:1px solid #c8d4e0; }
+.cli-tbl td { padding:8px 14px; border:1px solid #c8d4e0; vertical-align:top; }
+.cli-tbl .cli-num { width:72px; text-align:center; font-size:20px; font-weight:700; color:#1e3a5f; border-right:2px solid #1e3a5f; }
+.cli-tbl .cli-ref { font-weight:600; color:#1e3a5f; display:flex; align-items:center; gap:6px; }
+.cli-tbl .cli-desc { margin-top:5px; color:#444; line-height:1.5; }
+
 /* ══════════════════════════════════════════════════════════
    PDF FIDELITY — compact document / table-row style
    Simple items (no .item-body) become 4-column table rows
@@ -2313,6 +2321,37 @@ document.querySelectorAll('.section-banner').forEach(banner => {
     '<span>Notes / Signature</span>' +
     '<span class="ch-act">Done</span>';
   banner.after(cl);
+});
+
+// Insert Check List Item compliance header table before col-hdr (runs after, so inserts closer to banner)
+const CLI_DATA = {
+  '1':  { ref: 'AS 4666:2012 §5.8.2 &amp; §6.0',    desc: 'IGU Sampling Requirements — permanent record of sampling maintained for each production shift.' },
+  '2':  { ref: 'AS 4666:2012 Section 5.2',            desc: 'Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift.' },
+  '3':  { ref: 'AS 4666:2012 §5.3.1–5.3.7',          desc: 'Verify glazing materials — compliance with order, traceability and types of substrates used.' },
+  '4':  { ref: 'AS 4666:2012 §5.4.1–5.4.8',          desc: 'Verify spacer bar and connectors — compliance, dimensions and installation requirements.' },
+  '5':  { ref: 'AS 4666:2012 §5.5.2–5.5.9',          desc: 'Verify desiccant — compliance with specifications, batch traceability and fill procedure.' },
+  '6':  { ref: 'AS 4666:2012 §5.6.1–5.6.10',         desc: 'Verify sealants — compliance with specifications, batch traceability and application procedure.' },
+  '7':  { ref: 'AS 4666:2012 §5.7.1–5.7.6',          desc: 'Verify gas filling — compliance and concentration levels for IGU gassing procedure.' },
+  '8':  { ref: 'AS 4666:2012 §4',                     desc: 'Verify compliance markings are correct and present on all IGUs before shipment.' },
+  '9':  { ref: 'AS 4666:2012 §5.8.2–5.8.12',         desc: 'Final product check — pre-shipment visual inspection and verification of all IGU units.' },
+  '10': { ref: 'AS 4666:2012 Appendix A',             desc: 'Verify all equipment required for sealant, gas, atmospheric and dew point testing is available and calibrated.' },
+};
+document.querySelectorAll('.section-banner').forEach(banner => {
+  const badge = banner.querySelector('.sec-badge');
+  if (!badge) return;
+  const num = badge.textContent.trim();
+  const data = CLI_DATA[num];
+  if (!data) return;
+  const tbl = document.createElement('table');
+  tbl.className = 'cli-tbl';
+  tbl.innerHTML =
+    '<thead><tr><th>Check List Item No.</th><th>Standard requirement to be verified.</th></tr></thead>' +
+    '<tbody><tr>' +
+    '<td class="cli-num">' + num + '.</td>' +
+    '<td><div class="cli-ref"><input type="checkbox"> ' + data.ref + '</div>' +
+    '<div class="cli-desc">' + data.desc + '</div></td>' +
+    '</tr></tbody>';
+  banner.after(tbl);
 });
 
 document.getElementById('f_date').valueAsDate = new Date();
