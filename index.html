@@ -2319,6 +2319,33 @@ document.getElementById('f_date').valueAsDate = new Date();
   sync();
   src.addEventListener('change', sync);
 })();
+
+// Sampling auto-select — must be before restoreState() so it's available during restore
+const LOT_MAP = {
+  '1':  '2 – 5',
+  '2':  '16 – 25',
+  '3':  '26 – 90',
+  '4':  '91 – 150',
+  '6':  '151 – 500',
+  '10': '501 – 1200',
+  '16': '1201 – 9999'
+};
+function s1AutoSelect(val) {
+  const lotInput = document.getElementById('s1_actual_lot');
+  if (lotInput) lotInput.value = LOT_MAP[val] || '';
+  document.querySelectorAll('.sampling-tbl tr').forEach(function(row) {
+    row.classList.remove('stbl-active');
+    if (row.querySelector('td') && row.cells[1] && row.cells[1].textContent.trim() === val) {
+      row.classList.add('stbl-active');
+    }
+  });
+}
+(function bindS1Units() {
+  var sel = document.getElementById('s1_actual_units');
+  if (!sel) return;
+  sel.addEventListener('change', function() { s1AutoSelect(this.value); saveState(); });
+})();
+
 if (restoreState()) {
   showToast('Draft restored from last session');
   // re-sync read-only mirrors after state restore
@@ -2333,35 +2360,6 @@ function setPF(btn) {
   saveState();
 }
 
-const S1_MAP = [
-  { units: '1',  lot: '2 – 5',        row: 'stbl-r0' },
-  { units: '2',  lot: '16 – 25',      row: 'stbl-r1' },
-  { units: '3',  lot: '26 – 90',      row: 'stbl-r2' },
-  { units: '4',  lot: '91 – 150',     row: 'stbl-r3' },
-  { units: '6',  lot: '151 – 500',    row: 'stbl-r4' },
-  { units: '10', lot: '501 – 1200',   row: 'stbl-r5' },
-  { units: '16', lot: '1201 – 9999',  row: 'stbl-r6' },
-];
-function s1AutoSelect(val) {
-  document.querySelectorAll('[id^="stbl-r"]').forEach(r => r.classList.remove('stbl-active'));
-  const entry = S1_MAP.find(m => m.units === String(val));
-  const lotEl = document.getElementById('s1_actual_lot');
-  if (entry) {
-    const activeRow = document.getElementById(entry.row);
-    if (activeRow) activeRow.classList.add('stbl-active');
-    lotEl.value = entry.lot;
-  } else {
-    lotEl.value = '';
-  }
-  saveState();
-}
-(function bindS1Units() {
-  const sel = document.getElementById('s1_actual_units');
-  if (!sel) return;
-  sel.addEventListener('change', function() { s1AutoSelect(this.value); });
-  // fire immediately in case a value is already set (e.g. after restoreState)
-  if (sel.value) s1AutoSelect(sel.value);
-})();
 
 function setToggle(btn, val) {
   const group = btn.closest('.toggle-group');
