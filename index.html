@@ -628,7 +628,7 @@ input[type="file"] { display:none; }
           <tr id="stbl-r0"><td>2 – 5</td><td>1</td><td class="actual-cell" rowspan="7">
             <div style="margin-bottom:10px">
               <div style="font-size:11px;color:#666;margin-bottom:3px">Units to Check</div>
-              <select id="s1_actual_units" class="actual-input" onchange="s1AutoSelect(this.value)" style="cursor:pointer">
+              <select id="s1_actual_units" class="actual-input" style="cursor:pointer">
                 <option value="">— select —</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -2344,16 +2344,24 @@ const S1_MAP = [
 ];
 function s1AutoSelect(val) {
   document.querySelectorAll('[id^="stbl-r"]').forEach(r => r.classList.remove('stbl-active'));
-  const entry = S1_MAP.find(m => m.units === val);
+  const entry = S1_MAP.find(m => m.units === String(val));
   const lotEl = document.getElementById('s1_actual_lot');
   if (entry) {
-    document.getElementById(entry.row).classList.add('stbl-active');
+    const activeRow = document.getElementById(entry.row);
+    if (activeRow) activeRow.classList.add('stbl-active');
     lotEl.value = entry.lot;
   } else {
     lotEl.value = '';
   }
   saveState();
 }
+(function bindS1Units() {
+  const sel = document.getElementById('s1_actual_units');
+  if (!sel) return;
+  sel.addEventListener('change', function() { s1AutoSelect(this.value); });
+  // fire immediately in case a value is already set (e.g. after restoreState)
+  if (sel.value) s1AutoSelect(sel.value);
+})();
 
 function setToggle(btn, val) {
   const group = btn.closest('.toggle-group');
