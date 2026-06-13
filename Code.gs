@@ -264,7 +264,7 @@ function buildHtmlReport(data, dateStr, tz) {
     : '';
 
   // ── Desiccant exposure label ───────────────────────────────────────────────
-  const exposureLabel = 'Desiccant Exposure: Max 2 hours' +
+  const exposureLabel = 'Desiccant Exposure: Maximum 2 hours exposure to atmosphere (recommended 40 min). Time of filling and assembly recorded.' +
     ' [Fill: ' + val(data.desiccantFillTime) + ' → Assembly: ' + val(data.desiccantAssemTime) + ']';
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -376,17 +376,17 @@ secBanner('2','Atmospheric Conditions','AS 4666:2012 · §5.2 — Every 4 hours'
 '<span style="font-size:9px;font-weight:700;color:#2E86AB;text-transform:uppercase;letter-spacing:0.5px;">Total Units</span>&nbsp;' +
 '<span style="font-size:11px;color:#1a2a36;">' + val(data.totalUnits) + '</span>' +
 '</td></tr>' +
-rowAct('2.1','Record atmospheric conditions at start of shift and every 4 hours (Temp, RH, Pressure)',data.s2) +
+rowAct('2.1','Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift',data.s2) +
 '</table>\n\n' +
 
 // ══ SECTION 3 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('3','Glazing Materials','AS 4666:2012 · §5.3.1–5.3.7') +
-rowPF('3.1','Glass: Compliance with Order, Traceability & Types of Substrates',data.s31) +
-rowPF('3.2','Glass: Edge Characteristics',data.s32) +
-rowPF('3.3','Glass: Dimensional Properties (Thickness, Flatness, Height/Width)',data.s33) +
-rowPF('3.4','Glass: Cleanliness – Dryness, Stains/Films, Fingerprints',data.s34) +
-rowPF('3.5','Glass: Scratches, Blemishes, Marks & Inclusions',data.s35) +
+rowPF('3.1','GLASS: Compliance with order – Traceability – Types of Substrates',data.s31) +
+rowPF('3.2','GLASS: Edge Characteristics. A visual inspection shall be conducted in accordance with Section 5.3.4 and Table 5.2',data.s32) +
+rowPF('3.3','GLASS: Dimensional Properties: When measured in accordance with Appendix A, AS 4666 – THICKNESS tolerance monolithic glass see, Table 5.1, FLATNESS (Bow) see Table 5.3, HEIGHT/WIDTH, Refer to Section 5.3.5.2, Residential Units, Section 5.3.5.3, Commercial Units.',data.s33) +
+rowPF('3.4','GLASS: Cleanliness – Dryness, Stains/Films, Fingerprints',data.s34) +
+rowPF('3.5','GLASS: A visual inspection shall be conducted for Scratches, Blemishes, Marks and Inclusions. Refer to AS 4666, Table 5.5 and Table 5.6',data.s35) +
 '</table>\n\n' +
 
 // ══ SECTION 4 ════════════════════════════════════════════════════════════
@@ -406,7 +406,7 @@ photoRow(data.photo41,'Spacer Bar Label Photo') +
 rowPF('4.2','Spacer Bar: Customer Stock Record Traceability',data.s42) +
 rowPF('4.3','Rigid Spacer Bar: Visual Inspection',data.s43) +
 rowPF('4.4','Corner Keys & Straight Line Connectors',data.s44) +
-rowPF('4.5','Spacer Bar Cleanliness',data.s45) +
+rowPF('4.5','Spacer Bar Cleanliness: Free from Dirt, Oil, Grease, Contaminants',data.s45) +
 rowPF('4.6','Dimensional Properties: Compliance with Manufacturer Specifications',data.s46) +
 rowPF('4.7','Post Assembly Inspection: No splitting, tearing or flare-out on bent corners',data.s47) +
 '</table>\n\n' +
@@ -425,10 +425,10 @@ rowPF('5.1','Desiccant: Origin, Compliance with Order & Shelf Life',data.s51) +
 ) +
 photoRow(data.photo51,'Desiccant Label Photo') +
 rowPF('5.2','Desiccant Traceability: Traceable back to supplier for each customer order',data.s52) +
-rowPF('5.3','Desiccant Effectiveness / Fit for Purpose',data.s53) +
+rowPF('5.3','Desiccant Effectiveness \\ Fit for Purpose: Tested per manufacturer specification before each production run',data.s53) +
 rowPF('5.4','Desiccant Volume: Adequate volume employed in spacer bar cavity',data.s54) +
 rowPF('5.5',exposureLabel,data.s55) +
-rowPF('5.6','Desiccant Suitability: Compatible with gas type (N/A if air-filled)',data.s56) +
+rowPF('5.6','Desiccant Suitability: Compatible with gas type used in IGU assembly (pore size < gas molecular sieve)',data.s56) +
 '</table>\n\n' +
 
 // ══ SECTION 6 ════════════════════════════════════════════════════════════
@@ -439,7 +439,7 @@ sealantDetail +
 photoRow(data.photo61,'Sealant Label Photo') +
 // 6.1 — Traceability has two separate pf-rows (primary + secondary)
 '<tr><td colspan="3" style="padding:4px 14px;background:#eef4f7;border-bottom:1px solid #dce8ed;">' +
-'<span style="font-size:9px;font-weight:700;color:#1C2E3D;text-transform:uppercase;letter-spacing:0.8px;">6.2 — Sealant Traceability (Primary &amp; Secondary)</span>' +
+'<span style="font-size:9px;font-weight:700;color:#1C2E3D;text-transform:uppercase;letter-spacing:0.8px;">6.2 — Sealant Traceability: Primary &amp; Secondary Sealant Records</span>' +
 '</td></tr>' +
 '<tr>' +
 '<td style="' + NUM_TD + '">6.2</td>' +
@@ -456,8 +456,8 @@ rowPF('6.4','Sealant Compatibility with Glass: Confirmed as compatible and appro
 rowPF('6.5','Secondary Adhesion: To glass surface and spacer bar. Records maintained.',data.s65) +
 rowPF('6.6','Mix Ratio: Two-part secondary sealant mix ratio tested. Records maintained.',data.s66) +
 rowPF('6.7','Mix Homogeneity: Tested once per shift. Results recorded.',data.s67) +
-rowPF('6.8','Sealant Cure Rate: Single or secondary sealants tested',data.s68) +
-rowPF('6.9','Sealant Storage: Stored per manufacturer specification',data.s69) +
+rowPF('6.8','Sealant Cure Rate: Single or secondary sealants tested. Records maintained.',data.s68) +
+rowPF('6.9','Sealant Storage: Stored per manufacturer specification.',data.s69) +
 '</table>\n\n' +
 
 // ══ SECTION 7 ════════════════════════════════════════════════════════════
@@ -465,8 +465,8 @@ rowPF('6.9','Sealant Storage: Stored per manufacturer specification',data.s69) +
 secBanner('7','Gas / IGU Gassing','AS 4666:2012 · §5.7.1–5.7.6') +
 rowPF('7.1','Gas: Origin, Compliance with Order & Gas Type',data.s71) +
 rowPF('7.2','Gas Traceability: Traceable to supplier for each customer order',data.s72) +
-rowPF('7.3','Desiccant & Gas Compatibility',data.s73) +
-rowPF('7.4','Gas Fill Volume: Minimum 90% of IGU cavity volume',data.s74) +
+rowPF('7.3','Desiccant & Gas Compatibility: Desiccant pore size smaller than gas molecular sieve size',data.s73) +
+rowPF('7.4','Gas Fill Volume: Minimum 90% of IGU cavity volume. Calculated or measured per Appendix O.',data.s74) +
 '</table>\n\n' +
 
 // ══ SECTION 8 ════════════════════════════════════════════════════════════
@@ -482,14 +482,14 @@ rowAct('8.2','Work Order / Customer Order Label Affixed to Finished Product',dat
 secBanner('9','Final Product Check','AS 4666:2012 · §5.8.2–5.8.12') +
 rowAct('9.1','Test Format: Random samples (Table 6.1) before shipment. Non-conforming product rectified or replaced.',data.s91) +
 rowPF('9.2','Sealant Cured: Visual & mechanical hardness check. No uncured sealant on units ready for shipment.',data.s92) +
-rowPF('9.3','Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4 and Table 5.8',data.s93) +
+rowPF('9.3','Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4.2–5.8.4.4 and Table 5.8',data.s93) +
 rowPF('9.4','Uniformity of Spacer Depth: Minimum sealant depth per Table 5.7',data.s94) +
-rowPF('9.5','Voids in Sealants: Visual inspection',data.s95) +
-rowPF('9.6','Glass Alignment / Offset: Visual inspection',data.s96) +
-rowPF('9.7','Cleanliness: Protrusion limits per §5.8.9',data.s97) +
+rowPF('9.5','Voids in Sealants: Visual inspection. Random samples per Table 6.1.',data.s95) +
+rowPF('9.6','Glass Alignment \\ Offset: Visual inspection. Random samples per Table 6.1.',data.s96) +
+rowPF('9.7','Cleanliness: Max 1mm proud on face, max 2mm on edge, max 3mm on corner (±20mm).',data.s97) +
 rowPF('9.8','Marks, Scratches & Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.',data.s98) +
-rowPF('9.9','Moisture Content (Dew Point Test): Conducted on previous day production lot.',data.s99) +
-rowPF('9.10','Storage & Handling: Support, angle, spacing/interleaving',data.s910) +
+rowPF('9.9','Moisture Content (Dew Point Test): Conducted on previous day production lot. Random samples per Table 6.1.',data.s99) +
+rowPF('9.10','Storage & Handling: Support (§5.8.12.1), Angle (§5.8.12.2), Spacing/Interleaving (§5.8.12.3). Lifting to thickest face.',data.s910) +
 '</table>\n\n' +
 
 // ══ SECTION 10 ═══════════════════════════════════════════════════════════
