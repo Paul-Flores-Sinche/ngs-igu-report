@@ -425,7 +425,7 @@ rowPF('5.1','Desiccant: Origin, Compliance with Order & Shelf Life',data.s51) +
 ) +
 photoRow(data.photo51,'Desiccant Label Photo') +
 rowPF('5.2','Desiccant Traceability: Traceable back to supplier for each customer order',data.s52) +
-rowPF('5.3','Desiccant Effectiveness \\ Fit for Purpose: Tested per manufacturer specification before each production run',data.s53) +
+rowPF('5.3','Desiccant Effectiveness / Fit for Purpose: Tested per manufacturer specification before each production run',data.s53) +
 rowPF('5.4','Desiccant Volume: Adequate volume employed in spacer bar cavity',data.s54) +
 rowPF('5.5',exposureLabel,data.s55) +
 rowPF('5.6','Desiccant Suitability: Compatible with gas type used in IGU assembly (pore size < gas molecular sieve)',data.s56) +
@@ -485,7 +485,7 @@ rowPF('9.2','Sealant Cured: Visual & mechanical hardness check. No uncured seala
 rowPF('9.3','Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4.2–5.8.4.4 and Table 5.8',data.s93) +
 rowPF('9.4','Uniformity of Spacer Depth: Minimum sealant depth per Table 5.7',data.s94) +
 rowPF('9.5','Voids in Sealants: Visual inspection. Random samples per Table 6.1.',data.s95) +
-rowPF('9.6','Glass Alignment \\ Offset: Visual inspection. Random samples per Table 6.1.',data.s96) +
+rowPF('9.6','Glass Alignment / Offset: Visual inspection. Random samples per Table 6.1.',data.s96) +
 rowPF('9.7','Cleanliness: Max 1mm proud on face, max 2mm on edge, max 3mm on corner (±20mm).',data.s97) +
 rowPF('9.8','Marks, Scratches & Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.',data.s98) +
 rowPF('9.9','Moisture Content (Dew Point Test): Conducted on previous day production lot. Random samples per Table 6.1.',data.s99) +
