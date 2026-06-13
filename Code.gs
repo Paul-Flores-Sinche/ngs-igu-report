@@ -382,17 +382,17 @@ rowAct('2.1','Record atmospheric conditions at start of shift and every 4 hours 
 // ══ SECTION 3 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('3','Glazing Materials','AS 4666:2012 · §5.3.1–5.3.7') +
-rowPF('3',  'Glass: Compliance with Order, Traceability & Types of Substrates',data.s31) +
-rowPF('3.1','Glass: Edge Characteristics',data.s32) +
-rowPF('3.2','Glass: Dimensional Properties (Thickness, Flatness, Height/Width)',data.s33) +
-rowPF('3.3','Glass: Cleanliness – Dryness, Stains/Films, Fingerprints',data.s34) +
-rowPF('3.4','Glass: Scratches, Blemishes, Marks & Inclusions',data.s35) +
+rowPF('3.1','Glass: Compliance with Order, Traceability & Types of Substrates',data.s31) +
+rowPF('3.2','Glass: Edge Characteristics',data.s32) +
+rowPF('3.3','Glass: Dimensional Properties (Thickness, Flatness, Height/Width)',data.s33) +
+rowPF('3.4','Glass: Cleanliness – Dryness, Stains/Films, Fingerprints',data.s34) +
+rowPF('3.5','Glass: Scratches, Blemishes, Marks & Inclusions',data.s35) +
 '</table>\n\n' +
 
 // ══ SECTION 4 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('4','Spacer Bar & Connectors','AS 4666:2012 · §5.4.1–5.4.8') +
-rowPF('4',  'Spacer Bar: Dimensional Properties & Stock Record',data.s41) +
+rowPF('4.1','Spacer Bar: Dimensional Properties & Stock Record',data.s41) +
 (
   (data.s41_manufacturer || data.s41_batch || data.s41_product)
   ? detailBlock([
@@ -403,18 +403,18 @@ rowPF('4',  'Spacer Bar: Dimensional Properties & Stock Record',data.s41) +
   : ''
 ) +
 photoRow(data.photo41,'Spacer Bar Label Photo') +
-rowPF('4.1','Spacer Bar: Customer Stock Record Traceability',data.s42) +
-rowPF('4.2','Rigid Spacer Bar: Visual Inspection',data.s43) +
-rowPF('4.3','Corner Keys & Straight Line Connectors',data.s44) +
-rowPF('4.4','Spacer Bar Cleanliness',data.s45) +
-rowPF('4.5','Dimensional Properties: Compliance with Manufacturer Specifications',data.s46) +
-rowPF('4.6','Post Assembly Inspection: No splitting, tearing or flare-out on bent corners',data.s47) +
+rowPF('4.2','Spacer Bar: Customer Stock Record Traceability',data.s42) +
+rowPF('4.3','Rigid Spacer Bar: Visual Inspection',data.s43) +
+rowPF('4.4','Corner Keys & Straight Line Connectors',data.s44) +
+rowPF('4.5','Spacer Bar Cleanliness',data.s45) +
+rowPF('4.6','Dimensional Properties: Compliance with Manufacturer Specifications',data.s46) +
+rowPF('4.7','Post Assembly Inspection: No splitting, tearing or flare-out on bent corners',data.s47) +
 '</table>\n\n' +
 
 // ══ SECTION 5 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('5','Desiccant','AS 4666:2012 · §5.5.2–5.5.9') +
-rowPF('5',  'Desiccant: Origin, Compliance with Order & Shelf Life',data.s51) +
+rowPF('5.1','Desiccant: Origin, Compliance with Order & Shelf Life',data.s51) +
 (
   (data.s51_manufacturer || data.s51_batch || data.s51_product)
   ? detailBlock([
@@ -424,49 +424,49 @@ rowPF('5',  'Desiccant: Origin, Compliance with Order & Shelf Life',data.s51) +
   : ''
 ) +
 photoRow(data.photo51,'Desiccant Label Photo') +
-rowPF('5.1','Desiccant Traceability: Traceable back to supplier for each customer order',data.s52) +
-rowPF('5.2','Desiccant Effectiveness / Fit for Purpose',data.s53) +
-rowPF('5.3','Desiccant Volume: Adequate volume employed in spacer bar cavity',data.s54) +
-rowPF('5.4',exposureLabel,data.s55) +
-rowPF('5.5','Desiccant Suitability: Compatible with gas type (N/A if air-filled)',data.s56) +
+rowPF('5.2','Desiccant Traceability: Traceable back to supplier for each customer order',data.s52) +
+rowPF('5.3','Desiccant Effectiveness / Fit for Purpose',data.s53) +
+rowPF('5.4','Desiccant Volume: Adequate volume employed in spacer bar cavity',data.s54) +
+rowPF('5.5',exposureLabel,data.s55) +
+rowPF('5.6','Desiccant Suitability: Compatible with gas type (N/A if air-filled)',data.s56) +
 '</table>\n\n' +
 
 // ══ SECTION 6 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('6','Sealants','AS 4666:2012 · §5.6.1–5.6.10') +
-rowPF('6',  'Sealant: Origin, Compliance with Order & Shelf Life',data.s61) +
+rowPF('6.1','Sealant: Origin, Compliance with Order & Shelf Life',data.s61) +
 sealantDetail +
 photoRow(data.photo61,'Sealant Label Photo') +
 // 6.1 — Traceability has two separate pf-rows (primary + secondary)
 '<tr><td colspan="3" style="padding:4px 14px;background:#eef4f7;border-bottom:1px solid #dce8ed;">' +
-'<span style="font-size:9px;font-weight:700;color:#1C2E3D;text-transform:uppercase;letter-spacing:0.8px;">6.1 — Sealant Traceability (Primary &amp; Secondary)</span>' +
+'<span style="font-size:9px;font-weight:700;color:#1C2E3D;text-transform:uppercase;letter-spacing:0.8px;">6.2 — Sealant Traceability (Primary &amp; Secondary)</span>' +
 '</td></tr>' +
 '<tr>' +
-'<td style="' + NUM_TD + '">6.1</td>' +
+'<td style="' + NUM_TD + '">6.2</td>' +
 '<td style="' + TXT_TD + '">Primary Sealant – Manufacturer / Batch / Expiry</td>' +
 '<td style="' + BADGE_TD + '">' + pfBadge(data.s62) + '</td>' +
 '</tr>' +
 '<tr>' +
-'<td style="' + NUM_TD + '">6.1b</td>' +
+'<td style="' + NUM_TD + '">6.2b</td>' +
 '<td style="' + TXT_TD + '">Secondary Sealant – Manufacturer / Batch / Expiry</td>' +
 '<td style="' + BADGE_TD + '">' + pfBadge(data.s62b) + '</td>' +
 '</tr>' +
-rowPF('6.2','Minimum Sealant Dimensions: Verified to Table 5.7. Dual or Single Seal unit.',data.s63) +
-rowPF('6.3','Primary Sealant Application',data.s64) +
-rowPF('6.4','Secondary Adhesion: To glass surface and spacer bar. Records maintained.',data.s65) +
-rowPF('6.5','Secondary Sealant Depth',data.s66) +
-rowPF('6.6','Sealant Temperature',data.s67) +
-rowPF('6.7','Sealant Cure Rate: Single or secondary sealants tested',data.s68) +
-rowPF('6.8','Sealant Storage: Stored per manufacturer specification',data.s69) +
+rowPF('6.3','Minimum Sealant Dimensions: Verified to Table 5.7. Dual or Single Seal unit.',data.s63) +
+rowPF('6.4','Sealant Compatibility with Glass: Confirmed as compatible and approved for use',data.s64) +
+rowPF('6.5','Secondary Adhesion: To glass surface and spacer bar. Records maintained.',data.s65) +
+rowPF('6.6','Mix Ratio: Two-part secondary sealant mix ratio tested. Records maintained.',data.s66) +
+rowPF('6.7','Mix Homogeneity: Tested once per shift. Results recorded.',data.s67) +
+rowPF('6.8','Sealant Cure Rate: Single or secondary sealants tested',data.s68) +
+rowPF('6.9','Sealant Storage: Stored per manufacturer specification',data.s69) +
 '</table>\n\n' +
 
 // ══ SECTION 7 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('7','Gas / IGU Gassing','AS 4666:2012 · §5.7.1–5.7.6') +
-rowPF('7',  'Gas: Origin, Compliance with Order & Gas Type',data.s71) +
-rowPF('7.1','Gas Traceability: Traceable to supplier for each customer order',data.s72) +
-rowPF('7.2','Desiccant & Gas Compatibility',data.s73) +
-rowPF('7.3','Gas Fill Volume: Minimum 90% of IGU cavity volume',data.s74) +
+rowPF('7.1','Gas: Origin, Compliance with Order & Gas Type',data.s71) +
+rowPF('7.2','Gas Traceability: Traceable to supplier for each customer order',data.s72) +
+rowPF('7.3','Desiccant & Gas Compatibility',data.s73) +
+rowPF('7.4','Gas Fill Volume: Minimum 90% of IGU cavity volume',data.s74) +
 '</table>\n\n' +
 
 // ══ SECTION 8 ════════════════════════════════════════════════════════════
@@ -480,24 +480,24 @@ rowAct('8.2','Work Order / Customer Order Label Affixed to Finished Product',dat
 // ══ SECTION 9 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('9','Final Product Check','AS 4666:2012 · §5.8.2–5.8.12') +
-rowAct('9',  'Test Format: Random samples (Table 6.1) before shipment. Non-conforming product rectified or replaced.',data.s91) +
-rowPF('9.1','Sealant Cured: Visual & mechanical hardness check. No uncured sealant on units ready for shipment.',data.s92) +
-rowPF('9.2','Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4 and Table 5.8',data.s93) +
-rowPF('9.3','Uniformity of Spacer Depth: Minimum sealant depth per Table 5.7',data.s94) +
-rowPF('9.4','Voids in Sealants: Visual inspection',data.s95) +
-rowPF('9.5','Glass Alignment / Offset: Visual inspection',data.s96) +
-rowPF('9.6','Cleanliness: Protrusion limits per §5.8.9',data.s97) +
-rowPF('9.7','Marks, Scratches & Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.',data.s98) +
-rowPF('9.8','Moisture Content (Dew Point Test): Conducted on previous day production lot.',data.s99) +
-rowPF('9.9','Storage & Handling: Support, angle, spacing/interleaving',data.s910) +
+rowAct('9.1','Test Format: Random samples (Table 6.1) before shipment. Non-conforming product rectified or replaced.',data.s91) +
+rowPF('9.2','Sealant Cured: Visual & mechanical hardness check. No uncured sealant on units ready for shipment.',data.s92) +
+rowPF('9.3','Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4 and Table 5.8',data.s93) +
+rowPF('9.4','Uniformity of Spacer Depth: Minimum sealant depth per Table 5.7',data.s94) +
+rowPF('9.5','Voids in Sealants: Visual inspection',data.s95) +
+rowPF('9.6','Glass Alignment / Offset: Visual inspection',data.s96) +
+rowPF('9.7','Cleanliness: Protrusion limits per §5.8.9',data.s97) +
+rowPF('9.8','Marks, Scratches & Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.',data.s98) +
+rowPF('9.9','Moisture Content (Dew Point Test): Conducted on previous day production lot.',data.s99) +
+rowPF('9.10','Storage & Handling: Support, angle, spacing/interleaving',data.s910) +
 '</table>\n\n' +
 
 // ══ SECTION 10 ═══════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('10','Equipment Availability','Appendix A · §5') +
-rowPF('10', 'Mandatory Equipment for Dimensional Properties',data.s101) +
-rowPF('10.1','Additional Equipment for Compliance Checks',data.s102) +
-rowPF('10.2','Equipment Calibrated and Functional: Within tolerance of 0.01mm. Records maintained.',data.s103) +
+rowPF('10.1','Mandatory Equipment for Dimensional Properties',data.s101) +
+rowPF('10.2','Additional Equipment for Compliance Checks',data.s102) +
+rowPF('10.3','Equipment Calibrated and Functional: Within tolerance of 0.01mm. Records maintained.',data.s103) +
 '</table>\n\n' +
 
 // ══ FOOTER ═══════════════════════════════════════════════════════════════
