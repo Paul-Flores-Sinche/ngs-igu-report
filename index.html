@@ -1899,10 +1899,6 @@ input[type="file"] { display:none; }
         <div class="item-title">Work Order / Customer Order Label Affixed to Finished Product</div>
       </div>
     </div>
-    <div class="pf-row">
-      <button class="pf-btn pass" onclick="setPF(this)">✓ Pass</button>
-      <button class="pf-btn fail" onclick="setPF(this)">✗ Fail</button>
-    </div>
     <div class="ns-row">
       <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
       <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
@@ -2310,8 +2306,8 @@ input[type="file"] { display:none; }
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbyXsPxvU_1xePYZ4Kho3NYFhbudW3LFq_2UgHEl8uFoPn-m7dyA2Jd9THbi0Cfg9XHR/exec";
-const DRAFT_KEY = 'ngs_igu_v3';
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxnZXNOOLlaklDweNpcKqayGiI7E9Ecxk3fcvfmTtfmZxSAhvhdbd3n8q997Iph1o1l/exec";
+const DRAFT_KEY = 'ngs_igu_v4'; // v4: removed 8.2 pf-row — old positional pfStates drafts are incompatible
 
 // --- DRAFT SAVE / RESTORE ---
 function saveState() {
@@ -2727,7 +2723,7 @@ function submitReport() {
     s64:  getPF('s6', 4), s65: getPF('s6', 5), s66: getPF('s6', 6),
     s67:  getPF('s6', 7), s68: getPF('s6', 8), s69: getPF('s6', 9),
     s71:  getPF('s7', 0), s72: getPF('s7', 1), s73: getPF('s7', 2), s74: getPF('s7', 3),
-    s81:  getPF('s8', 0), s82: getPF('s8', 1), s82_act: getAct('s8', 0),
+    s81:  getPF('s8', 0), s81_act: getAct('s8', 0), s82: getAct('s8', 1),
     s4_trace_confirmed: document.getElementById('s4_trace_confirmed') ? document.getElementById('s4_trace_confirmed').checked : false,
     s91:  getAct('s9', 0), s92: getPF('s9', 0), s93: getPF('s9', 1),
     s94:  getPF('s9', 2),  s95: getPF('s9', 3), s96: getPF('s9', 4),

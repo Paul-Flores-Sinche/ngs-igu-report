@@ -61,7 +61,7 @@ function logToSheet(data) {
       'S5','S5.1','S5.2','S5.3','S5.4','S5.5',
       'S6','S6.1 Primary','S6.1 Secondary','S6.2','S6.3','S6.4','S6.5','S6.6','S6.7','S6.8',
       'S7','S7.1','S7.2','S7.3',
-      'S8 PF','S8.1 PF','S8.1 Act',
+      'S8.1 PF','S8.1 Act','S8.2 Act',
       'S9 Act','S9.1','S9.2','S9.3','S9.4','S9.5','S9.6','S9.7','S9.8','S9.9',
       'S10','S10.1','S10.2',
       'Spacer Manufacturer','Spacer Batch','Spacer Product','Spacer Size',
@@ -89,7 +89,7 @@ function logToSheet(data) {
     data.s61||'', data.s62||'', data.s62b||'', data.s63||'', data.s64||'', data.s65||'',
     data.s66||'', data.s67||'', data.s68||'', data.s69||'',
     data.s71||'', data.s72||'', data.s73||'', data.s74||'',
-    data.s81||'', data.s82||'', data.s82_act||'',
+    data.s81||'', data.s81_act||'', data.s82||'',
     data.s91||'', data.s92||'', data.s93||'', data.s94||'', data.s95||'',
     data.s96||'', data.s97||'', data.s98||'', data.s99||'', data.s910||'',
     data.s101||'', data.s102||'', data.s103||'',
@@ -471,8 +471,9 @@ rowPF('7.3','Gas Fill Volume: Minimum 90% of IGU cavity volume',data.s74) +
 // ══ SECTION 8 ════════════════════════════════════════════════════════════
 '<table ' + STBL + '>' +
 secBanner('8','Compliance Markings','§4') +
-rowPF('8',  'Compliance Marking: Company name/logo, CSi ID 7709, AS 4666, Date of manufacture',data.s81) +
-rowAct('8.1','Work Order / Customer Order Label Affixed to Finished Product',data.s82) +
+rowPF('8.1','Compliance Marking: Company name/logo, CSi ID 7709, AS 4666, Date of manufacture',data.s81) +
+rowAct('8.1','Compliance Marking — Activity Completed',data.s81_act) +
+rowAct('8.2','Work Order / Customer Order Label Affixed to Finished Product',data.s82) +
 '</table>\n\n' +
 
 // ══ SECTION 9 ════════════════════════════════════════════════════════════
@@ -534,7 +535,7 @@ function testDoPost() {
     s61:'Pass', s62:'Pass', s62b:'Pass', s63:'Pass', s64:'Pass',
     s65:'Pass', s66:'Pass', s67:'Pass', s68:'Pass', s69:'Pass',
     s71:'Pass', s72:'Pass', s73:'Pass', s74:'Pass',
-    s81:'Pass', s82:'Yes',
+    s81:'Pass', s81_act:'Yes', s82:'Yes',
     s91:'Yes', s92:'Pass', s93:'Pass', s94:'Pass', s95:'Pass',
     s96:'Pass', s97:'Pass', s98:'Pass', s99:'Pass', s910:'Pass',
     s101:'Pass', s102:'Pass', s103:'Pass',

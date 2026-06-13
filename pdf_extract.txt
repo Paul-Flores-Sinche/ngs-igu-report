@@ -1,0 +1,866 @@
+           Daily Test Report Checklist ­ IGU - Spacer Bar System
+
+                          Company Name                    CSi Licence ID. No.                                       Location
+Northern Glass Solutions Pty Ltd                                    7709              84 O'Sullivan Circuit, East Arm, NT 0822.
+
+Applicable Certified   AS 4666:2012 Insulating glass units                             Othe :
+Product Standard:     + Amd No1:2018
+
+Report Completed By:  1.                            2.                                3.                        4.
+
+ Check     Standard requirement to be verified.
+List Item
+            AS 4666:2012 Section 5.8.2 & 6.0
+   No.     Number of IGU Units to be sampled from a production lot and tested daily (From Table 6.1, AS 4666).
+
+  1.
+
+                                        NUMBER OF UNITS TO CHECK PER SHIFT (Table 6.1)
+
+                      2-5                                                                      1
+
+                      16 - 25                                                                  2
+
+                      26 - 90                                                                  3
+
+                      91 - 150                                                                 4
+
+                      151 - 500                                                                6
+
+                      501 - 1200                                                               10
+
+                      1201 - 9999                                                              16
+
+Activity Completed  Yes  No (Records maintained for 5.8.2 if non-conforming product is found, another product shall be inspected in its place)
+
+Notes:
+
+ Check     Standard requirement to be verified.
+List Item
+            AS 4666:2012 Section 5.2
+   No.     Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift.
+
+  2.
+
+Date:                                   Time Shift                        Time Shift               Total Units
+                                           Start:                           Finish:                Produced:
+
+Time:                                   Temp 0°c:                          Relative                Barometric
+                                                                          Humidity:                 Pressure:
+Time:                                   Temp 0°c:                          Relative                Barometric
+                                                                          Humidity:                 Pressure:
+Time:                                   Temp 0°c:                          Relative                Barometric
+                                                                          Humidity:                 Pressure:
+Time:                                   Temp 0°c:                          Relative                Barometric
+                                                                          Humidity:                 Pressure:
+Time:                                   Temp 0°c:                          Relative                Barometric
+                                                                          Humidity:                 Pressure:
+Time:                                   Temp 0°c:                          Relative                Barometric
+                                                                          Humidity:                 Pressure:
+
+Activity Completed  Yes  No (Records maintained for 5.2)
+
+Notes:
+
+                                                                                          TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                            Page 1 of 15
+           COMPONENT CHECKED:                                                    Glazing Materials
+
+ Check     Standard requirement to be verified.
+List Item
+            AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3
+   No.     GLASS: Compliance with order ­ Traceability ­ Types of Substrates
+
+  3.
+
+    3.1
+
+           Compliance with order  Pass:                                          Compliance with order  Fail:
+                                                                                 Signature.
+           Notes:
+                 1. (5.3.1) The company maintains a permanent record of                       SIGN HERE
+                        glazing materials, date of receipt and compliance with
+                        order specification for the completed insulating glass
+                        units. Thickness limits for glazing materials are given
+                        in Table 5.1, measured in accordance with.
+                        Appendix A, AS 4666.
+
+           2. (5.3.2) The company maintains a system that ensures
+                 glazing material types included in the fabrication of an
+                 insulating glass unit are traceable, records shall be
+                 maintained.
+
+           To be conducted every customer order.
+
+           Activity Completed  Yes  No (Records maintained for 5.3.1 & 5.3.2)
+
+3.2         AS 4666:2012 Section 5.3.4
+
+           GLASS: Edge Characteristics. A visual inspection shall be conducted in accordance with Section 5.3.4 and Table 5.2
+
+           Edge Characteristics Check  Pass:                                     Edge Characteristics Check   Fail:
+                                                                                 Signature.
+           Notes: To be conducted every customer order or every half
+           hour whichever is the lesser.                                                      SIGN HERE
+
+           Activity Completed  Yes  No
+
+3.3         AS 4666:2012 Section 5.3.5
+
+           GLASS: Dimensional Properties: When measured in accordance with Appendix A, AS 4666 ­ THICKNESS tolerance monolithic
+
+           glass see, Table 5.1, FLATNESS (Bow) see Table 5.3, HEIGHT/WIDTH, Refer to Section 5.3.5.2, Residential Units, Section 5.3.5.3,
+
+           Commercial Units.
+
+           Dimensional Properties Check  Pass:                                   Dimensional Properties Check  Fail:
+                                                                                 Signature.
+           Notes: A visual inspection to be conducted every customer
+           order or every half hour whichever is the lesser.                                 SIGN HERE
+
+           Activity Completed  Yes  No
+
+3.4         AS 4666:2012 Section 5.3.6
+
+           GLASS: Cleanliness: A visual inspection shall be conducted for Dryness, Stains/Films, and Fingerprints.
+
+           Glazing Cleanliness Check  Pass:                                      Glazing Cleanliness Check    Fail:
+           Notes: 100% inspection all glazing materials. Particular              Signature.
+           attention to internal surfaces.
+                                                                                            SIGN HERE
+
+           Activity Completed  Yes  No (Records required if Stains/Films cannot be removed, size & location to be recorded)
+
+                              PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                               TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                                  Page 2 of 15
+3.5   AS 4666:2012 Section 5.3.7
+
+     GLASS: A visual inspection shall be conducted for Scratches, Blemishes, Marks and Inclusions. Refer to AS 4666, Table 5.5 and
+
+     Table 5.6
+
+     Scratches, Marks and Inclusions, etc Check  Pass:  Scratches, Marks and Inclusions, etc Check   Fail:
+     Notes: 100% inspection all glazing materials.      Signature.
+
+                                                                    SIGN HERE
+
+     Activity Completed  Yes  No
+
+                                  The rest of this page has intentionally been left blank.
+
+                PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                 TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                    Page 3 of 15
+           COMPONENT CHECKED:                                               Spacer Bar & Connectors
+
+ Check     Standard requirement to be verified.
+List Item
+            AS 4666:2012 (Section 5.4.1 and 5.4.7.1 Spacer Bar Dimensional Properties)
+   No.     SPACER BAR: A permanent record shall be kept identifying stock used to manufacture a customer order.
+
+  4.         Spacer Bar Manufacturer:
+
+    4.1
+
+           Batch Number:
+
+           Product Name or Code:
+
+           Date of Receipt:
+
+           Spacer Bar Size: L x W x H
+
+           Spacer Bar Wall Thickness:
+
+           Spacer Bar Quantity:
+
+           Spacer Bar Grade:
+
+           Spacer Bar Finish/Colour:
+
+           Spacer Bar Record Maintained  Pass:                              Spacer Bar Record Maintained   Fail:
+                                                                            Signature.
+           Notes: One check each production shift.
+           Spacer materials, size, quantity, grade, type of finish/colour,                 SIGN HERE
+           wall thickness.
+
+           Activity Completed  Yes  No (Records maintained for 5.4.1)
+
+4.2         AS 4666:2012 (Section 5.4.2)
+
+           SPACER BAR: A permanent record shall be kept identifying stock used to manufacture a customer order, it shall be traceable back
+
+           to the supplier.
+
+           Customer Stock Record Maintained  Pass:                          Customer Stock Record Maintained      Fail:
+           Notes: One check each customer order produced.                   Signature.
+
+                                                                                          SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.4.2)
+
+4.3         AS 4666:2012 (Section 5.4.3.1)
+
+           RIGID SPACER BAR TYPE: Spacer bar material checked for  Straightness,  Dents or  Marks,  Fracture of seams,
+
+            Consistency of colour or applied finish.
+
+           Straightness, Dents, Marks, etc Check  Pass:                     Straightness, Dents, Marks, ect Check  Fail:
+           Notes: One check each production shift.
+                                                                            Signature.
+
+                                                                                         SIGN HERE
+
+           Activity Completed  Yes  No
+
+                                 PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                                  TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                                     Page 4 of 15
+4.4   AS 4666:2012 (Section 5.4.4 and 5.4.5)
+
+     JOINERS ­ CORNER KEYS AND STRAIGHT LINE CONNECTORS: Checked for  Compatibility with spacer bar being used,
+
+      Align correctly,  Tight and rigid join.
+
+     Compatibility, Alignment, Joint Check Completed.        Compatibility, Alignment, Joint Check Completed.
+      Pass:                                                   Fail:
+                                                             Signature.
+     Notes: One check each production shift.
+                                                                            SIGN HERE
+
+     Activity Completed  Yes  No
+
+4.5  AS 4666:2012 (Section 5.4.6, Appendix I)
+
+     SPACER BAR CLEANLINESS: A visual inspection shall be conducted to ensure the spacer bar is free from Dirt, Oil, Grease or other
+
+     Contaminants.
+
+     Spacer Bar Cleanliness Check  Pass:                     Spacer Bar Cleanliness Check      Fail:
+     Notes: One check each production shift.                 Signature.
+
+                                                                          SIGN HERE
+
+     Activity Completed  Yes  No (Records to be maintained if spacer bar is discarded or returned to the supplier)
+
+4.6  AS 4666:2012 (Section 5.4.7.1)
+
+     DIMENSIONAL PROPERTIES SPACER BARS: The dimensional properties of the spacer bars shall be in compliance with the
+
+     manufacturers specifications.
+
+     Spacer Bar Dimensional Check  Pass:                     Spacer Bar Dimensional Check      Fail:
+     Notes: One check each production shift.                 Signature.
+
+                                                                          SIGN HERE
+
+     Activity Completed  Yes  No
+
+4.7  AS 4666:2012 (Section 5.4.8)
+
+     SPACER BAR POST ASSEMBLY INSPECTION: Evidence of material splitting, tearing or flare out on bent corners shall
+
+     automatically render an assembled frame unfit for use.
+
+     Spacer Bar Post Assembly Check  Pass:                   Spacer Bar Post Assembly Check    Fail:
+     Notes: One check each production shift.
+                                                             Signature.
+
+                                                                          SIGN HERE
+
+     Activity Completed  Yes  No
+
+                                    The rest of this page has intentionally been left blank.
+
+                    PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                     TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                        Page 5 of 15
+           COMPONENT CHECKED:                                          Desiccant
+
+ Check     Standard requirement to be verified.
+List Item
+            AS 4666:2012 (Section 5.5.2 and 5.5.8 Shelf Life)
+   No.     DESICCANT ­ ORIGIN AND COMPLIANCE WITH ORDER: A permanent record shall be kept identifying stock used to manufacture
+           a customer order.
+  5.
+
+    5.1
+
+           Desiccant Manufacturer:
+
+           Batch Number:
+
+           Product Name or Code:
+
+           Desiccant Molecular Sieve:
+
+           Date of Receipt:
+
+           Product Expiry Date:
+
+           Desiccant Material Record Maintained  Pass:                 Desiccant Material Record Maintained     Fail:
+           Notes: One check each production shift.                     Signature.
+           Desiccant materials expiry date, molecular sieve.
+                                                                                   SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.5.2 ­ NOTE: 5.5.8 Desiccant material exceeding its specified in use by
+           date shall be discarded - Records to be maintained)
+
+5.2        AS 4666:2012 (Section 5.5.3)
+
+           DESICCANT TRACEABILITY. A permanent record shall exist to identify desiccant used in fulfilling each customer's order, it shall be
+
+           traceable back to the supplier.
+
+           Desiccant Filling Record Maintained For Customer Order.     Desiccant Filling Record Maintained For Customer
+            Pass:                                                      Order.  Fail:
+
+           Notes: One check each production shift.                     Signature.
+
+                                                                                     SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.5.3)
+
+5.3        AS 4666:2012 (Section 5.5.5)
+
+           DESICCANT EFFECTIVENESS/FIT FOR PURPOSE: Prior to each new day's production run the manufacturers specification to test
+
+           the desiccant is effective - fit for purpose, is undertaken and the test result has been recorded.
+
+           Desiccant: Effectiveness/Fit for Purpose  Pass:             Desiccant: Effectiveness/Fit for Purpose   Fail:
+           Notes: One check each production shift.                     Signature.
+
+                                                                                    SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.5.5)
+
+5.4        AS 4666:2012 (Section 5.5.6, Appendix J)
+
+           DESICCANT VOLUME MEASUREMENT: Adequate volume of desiccant has been employed in the spacer bar cavity.
+
+           Volume of Desiccant  Pass:                                  Volume of Desiccant  Fail:
+           Notes: One check each production shift.                     Signature.
+
+                                                                                    SIGN HERE
+
+           Activity Completed  Yes  No
+
+                                 PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                                  TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                                     Page 6 of 15
+5.5  AS 4666:2012 (Section 5.5.7)
+
+     DESICCANT EXPOSURE: Desiccant exposure to atmosphere (Maximum 2 hours, recommended 40 minutes). Time of filling and
+
+     time of assembly is recorded?
+
+     Desiccant Exposure  Pass:                                   Desiccant Exposure  Fail:
+                                                                 Signature.
+     Notes: One check each customer order or every two hours of
+     each production shift, whichever is the lesser.                         SIGN HERE
+
+     Activity Completed  Yes  No (Records maintained for 5.5.7)
+
+5.6  AS 4666:2012 (Section 5.5.9)
+
+     DESICCANT MATERIAL SUITABILITY TO GASSING OF INSULATING GLASS UNITS: The desiccant material in use is compatible
+
+     with the gas type to be used in the assembly of the IGU.
+
+      Not Applicable to the product being manufactured ­ Air Filled Cavity or
+
+     Desiccant Suitability With Gas In Use  Pass:                Desiccant Suitability With Gas In Use   Fail:
+     Notes: One check each customer order.                       Signature.
+
+                                                                            SIGN HERE
+
+     Activity Completed  Yes  No
+
+                                    The rest of this page has intentionally been left blank.
+
+     PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                      TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                         Page 7 of 15
+           COMPONENT CHECKED:                                          Sealants
+
+ Check     Standard requirement to be verified.
+List Item
+            AS 4666:2012 (Section 5.6.1 and 5.6.10.1 Shelf Life)
+   No.     SEALANT ­ ORIGIN AND COMPLIANCE WITH ORDER: A permanent record shall be kept identifying stock used to manufacture a
+           customer order.
+  6.
+
+    6.1
+
+           Sealant Manufacturer:
+
+           Batch Number:
+
+           Product Name or Code:
+
+           Date of Receipt:
+
+           Product Expiry Date:
+
+           Sealant Material Record Maintained  Pass:                   Sealant Material Record Maintained  Fail:
+                                                                       Signature.
+           Notes: One check each production shift.
+           Desiccant materials expiry date, molecular sieve.                       SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.6.1 ­ NOTE: 5.6.10.1 If sealant in use by date is reached prior to use
+           the manufacturer shall be contacted for further instructions all subsequent actions shall be recorded.)
+
+6.2        AS 4666:2012 (Section 5.6.2)
+
+           Traceability of sealants used in fulfilling a customer order. (Two part sealant mix shall record details on each component part used
+
+           in the mix).
+
+           PRIMARY SEALANT: A permanent record shall be kept identifying stock used to manufacture a customer order it shall be traceable
+           back to the supplier.
+
+           Primary Sealant Record Maintained  Pass:                    Primary Sealant Record Maintained     Fail:
+
+           Notes: One check each production shift.                     Signature.
+           Sealant Manufacturer/Type ­ Batch Number ­ Expiry Date
+                                                                                  SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.6.2)
+
+           SECONDARY SEALANT: A permanent record shall be kept identifying stock used to manufacture a customer order it shall be
+           traceable back to the supplier.
+
+           Secondary Sealant Record Maintained  Pass:                  Secondary Sealant Record Maintained   Fail:
+                                                                       Signature.
+           Notes: One check each production shift.
+           Sealant Manufacturer/Type ­ Batch Number ­ Expiry Date               SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.6.2)
+
+                                 PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                                  TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                                     Page 8 of 15
+6.3  AS 4666:2012 (Section 5.6.4)
+
+     SEALANTS: Minimum sealant dimensions verified to Table 5.7, AS 4666.
+
+     Type of Sealed Unit Checked -  Dual Seal ­  Single Seal           Minimum Sealant Dimensions    Fail:
+     Minimum Sealant Dimensions  Pass:                                 Signature.
+
+     Notes: One check each production shift. Random samples                          SIGN HERE
+     selected in numbers as specified in Table 6.1, AS 4666, from
+     different manufacturing lots and from different insulating glass
+     unit makeups.
+
+                                              Table 6.1 ­ AS 4666
+
+     Activity Completed  Yes  No
+
+6.4  AS 4666:2012 Section 5.6.5
+
+     SEALANT COMPATABILITY WITH GLASS: The sealant material/s and glazing materials have been confirmed as compatible and
+
+     approved for use.
+
+     Sealant/Glass Compatibility  Pass:                                Sealant/Glass Compatibility   Fail:
+     Notes: One check each production shift.                           Signature.
+
+                                                                                    SIGN HERE
+
+     Activity Completed  Yes  No
+
+6.5  AS 4666:2012 Section 5.6.6
+
+     SEALANT ADHESION: To the glass surface and spacer bar. (Section 5.6.6 & Appendix K) Records to be maintained.
+
+     Secondary Adhesion  Pass:                                         Secondary Adhesion  Fail:
+     Notes: One check each production shift.                           Signature.
+
+                                                                                    SIGN HERE
+
+     Activity Completed  Yes  No (Records maintained for 5.6.6)
+
+                        PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                         TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                            Page 9 of 15
+6.6  AS 4666:2012 Section 5.6.7
+
+     MIX RATIO: Where two part secondary sealants are used the mix ratio shall be tested. (Section 5.6.7 & Appendix L) Records to be
+
+     maintained.
+
+     Mix Ratio  Pass:                                            Mix Ratio  Fail:
+     Notes: One check each production shift.                     Signature.
+
+                                                                            SIGN HERE
+
+     Activity Completed  Yes  No (Records maintained for 5.6.7)
+
+6.7  AS 4666:2012 Section 5.6.8
+
+     MIX HOMOGENEITY: (AS 4666:2012 Section 5.6.8 & Appendix M) Tested once per shift results to be recorded.
+
+     Mix Homogeneity  Pass:                                      Mix Homogeneity  Fail:
+     Notes: One check each production shift.                     Signature.
+
+                                                                             SIGN HERE
+
+     Activity Completed  Yes  No (Records maintained for 5.6.8)
+
+6.8  AS 4666:2012 Section 5.6.9
+
+     SEALANT CURE RATE: (Section 5.6.9 & Appendix N) The cure rate of single or secondary sealants shall be tested. Records to be
+
+     maintained.
+
+     Reading 1                    Reading 2   Reading 3                                    Reading 4           Reading 5
+
+     Average Initial Hardness:
+
+     Sealant Cure Rate  Pass:                                    Sealant Cure Rate  Fail:
+     Notes: One check each production shift.                     Signature.
+
+                                                                           SIGN HERE
+
+     Activity Completed  Yes  No (Records maintained for 5.6.9)
+
+6.9   AS 4666:2012 (Section 5.6.10.2 Storage) Sealant materials are stored in accordance with the manufacturers specification.
+
+     Sealant Material/s Storage Check  Pass:                     Sealant Material/s Storage Check      Fail:
+     Notes: One check each production shift.                     Signature.
+
+                                                                          SIGN HERE
+
+     Activity Completed  Yes  No
+
+                                 The rest of this page has intentionally been left blank.
+
+                  PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                   TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                      Page 10 of 15
+           COMPONENT CHECKED:                                                            Gas
+
+ Check     Standard requirement to be verified.
+List Item
+           AS 4666:2012 GASSING OF UNITS: (Section, 5.7.1, Origin and Compliance of Order), (5.7.3, Gas Type)
+   No.     A permanent record shall be kept identifying the specific gas used to manufacture a customer order.
+
+  7.         Gas Manufacturers Details:
+
+    7.1
+
+           Type of Gas:                                                  Argon Krypton  Carbon Dioxide
+                                                                         Blend (Specific % and Composition)
+                                                                         Sulphur Hexa Fluoride
+
+           Date of Receipt:
+
+             Gas Record Maintained  Pass:                               Gas Record Maintained  Fail:
+             Notes: One check each production shift.
+                                                                        Signature.
+           Activity Completed  Yes  No (Records maintained for 5.7.1)
+                                                                                     SIGN HERE
+
+7.2        AS 4666:2012 GASSING OF UNITS: (Section, 5.7.2 Traceability)
+
+           A permanent record shall exist to identify specific gas used in fulfilling each customer's order, it shall be traceable back to the supplier .
+
+           Gas Filling Record Maintained For Customer Order.            Gas Filling Record Maintained For Customer Order.
+            Pass:                                                        Fail:
+
+           Notes: One check each production shift.                      Signature.
+
+                                                                                   SIGN HERE
+
+           Activity Completed  Yes  No (Records maintained for 5.7.2)
+
+7.3        AS 4666:2012 GASSING OF UNITS: (Section, 5.7.5 Compatibility With Desiccant)
+
+           The Pore Size of the desiccant shall be smaller than the Molecular Sieve of the specific gas being introduced into the IGU.
+
+           Desiccant Pore Size verified as smaller than Gas Molecular   Desiccant Pore Size verified as smaller than Gas
+           Sieve Size.                                                  Molecular Sieve Size.
+            Pass:                                                        Fail:
+
+           Notes: One check each production shift.                      Signature.
+
+                                                                                    SIGN HERE
+
+           Activity Completed  Yes  No
+
+7.4        AS 4666:2012 GASSING OF UNITS: (Section, 5.7.6, Volume/Pressure)
+
+           The introduced specific gas fill shall be a minimum 90%
+
+           GAS Fill is verified as 90% of IGU Cavity Volume:            GAS Fill is verified as 90% of IGU Cavity Volume:
+            Pass:                                                        Fail:
+
+           Notes: One check each production shift.                      Signature.
+
+           May be calculated or measured in accordance with Appendix O       SIGN HERE
+
+           Activity Completed  Yes  No
+
+                             The rest of this page has intentionally been left blank.
+
+                             PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                              TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                                 Page 11 of 15
+           COMPONENT CHECKED:                                             Compliance Markings
+
+ Check     Standard requirement to be verified.
+List Item
+           AS 4666:2012 Section 4 Marking
+   No.     COMPLIANCE MARKING is in accordance with AS 4666:
+           All insulated glazing units shall be clearly marked prior to final inspection/shipment. Marking shall include the following details as a
+  8.       minimum.
+
+    8.1
+
+           Company Name or Logo
+           Manufacturing site identifier (CSi Id 7709)
+           Manufacturing Standard: AS 4666
+           Date of manufacture (Month and Year) (CSi require both details to be shown for traceability of manufacturing time period)
+
+           Compliance Markings  Pass:                                     Compliance Markings  Fail:
+           Notes: Visual Inspection.                                      Signature.
+
+           Compliance markings requirements for safety glazing materials          SIGN HERE
+           used in the manufacture of the IGU shall also be met.
+
+           (For example: AS/NZS 2208 Safety glazing materials in
+           buildings shall be marked in compliance with that standard).
+           Notes: 100% check each production shift.
+
+           Activity Completed  Yes  No
+
+8.2        The Insulated glazing units shall be identified by a work order/customer order label affixed to the finished product.
+
+           Activity Completed  Yes  No
+
+           PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                            TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                               Page 12 of 15
+           COMPONENT CHECKED:                                             Final Product Check
+
+ Check     Standard requirement to be verified.
+List Item
+           Completed Unit Final Checks
+   No.     AS 4666:2012 Section 5.8.2 Test Format.
+           Prior to shipment random samples selected in the numbers specified in Table 6.1 shall be tested in accordance with Clause 2.2 of
+  9.       AS 4666. Where practicable samples shall be selected from different manufacturing lots and from different insulating glass un it
+           make ups. Any non-conforming product shall be rectified or replaced.
+    9.1    (Records maintained for 5.8.2 if non-conforming product is found, another product shall be inspected in its place)
+
+           Activity Completed  Yes  No
+
+9.2        AS 4666:2012 Section 5.8.3 Sealant Cured.
+
+           Sealant Cure Check  Pass:                                      Sealant Cure Check  Fail:
+           Notes: Visual Inspection, mechanical hardness check.           Signature.
+
+           Check Sealant Hardness against manufacturers specification     SIGN HERE
+           for a fully cured sealant.
+
+           No sign of uncured sealant on units ready for shipment.
+
+           Activity Completed  Yes  No
+
+9.3        AS 4666:2012 Section 5.8.4 Dimensional Properties: (Height x Width, Squareness, Flatness). Refer to Sections 5.8.4.2, -
+
+           5.8.4.3, - 5.8.4.4 and Table 5.8
+
+           Dimensional Properties Check  Pass:                            Dimensional Properties Check  Fail:
+                                                                          Signature.
+           Notes: Visual Inspection Random samples selected in
+           numbers as specified in Table 6.1, AS 4666, from different           SIGN HERE
+           manufacturing lots and from different insulating glass unit
+           makeups.
+
+           Activity Completed  Yes  No
+
+9.4        AS 4666:2012 Section 5.8.5 Uniformity of Spacer Depth
+
+           Uniformity of Spacer Depth Check  Pass:                        Uniformity of Spacer Depth Check  Fail:
+                                                                          Signature.
+           Notes: Visual Inspection Minimum sealant depth given in AS
+           4666, Table 5.7. Random samples selected in numbers as            SIGN HERE
+           specified in Table 6.1, AS 4666, from different manufacturing
+           lots and from different insulating glass unit makeups.
+
+           Activity Completed  Yes  No
+
+9.5        AS/NZS 4666:2012 Section 5.8.6 Voids in Sealants
+
+           Voids in Sealants Check  Pass:                                 Voids in Sealants Check  Fail:
+                                                                          Signature.
+           Notes: Visual Inspection. Random samples selected in
+           numbers as specified in Table 6.1, AS 4666, from different          SIGN HERE
+           manufacturing lots and from different insulating glass unit
+           makeups.
+
+           Activity Completed  Yes  No
+
+           PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                            TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                               Page 13 of 15
+9.6   AS 4666:2012 Section 5.8.7 Glass Alignment/Offset
+
+      Glass Alignment/Offset Check  Pass:                                  Glass Alignment/Offset Check  Fail:
+                                                                           Signature.
+      Notes: Visual Inspection. Random samples selected in
+      numbers as specified in Table 6.1, AS 4666, from different                 SIGN HERE
+      manufacturing lots and from different insulating glass unit
+      makeups.
+
+      Activity Completed  Yes  No
+
+9.7   AS 4666:2012 Section 5.8.9 Cleanliness
+
+      Sealant Cleanliness Check  Pass:                                     Sealant Cleanliness Check  Fail:
+      Notes: Visual Inspection.                                            Signature.
+      On the face of the glazing No protrusion past the sealant and
+      spacer depth shall be allowed. Ayn sealant shall be not greater            SIGN HERE
+      than 1 mm high from the face of the glazing.
+
+      On the edge of the unit The sealant shall be uniform with no
+      voids and shall be not greater than 2 mm proud of the edge of
+      the glazing along the edges and not greater than 3 mm on any
+      corner. From a corner point, the corner shall include 20 mm in
+      each direction.
+
+      Activity Completed  Yes  No
+
+9.8   AS 4666:2012 Section 5.8.10 Marks/Scratches and Inclusions
+
+      Marks/Scratches and Inclusions Check  Pass:                          Marks/Scratches and Inclusions  Fail:
+                                                                           Signature.
+      Notes: Visual Inspection.
+      Each piece of glazing material in the completed IGU may                    SIGN HERE
+      contain scratches, blemishes and inclusions, Refer to Table
+      5.5, AS 4666.
+
+      A finished IGU may have twice the amount given in Table 5.5,
+      however the restriction for each piece of glazing material given
+      in Table 5.5 shall not be exceeded.
+
+      Activity Completed  Yes  No
+
+9.9   AS 4666:2012 MOISTURE CONTENT: Section 5.8.11 & Appendix P
+
+      Moisture content (Dew Point Test) shall be conducted on units from the previous day's production lot.
+
+      Moisture Content Check  Pass:                                        Moisture Content Check  Fail:
+                                                                           Signature.
+      Notes: Visual Inspection, Test to Appendix P.
+      Random samples selected in numbers as specified in Table                   SIGN HERE
+      6.1, AS 4666, from different manufacturing lots and from
+      different insulating glass unit makeups.
+
+      Activity Completed  Yes  No
+
+9.10  AS 4666:2012 Section 5.8.12 (All)
+
+      Storage and Handling Check  Pass:                                    Storage and Handling Check         Fail:
+                                                                           Signature.
+      Notes: Visual Inspection.
+      Storage and handling of uncured units within the manufacturing             SIGN HERE
+      environment shall be in accordance with the stated
+      requirements of Sections 5.8.12.1 - Support, 5.8.12.2 - Angle
+      and, 5.8.12.3 ­ Spacing/Interleaving.
+
+      Lifting large units is conducted by attaching the lifting device to
+      the thickest glazing material face of the IGU.
+
+      Activity Completed  Yes  No
+
+                                       PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                                                         TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                                                           Page 14 of 15
+           EQUIPMENT AVAILABILITY - CONFIRMATION CHECK:
+
+ Check     Standard requirement to be verified.
+List Item
+           AS 4666:2012 Appendix A
+   No.     DETERMINATION OF DIMENSIONAL PROPERTIES:
+           Do the IGU Line Operators have access to the following *Mandatory Equipment for determination of dimensional properties of
+  10.      insulating glass units?
+
+   10.1
+
+           1Point Micrometre*- 0.01mm
+           2Plate Micrometre*- 0.01mm
+           3 Vernier Calliper*- 0.01mm (Digital Vernier Caliper acceptable)
+           4150mm Steel Rule or Steel Tapered Rule*- 0.5mm
+           5Standard Measuring Tape*- 1.0mm
+           6Straight Edge*
+
+           Mandatory Equipment Check  Pass:                                  Mandatory Equipment Check  Fail:
+                                                                             Signature.
+           Notes: Monitoring and measurement devices shall be
+           calibrated, identified, protected from adjustments, damage and           SIGN HERE
+           deterioration during handling, maintenance and storage.
+
+           Activity Completed  Yes  No
+
+10.2       Do the IGU Line Operators have access to any or all of the following additional equipment to undertake product compliance checks
+
+           in accordance with AS 4666, Section 5, Manufacturing and Periodic Testing?
+
+           1Durometer Type A2 ­ 0 to 100 increments
+           2Teflon Mould (Length 127mm x Width 38mm x Height 6mm)
+           3Digital Thermometer
+           4Stopwatch
+           5Barometric Pressure - Humidity/Temperature Gauge/Datalogger
+           6Dry Ice Maker (Snowpac Device)
+           7Crucible to hold dry ice
+           8Calculator
+           9Digital Scales
+           10One litre beaker with sight scale in 50ml graduations
+           11Handheld ultra-violet light source
+           12Delta T test kit
+           13Sparklite (Used to test IG gas concentration)
+           14Non-powdered latex gloves
+           15Disposable paper towel
+
+           Additional Equipment Check  Pass:                                 Additional Equipment Check  Fail:
+                                                                             Signature.
+           Notes: Monitoring and measurement devices shall be
+           calibrated, identified, protected from adjustments, damage and           SIGN HERE
+           deterioration during handling, maintenance and storage.
+
+           Activity Completed  Yes  No
+
+10.3       The measuring equipment is calibrated to be within the stated tolerance of 0.01mm and the equipment is functional?
+
+           Equipment Calibrated and Functional  Pass:                        Equipment Calibrated and Functional  Fail:
+                                                                             Signature.
+           Notes: Monitoring and measurement devices shall be
+           calibrated, identified, protected from adjustments, damage and           SIGN HERE
+           deterioration during handling, maintenance and storage.
+           Records are to be maintained.
+
+           Activity Completed  Yes  No
+
+                    The rest of this page has intentionally been left blank.
+
+           PRINTED COPIES OF THIS DOCUMENT ARE UNCONTROLLED
+                                                                                            TRF-IGU-Test-Report-Alum-Spacer-Bar--11-R0
+
+                                               Page 15 of 15
+
