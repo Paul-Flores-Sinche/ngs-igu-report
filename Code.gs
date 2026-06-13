@@ -121,14 +121,15 @@ function generateAndSavePDF(data) {
   // Upload the HTML blob and ask Drive to convert it to a native Google Doc.
   // The resulting file opens and renders correctly — no raw code shown.
   const blob = Utilities.newBlob(html, MimeType.HTML, fileName + '.html');
-  const meta = Drive.Files.insert(
+  // Drive advanced service v3: create() replaces v2's insert(); the HTML blob is
+  // auto-converted to a Google Doc because the target mimeType is a Google type.
+  const meta = Drive.Files.create(
     {
-      title   : fileName,
+      name    : fileName,
       mimeType: 'application/vnd.google-apps.document',
-      parents : [{ id: CONFIG.FOLDER_ID }],
+      parents : [CONFIG.FOLDER_ID],
     },
-    blob,
-    { convert: true }
+    blob
   );
   console.log('Doc created:', meta.id);
 
