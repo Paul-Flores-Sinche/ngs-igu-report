@@ -11,7 +11,7 @@
 
 const CONFIG = {
   FOLDER_ID : '12YgmAFL5sYvTqwgD3MYsuOlbxU6K_F1B',
-  SHEET_NAME: 'IGU Reports',
+  SHEET_NAME: 'IGU Reports v2',   // new sheet, created fresh with the 83 correct headers on first run; old "IGU Reports" is left untouched
 };
 
 // ─── WEB APP ENTRY POINTS ─────────────────────────────────────────────────────
