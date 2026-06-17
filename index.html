@@ -528,6 +528,17 @@ input[type="file"] { display:none; }
 .login-btn { width:100%; margin-top:14px; padding:12px; background:#C00000; color:#fff; border:none; border-radius:5px; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; cursor:pointer; }
 .login-btn:hover { background:#a00000; }
 .login-error { margin-top:12px; color:#C00000; font-size:12.5px; font-weight:600; text-align:center; min-height:16px; }
+
+/* ── Mandatory completion logic ── */
+.check-item.item-incomplete { box-shadow: inset 4px 0 0 #cfd6db; }
+.check-item.item-complete   { box-shadow: inset 4px 0 0 var(--pass); }
+.pf-row.pf-locked .pf-btn            { opacity:.45; cursor:not-allowed; }
+.pf-row.pf-warn  .pf-btn:not(.active){ border-style:dashed; border-color:#e0a800; color:#a07400; }
+.toggle-group.tg-locked .toggle      { opacity:.45; cursor:not-allowed; }
+.req-missing { border-color:#C00000 !important; box-shadow:0 0 0 1px #C00000 !important; }
+.item-warn   { color:#C00000; font-size:11.5px; font-weight:600; padding:4px 14px 8px; background:#fff5f5; }
+.submit-btn.is-disabled, .submit-btn:disabled { background:#9aa6ad; cursor:not-allowed; }
+.submit-btn.is-disabled:hover, .submit-btn:disabled:hover { background:#9aa6ad; }
 </style>
 </head>
 <body>
@@ -718,7 +729,8 @@ input[type="file"] { display:none; }
         <span class="item-badge std">§5.8.2 &amp; §6.0</span>
       </div>
       <div class="item-hdr-text">
-        <div class="item-title">Number of IGU units to sample from production lot (Table 5.1, AS 4666)</div>
+        <div class="item-title">Number of IGU units to be sampled from a production lot and tested daily (Table 6.1, AS 4666)</div>
+        <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.2 &amp; 6.0)</div>
         <div class="item-desc">Permanent record of sampling maintained for each production shift.</div>
       </div>
     </div>
@@ -794,6 +806,7 @@ input[type="file"] { display:none; }
       </div>
       <div class="item-hdr-text">
         <div class="item-title">Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift</div>
+        <div class="item-ref">&#9744; AS 4666:2012 (Section 5.2)</div>
         <div class="item-desc">Temperature (°C), Relative Humidity (%), Barometric Pressure (hPa) — minimum 6 readings per shift.</div>
       </div>
     </div>
@@ -834,7 +847,7 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="act-row">
-      <span class="act-label">Activity Completed: <a href="#" onclick="return false;" style="font-size:11px;color:var(--accent);margin-left:6px;text-decoration:underline;">Records maintained for §5.2</a></span>
+      <span class="act-label">Activity Completed: <span style="font-size:11px;color:var(--accent);margin-left:6px;">(Records maintained for 5.2)</span></span>
       <div class="toggle-group">
         <button class="toggle" onclick="setToggle(this,'yes')">✓ Yes</button>
         <button class="toggle" onclick="setToggle(this,'no')">✗ No</button>
@@ -866,9 +879,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p><strong>1. (5.3.1)</strong> The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666.</p>
-            <p><strong>2. (5.3.2)</strong> The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained.</p>
-            <p style="font-style:italic;color:#555;">To be conducted every customer order.</p>
+            <textarea placeholder="1. (5.3.1) The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666. 2. (5.3.2) The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained. To be conducted every customer order."></textarea>
           </div>
         </div>
       </div>
@@ -904,7 +915,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">To be conducted every customer order or every half hour whichever is the lesser.</p>
+            <textarea placeholder="To be conducted every customer order or every half hour whichever is the lesser."></textarea>
           </div>
         </div>
       </div>
@@ -940,7 +951,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Every customer order or every 30 minutes whichever is the lesser.</p>
+            <textarea placeholder="A visual inspection to be conducted every customer order or every half hour whichever is the lesser."></textarea>
           </div>
         </div>
       </div>
@@ -976,7 +987,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p>100% inspection of all glazing materials. Particular attention to internal surfaces.</p>
+            <textarea placeholder="100% inspection of all glazing materials. Particular attention to internal surfaces."></textarea>
           </div>
         </div>
       </div>
@@ -1012,7 +1023,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p>100% inspection all glazing materials.</p>
+            <textarea placeholder="100% inspection all glazing materials."></textarea>
           </div>
         </div>
       </div>
@@ -1081,7 +1092,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift. Spacer materials, size, quantity, grade, type of finish/colour, wall thickness.</p>
+            <textarea placeholder="One check each production shift. Spacer materials, size, quantity, grade, type of finish/colour, wall thickness."></textarea>
           </div>
         </div>
       </div>
@@ -1124,7 +1135,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each customer order produced.</p>
+            <textarea placeholder="One check each customer order produced."></textarea>
           </div>
         </div>
       </div>
@@ -1169,7 +1180,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1213,7 +1224,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1250,7 +1261,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1287,7 +1298,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1324,7 +1335,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1391,7 +1402,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift. Desiccant materials expiry date, molecular sieve.</p>
+            <textarea placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
           </div>
         </div>
       </div>
@@ -1428,7 +1439,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1465,7 +1476,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1502,7 +1513,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1545,7 +1556,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each customer order or every two hours of each production shift, whichever is the lesser.</p>
+            <textarea placeholder="One check each customer order or every two hours of each production shift, whichever is the lesser."></textarea>
           </div>
         </div>
       </div>
@@ -1576,15 +1587,20 @@ input[type="file"] { display:none; }
         <div class="item-desc">DESICCANT MATERIAL SUITABILITY TO GASSING OF INSULATING GLASS UNITS: The desiccant material in use is compatible with the gas type to be used in the assembly of the IGU.</div>
       </div>
     </div>
+    <div style="padding:10px 14px;background:var(--light);border-bottom:1px solid var(--border);">
+      <label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12.5px;color:#1a2a36;">
+        <input type="checkbox" id="s56_na" onchange="updateSummary()" style="width:15px;height:15px;accent-color:var(--accent);flex-shrink:0;">
+        Not Applicable to the product being manufactured – Air Filled Cavity or
+      </label>
+    </div>
     <div class="pf-row pf-ns-merged">
       <div class="pf-ns-col">
         <button class="pf-btn pass" onclick="setPF(this)">Desiccant Suitability With Gas In Use  &#9744; Pass:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each customer order. Not applicable for air-filled cavity units.</p>
+            <textarea placeholder="One check each customer order."></textarea>
           </div>
-          <button class="pf-btn na" onclick="setPF(this)" style="border:1.5px solid var(--border);border-radius:5px;text-align:center;margin-top:4px;">— N/A (Air-filled cavity)</button>
         </div>
       </div>
       <div class="pf-ns-col">
@@ -1621,7 +1637,6 @@ input[type="file"] { display:none; }
         <div class="item-title">Sealant: Origin, Compliance with Order &amp; Shelf Life</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.1 and 5.6.10.1 Shelf Life)</div>
         <div class="item-desc">SEALANT – ORIGIN AND COMPLIANCE WITH ORDER: A permanent record shall be kept identifying stock used to manufacture a customer order.</div>
-        <div class="compliance-note">If sealant reaches or has exceeded its in-use-by date, consult manufacturer before use. All actions and manufacturer guidance must be recorded. Sealant outside of specification must not be used without manufacturer approval.</div>
       </div>
     </div>
     <div class="item-body">
@@ -1649,7 +1664,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
           </div>
         </div>
       </div>
@@ -1694,7 +1709,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date.</p>
+            <textarea placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
           </div>
         </div>
       </div>
@@ -1720,7 +1735,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date.</p>
+            <textarea placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
           </div>
         </div>
       </div>
@@ -1752,6 +1767,7 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="item-body">
+      <div style="font-weight:700;font-size:12px;color:var(--dark);margin-bottom:6px;">Type of Sealed Unit Checked –</div>
       <div class="radio-group" style="margin-bottom:10px;">
         <label class="radio-item"><input type="radio" name="sealType63" id="seal_dual"> Dual Seal</label>
         <label class="radio-item"><input type="radio" name="sealType63" id="seal_single"> Single Seal</label>
@@ -1779,7 +1795,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups.</p>
+            <textarea placeholder="One check each production shift. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -1816,7 +1832,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1853,7 +1869,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1890,7 +1906,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1927,7 +1943,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1968,7 +1984,7 @@ input[type="file"] { display:none; }
         <div class="readings-cell"><label>Average</label><input type="text" placeholder="Avg"></div>
       </div>
       <div class="info-grid" style="margin-top:10px;">
-        <div class="info-field"><label>Initial Hardness</label><input type="text" placeholder="Hardness value"></div>
+        <div class="info-field"><label>Average Initial Hardness</label><input type="text" placeholder="Average initial hardness value"></div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -1977,7 +1993,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2014,7 +2030,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2073,7 +2089,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2110,7 +2126,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2147,7 +2163,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift.</p>
+            <textarea placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2184,7 +2200,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">One check each production shift. May be calculated or measured in accordance with Appendix O.</p>
+            <textarea placeholder="One check each production shift. May be calculated or measured in accordance with Appendix O."></textarea>
           </div>
         </div>
       </div>
@@ -2238,7 +2254,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. 100% check each production shift. Compliance markings for safety glazing materials (e.g. AS/NZS 2208) shall also be met.</p>
+            <textarea placeholder="Visual inspection. 100% check each production shift. Compliance markings for safety glazing materials (e.g. AS/NZS 2208) shall also be met."></textarea>
           </div>
         </div>
       </div>
@@ -2329,7 +2345,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection, mechanical hardness check.</p>
+            <textarea placeholder="Visual inspection, mechanical hardness check."></textarea>
           </div>
         </div>
       </div>
@@ -2366,7 +2382,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups.</p>
+            <textarea placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2403,7 +2419,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. Minimum sealant depth given in AS 4666, Table 5.7. Random samples selected in numbers as specified in Table 6.1.</p>
+            <textarea placeholder="Visual inspection. Minimum sealant depth given in AS 4666, Table 5.7. Random samples selected in numbers as specified in Table 6.1."></textarea>
           </div>
         </div>
       </div>
@@ -2439,7 +2455,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups.</p>
+            <textarea placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2475,7 +2491,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups.</p>
+            <textarea placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2503,6 +2519,7 @@ input[type="file"] { display:none; }
       <div class="item-hdr-text">
         <div class="item-title">Cleanliness: Max 1mm proud on face, max 2mm on edge, max 3mm on corner (±20mm).</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.9 Cleanliness)</div>
+        <div class="item-desc">On the face of the glazing no protrusion past the sealant and spacer depth shall be allowed. Any sealant shall be not greater than 1 mm high from the face of the glazing. On the edge of the unit the sealant shall be uniform with no voids and shall be not greater than 2 mm proud of the edge of the glazing along the edges and not greater than 3 mm on any corner. From a corner point, the corner shall include 20 mm in each direction.</div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -2511,7 +2528,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection.</p>
+            <textarea placeholder="Visual inspection."></textarea>
           </div>
         </div>
       </div>
@@ -2539,6 +2556,7 @@ input[type="file"] { display:none; }
       <div class="item-hdr-text">
         <div class="item-title">Marks, Scratches &amp; Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.10 Marks/Scratches and Inclusions)</div>
+        <div class="item-desc">Each piece of glazing material in the completed IGU may contain scratches, blemishes and inclusions, refer to Table 5.5, AS 4666. A finished IGU may have twice the amount given in Table 5.5, however the restriction for each piece of glazing material given in Table 5.5 shall not be exceeded.</div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -2547,7 +2565,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. Refer to Table 5.5, AS 4666.</p>
+            <textarea placeholder="Visual inspection. Refer to Table 5.5, AS 4666."></textarea>
           </div>
         </div>
       </div>
@@ -2583,7 +2601,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection. Test to Appendix P. Random samples selected in numbers as specified in Table 6.1, AS 4666.</p>
+            <textarea placeholder="Visual inspection. Test to Appendix P. Random samples selected in numbers as specified in Table 6.1, AS 4666."></textarea>
           </div>
         </div>
       </div>
@@ -2611,6 +2629,7 @@ input[type="file"] { display:none; }
       <div class="item-hdr-text">
         <div class="item-title">Storage &amp; Handling: Support (§5.8.12.1), Angle (§5.8.12.2), Spacing/Interleaving (§5.8.12.3). Lifting to thickest face.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.12 — All)</div>
+        <div class="item-desc">Storage and handling of uncured units within the manufacturing environment shall be in accordance with the stated requirements of Sections 5.8.12.1 – Support, 5.8.12.2 – Angle, and 5.8.12.3 – Spacing/Interleaving. Lifting large units is conducted by attaching the lifting device to the thickest glazing material face of the IGU.</div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -2619,7 +2638,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Visual inspection.</p>
+            <textarea placeholder="Visual inspection."></textarea>
           </div>
         </div>
       </div>
@@ -2675,7 +2694,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage.</p>
+            <textarea placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
           </div>
         </div>
       </div>
@@ -2731,7 +2750,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage.</p>
+            <textarea placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
           </div>
         </div>
       </div>
@@ -2767,7 +2786,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <p style="font-style:italic;color:#555;">Monitoring and measurement devices shall be calibrated to within the stated tolerance of 0.01mm. Records are to be maintained.</p>
+            <textarea placeholder="Monitoring and measurement devices shall be calibrated to within the stated tolerance of 0.01mm. Records are to be maintained."></textarea>
           </div>
         </div>
       </div>
@@ -2810,7 +2829,7 @@ input[type="file"] { display:none; }
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbx1rA1dSSqbgne5HYOEvoCK46gIUsY0mqpUyK4tU5oE-heyd6I4IAlDOToyiC5alTHi/exec";
-const DRAFT_KEY = 'ngs_igu_v4'; // v4: removed 8.2 pf-row — old positional pfStates drafts are incompatible
+const DRAFT_KEY = 'ngs_igu_v5'; // v5: Notes converted to editable textareas — anon input order changed, old drafts incompatible
 
 // --- DRAFT SAVE / RESTORE ---
 function saveState() {
@@ -2897,6 +2916,8 @@ function showToast(msg) {
 
 document.addEventListener('input', saveState);
 document.addEventListener('change', saveState);
+document.addEventListener('input', refreshAll);
+document.addEventListener('change', refreshAll);
 
 // Insert column header row after each section banner
 document.querySelectorAll('.section-banner').forEach(banner => {
@@ -2981,22 +3002,142 @@ if (restoreState()) {
   document.getElementById('s2_date').value = document.getElementById('f_date').value;
 }
 
+// Initialise mandatory-completion logic (mark required fields, paint initial states)
+initCompletion();
+refreshAll();
+
+// ─── MANDATORY COMPLETION ENGINE ────────────────────────────────────────────
+// Mark the structured-field items whose fields are all required.
+function initCompletion() {
+  const STRUCT = ['4.1', '5.1', '6.1', '7.1'];
+  document.querySelectorAll('.check-item').forEach(item => {
+    const num = item.querySelector('.item-badge.num');
+    if (num && STRUCT.includes(num.textContent.trim())) {
+      const grid = item.querySelector('.info-grid');   // first grid = the data fields
+      if (grid) grid.querySelectorAll('input, select').forEach(el => el.dataset.req = '1');
+    }
+  });
+}
+
+// Evaluate one item's completion + prerequisite state from the DOM.
+function evalItem(item) {
+  const reqEls = [...item.querySelectorAll('[data-req]')];
+  const fieldsMissing = reqEls.some(el => !el.value.trim());
+  const cb = item.querySelector('.cb-grid');
+  const cbMissing = !!cb && !cb.querySelector('input[type="checkbox"]:checked');
+  const na = item.querySelector('#s56_na');
+  const naActive = !!(na && na.checked);
+  const pfRows = [...item.querySelectorAll('.pf-row')];
+  const pfAllSelected = pfRows.every(r => !!r.querySelector('.pf-btn.active'));
+  const pfOk = pfRows.length === 0 || naActive || pfAllSelected;
+  const tg = item.querySelector('.toggle-group');
+  const actOk = !tg || !!tg.querySelector('.toggle.yes, .toggle.no');
+  const prereqOk = !fieldsMissing && !cbMissing;
+  const complete = prereqOk && pfOk && actOk;
+  return { reqEls, fieldsMissing, cb, cbMissing, naActive, pfRows, pfAllSelected, pfOk, tg, actOk, prereqOk, complete };
+}
+
+// Transient inline warning under an item.
+function showWarn(item, msg, reason) {
+  let w = item.querySelector(':scope > .item-warn');
+  if (!w) {
+    w = document.createElement('div');
+    w.className = 'item-warn';
+    const anchor = item.querySelector('.pf-row') || item.querySelector('.act-row');
+    if (anchor) item.insertBefore(w, anchor); else item.appendChild(w);
+  }
+  w.textContent = msg;
+  w.dataset.reason = reason;
+}
+
+function markMissingFields(item) {
+  item.querySelectorAll('[data-req]').forEach(el => {
+    el.classList.toggle('req-missing', !el.value.trim());
+  });
+}
+
+// Apply visual state to one item; returns its eval result.
+function refreshItem(item) {
+  const st = evalItem(item);
+  item.classList.toggle('item-complete', st.complete);
+  item.classList.toggle('item-incomplete', !st.complete);
+  st.pfRows.forEach(r => {
+    const active = !!r.querySelector('.pf-btn.active') || st.naActive;
+    r.classList.toggle('pf-locked', !st.prereqOk);
+    r.classList.toggle('pf-warn', st.prereqOk && !active);
+  });
+  if (st.tg) {
+    const lock = st.pfRows.length > 0 && !st.naActive && !st.pfAllSelected;
+    st.tg.classList.toggle('tg-locked', lock);
+  }
+  item.querySelectorAll('[data-req].req-missing').forEach(el => { if (el.value.trim()) el.classList.remove('req-missing'); });
+  const w = item.querySelector(':scope > .item-warn');
+  if (w) {
+    const r = w.dataset.reason;
+    if ((r === 'cb' && !st.cbMissing) ||
+        (r === 'fields' && !st.fieldsMissing) ||
+        (r === 'pf' && st.pfOk)) w.remove();
+  }
+  return st;
+}
+
+function refreshAll() {
+  let allComplete = true;
+  document.querySelectorAll('.check-item').forEach(item => {
+    if (!refreshItem(item).complete) allComplete = false;
+  });
+  updateSubmitGate(allComplete);
+}
+
+function isFormComplete() {
+  return [...document.querySelectorAll('.check-item')].every(i => evalItem(i).complete);
+}
+
+const SUBMIT_LABEL = '✓ Submit Report to Google Sheets';
+function updateSubmitGate(allComplete) {
+  const btn = document.querySelector('.submit-btn');
+  if (!btn) return;
+  btn.disabled = !allComplete;
+  btn.classList.toggle('is-disabled', !allComplete);
+  btn.textContent = allComplete ? SUBMIT_LABEL : 'Complete all sections to submit';
+}
+
 function setPF(btn) {
-  const row = btn.closest('.pf-row');
+  const item = btn.closest('.check-item');
+  const row  = btn.closest('.pf-row');
+  const st = evalItem(item);
+  // Gate: prerequisites (required fields / at least one checkbox) must be met first.
+  if (st.fieldsMissing || st.cbMissing) {
+    if (st.cbMissing) {
+      showWarn(item, 'Please select at least one option first', 'cb');
+    } else {
+      markMissingFields(item);
+      showWarn(item, 'Please fill all required fields first', 'fields');
+    }
+    return;
+  }
   row.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   updateSummary();
   saveState();
+  refreshAll();
 }
 
-
 function setToggle(btn, val) {
+  const item = btn.closest('.check-item');
+  const st = evalItem(item);
+  // Gate: Pass/Fail must be selected (or N/A) before Activity Completed can be set.
+  if (st.pfRows.length && !st.naActive && !st.pfAllSelected) {
+    showWarn(item, 'Select Pass or Fail first', 'pf');
+    return;
+  }
   const group = btn.closest('.toggle-group');
   group.querySelectorAll('.toggle').forEach(b => b.classList.remove('yes','no'));
   btn.classList.add(val);
   updateProgress();
   updateSummary();
   saveState();
+  refreshAll();
 }
 
 function resetForm() {
@@ -3018,8 +3159,11 @@ function resetForm() {
   document.getElementById('f_date').valueAsDate = new Date();
   document.getElementById('s2_date').value = document.getElementById('f_date').value;
   document.getElementById('submitStatus').style.display = 'none';
+  document.querySelectorAll('.item-warn').forEach(w => w.remove());
+  document.querySelectorAll('.req-missing').forEach(e => e.classList.remove('req-missing'));
   updateProgress();
   updateSummary();
+  refreshAll();
 }
 
 function triggerCamera(id) { document.getElementById(id).click(); }
@@ -3193,8 +3337,17 @@ async function runOCR(dataUrl, prevId, section) {
 // ─── SUBMIT ──────────────────────────────────────────────────────────────────
 function submitReport() {
   const status = document.getElementById('submitStatus');
+  if (!isFormComplete()) {
+    refreshAll();
+    status.style.display = 'block';
+    status.className = 'submit-status';
+    status.style.color = '#C00000';
+    status.textContent = '⚠ Please complete all required items before submitting.';
+    return;
+  }
   status.style.display = 'block';
   status.className = 'submit-status';
+  status.style.color = '';
   status.textContent = '⏳ Submitting report…';
 
   const g = id => { const el = document.getElementById(id); return el ? el.value : ''; };
@@ -3221,7 +3374,8 @@ function submitReport() {
     s41:  getPF('s4', 0), s42: getPF('s4', 1), s43: getPF('s4', 2),
     s44:  getPF('s4', 3), s45: getPF('s4', 4), s46: getPF('s4', 5), s47: getPF('s4', 6),
     s51:  getPF('s5', 0), s52: getPF('s5', 1), s53: getPF('s5', 2),
-    s54:  getPF('s5', 3), s55: getPF('s5', 4), s56: getPF('s5', 5),
+    s54:  getPF('s5', 3), s55: getPF('s5', 4),
+    s56:  document.getElementById('s56_na').checked ? 'N/A' : getPF('s5', 5),
     s61:  getPF('s6', 0), s62: getPF('s6', 1), s62b: getPF('s6', 2), s63: getPF('s6', 3),
     s64:  getPF('s6', 4), s65: getPF('s6', 5), s66: getPF('s6', 6),
     s67:  getPF('s6', 7), s68: getPF('s6', 8), s69: getPF('s6', 9),
