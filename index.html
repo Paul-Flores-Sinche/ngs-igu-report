@@ -285,6 +285,10 @@ input[type="file"] { display:none; }
 .pf-ns-content textarea:focus, .pf-ns-content input[type="text"]:focus { outline: none; border-color: var(--accent); background: #fff; }
 .pf-ns-sig-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
 
+/* ── PLACEHOLDER STYLING — greyed hint text, clears on click ── */
+::placeholder { color: #9aacb5; opacity: 1; }
+:focus::placeholder { color: transparent; }
+
 /* ── NOTES / SIGNATURE ── */
 .ns-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border); }
 .ns-cell { padding:10px 14px; }
