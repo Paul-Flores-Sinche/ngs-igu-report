@@ -147,6 +147,15 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
 .item-title { font-size:13.5px; font-weight:700; color:#1a2a36; line-height:1.4; }
 .item-ref   { font-size:11.5px; font-weight:700; color:var(--accent); line-height:1.4; margin-top:3px; }
 .item-desc  { font-size:12px; color:var(--gray); line-height:1.5; margin-top:3px; font-style:italic; }
+.item-desc-prominent { color:#222; font-size:13px; font-style:normal; }
+.item-section-title { font-weight:700; color:#C00000; text-decoration:underline; font-size:13px; margin-bottom:4px; }
+.item-highlight { animation: highlightPulse 2.5s ease; }
+@keyframes highlightPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(192,0,0,0.0); background: #fff8e1; }
+  20%  { box-shadow: 0 0 0 6px rgba(192,0,0,0.4); background: #fff3cd; }
+  80%  { box-shadow: 0 0 0 6px rgba(192,0,0,0.1); background: #fff8e1; }
+  100% { box-shadow: none; background: transparent; }
+}
 .compliance-note { font-size:11.5px; color:#b71c1c; font-weight:600; margin-top:5px; line-height:1.5; border-left:3px solid #e53935; padding-left:8px; background:#fff5f5; border-radius:0 4px 4px 0; padding:4px 8px; }
 
 /* Special content inside items */
@@ -437,7 +446,7 @@ input[type="file"] { display:none; }
 
 /* ─ Simple check items → compact 4-column table rows ─ */
 @media(min-width: 641px) {
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) {
     display: grid;
     grid-template-columns: 1fr 92px 1fr 72px;
     align-items: stretch;
@@ -445,14 +454,14 @@ input[type="file"] { display:none; }
   }
 
   /* Column 1: description */
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .item-hdr {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .item-hdr {
     grid-column: 1; grid-row: 1;
     border-bottom: none;
     border-right: 1px solid var(--border);
   }
 
   /* Column 2: Pass / Fail buttons stacked */
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .pf-row {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .pf-row {
     grid-column: 2; grid-row: 1;
     display: flex; flex-direction: column;
     justify-content: center; gap: 4px;
@@ -461,43 +470,43 @@ input[type="file"] { display:none; }
     border-right: 1px solid var(--border);
     background: var(--light);
   }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .pf-btn {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .pf-btn {
     padding: 5px 4px; min-height: 26px;
     font-size: 11px; margin: 0; border-radius: 3px;
     width: 100%;
   }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .pf-btn.na {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .pf-btn.na {
     grid-column: unset; margin: 0; min-height: 22px;
   }
 
   /* Column 3: Notes / Signature (keeps its own 2-column inner grid) */
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .ns-row {
     grid-column: 3; grid-row: 1;
     border-bottom: none;
     border-right: 1px solid var(--border);
   }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row .ns-cell { padding: 5px 8px; }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row textarea { min-height: 28px; font-size: 11px; }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-row input[type="text"] { padding: 4px 6px; font-size: 11px; }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .ns-lbl { font-size: 9px; margin-bottom: 2px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .ns-row .ns-cell { padding: 5px 8px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .ns-row textarea { min-height: 28px; font-size: 11px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .ns-row input[type="text"] { padding: 4px 6px; font-size: 11px; }
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .ns-lbl { font-size: 9px; margin-bottom: 2px; }
 
   /* Column 4: Activity Done Yes / No */
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .act-row {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .act-row {
     grid-column: 4; grid-row: 1;
     flex-direction: column;
     justify-content: center; align-items: center;
     gap: 3px; padding: 5px 4px;
     background: var(--light);
   }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .act-label {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .act-label {
     font-size: 9px; text-align: center; font-style: normal;
     color: var(--gray); font-weight: 700; letter-spacing: 0.5px;
     text-transform: uppercase;
   }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .toggle-group {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .toggle-group {
     flex-direction: column; gap: 3px;
   }
-  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)) .toggle {
+  .check-item:not(:has(.item-body)):not(:has(.pf-ns-merged)):not(.check-item-simple) .toggle {
     padding: 4px 6px; min-height: 26px; font-size: 11px;
     width: 58px; text-align: center;
   }
@@ -722,7 +731,7 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">1</div>
     <div class="sec-title">IGU Sampling Requirements</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.8.2 &amp; §6.0</div>
+    <div class="sec-std-tag">AS 4666:2012 · Section 5.8.2 &amp; 6.0</div>
   </div>
 
   <!-- Item 1.1 -->
@@ -730,7 +739,7 @@ input[type="file"] { display:none; }
     <div class="item-hdr">
       <div class="item-hdr-badges">
         <span class="item-badge num">1.1</span>
-        <span class="item-badge std">§5.8.2 &amp; §6.0</span>
+        <span class="item-badge std">S5.8.2 &amp; S6.0</span>
       </div>
       <div class="item-hdr-text">
         <div class="item-title">Number of IGU units to be sampled from a production lot and tested daily (Table 6.1, AS 4666)</div>
@@ -799,14 +808,14 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">2</div>
     <div class="sec-title">Atmospheric Conditions</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.2 — Every 4 hours</div>
+    <div class="sec-std-tag">AS 4666:2012 · Section 5.2 — Every 4 hours</div>
   </div>
   <!-- Item 2.1 -->
   <div class="check-item">
     <div class="item-hdr">
       <div class="item-hdr-badges">
         <span class="item-badge num">2.1</span>
-        <span class="item-badge std">§5.2</span>
+        <span class="item-badge std">S5.2</span>
       </div>
       <div class="item-hdr-text">
         <div class="item-title">Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift</div>
@@ -865,7 +874,7 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">3</div>
     <div class="sec-title">Glazing Materials</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.3.1–5.3.7</div>
+    <div class="sec-std-tag">AS 4666:2012 · Sections 5.3.1–5.3.7</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 3.1 -->
@@ -1054,13 +1063,13 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">4</div>
     <div class="sec-title">Spacer Bar &amp; Connectors</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.4.1–5.4.8</div>
+    <div class="sec-std-tag">AS 4666:2012 · Sections 5.4.1–5.4.8</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 4.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.1</span><span class="item-badge std">§5.4.1 &amp; §5.4.7.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.1</span><span class="item-badge std">S5.4.1 &amp; S5.4.7.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar: Dimensional Properties &amp; Stock Record</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.1 and 5.4.7.1 Spacer Bar Dimensional Properties)</div>
@@ -1120,7 +1129,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.2</span><span class="item-badge std">§5.4.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.2</span><span class="item-badge std">S5.4.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar: Customer Stock Record Traceability</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.2)</div>
@@ -1163,7 +1172,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.3</span><span class="item-badge std">§5.4.3.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.3</span><span class="item-badge std">S5.4.3.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Rigid Spacer Bar: Visual Inspection</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.3.1)</div>
@@ -1208,7 +1217,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.4</span><span class="item-badge std">§5.4.4 &amp; §5.4.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.4</span><span class="item-badge std">S5.4.4 &amp; S5.4.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Corner Keys &amp; Straight Line Connectors</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.4 and 5.4.5)</div>
@@ -1252,7 +1261,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.5</span><span class="item-badge std">§5.4.6, App. I</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.5</span><span class="item-badge std">S5.4.6, App. I</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Spacer Bar Cleanliness: Free from Dirt, Oil, Grease, Contaminants</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.6, Appendix I)</div>
@@ -1289,7 +1298,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.6</span><span class="item-badge std">§5.4.7.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.6</span><span class="item-badge std">S5.4.7.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Dimensional Properties: Compliance with Manufacturer Specifications</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.7.1)</div>
@@ -1326,7 +1335,7 @@ input[type="file"] { display:none; }
   <!-- Item 4.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">4.7</span><span class="item-badge std">§5.4.8</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">4.7</span><span class="item-badge std">S5.4.8</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Post Assembly Inspection: No splitting, tearing or flare-out on bent corners</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.4.8)</div>
@@ -1366,13 +1375,13 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">5</div>
     <div class="sec-title">Desiccant</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.5.2–5.5.9</div>
+    <div class="sec-std-tag">AS 4666:2012 · Sections 5.5.2–5.5.9</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 5.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.1</span><span class="item-badge std">§5.5.2 &amp; §5.5.8</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.1</span><span class="item-badge std">S5.5.2 &amp; S5.5.8</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant: Origin, Compliance with Order &amp; Shelf Life</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.5.2 and 5.5.8 Shelf Life)</div>
@@ -1430,7 +1439,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.2</span><span class="item-badge std">§5.5.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.2</span><span class="item-badge std">S5.5.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Traceability: Traceable back to supplier for each customer order</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.5.3)</div>
@@ -1467,7 +1476,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.3</span><span class="item-badge std">§5.5.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.3</span><span class="item-badge std">S5.5.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Effectiveness / Fit for Purpose: Tested per manufacturer specification before each production run</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.5.5)</div>
@@ -1504,7 +1513,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.4</span><span class="item-badge std">§5.5.6, App. J</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.4</span><span class="item-badge std">S5.5.6, App. J</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Volume: Adequate volume employed in spacer bar cavity</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.5.6, Appendix J)</div>
@@ -1541,7 +1550,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.5</span><span class="item-badge std">§5.5.7</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.5</span><span class="item-badge std">S5.5.7</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Exposure: Maximum 2 hours exposure to atmosphere (recommended 40 min). Time of filling and assembly recorded.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.5.7)</div>
@@ -1584,7 +1593,7 @@ input[type="file"] { display:none; }
   <!-- Item 5.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">5.6</span><span class="item-badge std">§5.5.9</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">5.6</span><span class="item-badge std">S5.5.9</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant Suitability: Compatible with gas type used in IGU assembly</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.5.9)</div>
@@ -1630,13 +1639,13 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">6</div>
     <div class="sec-title">Sealants</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.6.1–5.6.10</div>
+    <div class="sec-std-tag">AS 4666:2012 · Sections 5.6.1–5.6.10</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 6.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.1</span><span class="item-badge std">§5.6.1 &amp; §5.6.10.1</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.1</span><span class="item-badge std">S5.6.1 &amp; S5.6.10.1</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant: Origin, Compliance with Order &amp; Shelf Life</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.1 and 5.6.10.1 Shelf Life)</div>
@@ -1692,7 +1701,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.2</span><span class="item-badge std">§5.6.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.2</span><span class="item-badge std">S5.6.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Traceability: Primary &amp; Secondary Sealant Records</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.2)</div>
@@ -1763,7 +1772,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.3</span><span class="item-badge std">§5.6.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.3</span><span class="item-badge std">S5.6.4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Minimum Sealant Dimensions: Verified to Table 5.7. Dual or Single Seal unit.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.4)</div>
@@ -1792,6 +1801,12 @@ input[type="file"] { display:none; }
           <tr><td>3</td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="mm"></td><td><input type="text" placeholder="Pass/Fail"></td></tr>
         </tbody>
       </table>
+      <div style="margin:12px 14px;">
+        <img src="table61-diagram.png"
+             alt="Table 6.1 – Minimum Sealant Dimensions (AS 4666:2012)"
+             style="width:100%; max-width:700px; border:1px solid var(--border);
+                    border-radius:4px; display:block;">
+      </div>
     </div>
     <div class="pf-row pf-ns-merged">
       <div class="pf-ns-col">
@@ -1823,7 +1838,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.4</span><span class="item-badge std">§5.6.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.4</span><span class="item-badge std">S5.6.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Compatibility with Glass: Confirmed as compatible and approved for use</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.5)</div>
@@ -1860,7 +1875,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.5</span><span class="item-badge std">§5.6.6, App. K</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.5</span><span class="item-badge std">S5.6.6, App. K</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Secondary Adhesion: To glass surface and spacer bar. Records maintained.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.6, Appendix K)</div>
@@ -1897,7 +1912,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.6</span><span class="item-badge std">§5.6.7, App. L</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.6</span><span class="item-badge std">S5.6.7, App. L</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Mix Ratio: Two-part secondary sealant mix ratio tested. Records maintained.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.7, Appendix L)</div>
@@ -1934,7 +1949,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.7</span><span class="item-badge std">§5.6.8, App. M</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.7</span><span class="item-badge std">S5.6.8, App. M</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Mix Homogeneity: Tested once per shift. Results recorded.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.8, Appendix M)</div>
@@ -1971,7 +1986,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.8 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.8</span><span class="item-badge std">§5.6.9, App. N</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.8</span><span class="item-badge std">S5.6.9, App. N</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Cure Rate: Single or secondary sealants tested. Records maintained.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.9, Appendix N)</div>
@@ -2021,7 +2036,7 @@ input[type="file"] { display:none; }
   <!-- Item 6.9 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">6.9</span><span class="item-badge std">§5.6.10.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">6.9</span><span class="item-badge std">S5.6.10.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Storage: Stored per manufacturer specification.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.6.10.2 Storage)</div>
@@ -2061,13 +2076,13 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">7</div>
     <div class="sec-title">Gas (IGU Gassing)</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.7.1–5.7.6</div>
+    <div class="sec-std-tag">AS 4666:2012 · Sections 5.7.1–5.7.6</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 7.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.1</span><span class="item-badge std">§5.7.1 &amp; §5.7.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.1</span><span class="item-badge std">S5.7.1 &amp; S5.7.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Gas: Origin, Compliance with Order &amp; Gas Type</div>
         <div class="item-ref">&#9744; AS 4666:2012 GASSING OF UNITS: (Section 5.7.1 Origin and Compliance of Order; Section 5.7.3 Gas Type)</div>
@@ -2117,7 +2132,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.2</span><span class="item-badge std">§5.7.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.2</span><span class="item-badge std">S5.7.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Gas Traceability: Traceable to supplier for each customer order</div>
         <div class="item-ref">&#9744; AS 4666:2012 GASSING OF UNITS: (Section 5.7.2 Traceability)</div>
@@ -2154,7 +2169,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.3</span><span class="item-badge std">§5.7.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.3</span><span class="item-badge std">S5.7.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Desiccant &amp; Gas Compatibility: Desiccant pore size smaller than gas molecular sieve size</div>
         <div class="item-ref">&#9744; AS 4666:2012 GASSING OF UNITS: (Section 5.7.5 Compatibility With Desiccant)</div>
@@ -2191,7 +2206,7 @@ input[type="file"] { display:none; }
   <!-- Item 7.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">7.4</span><span class="item-badge std">§5.7.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">7.4</span><span class="item-badge std">S5.7.6</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Gas Fill Volume: Minimum 90% of IGU cavity volume. Calculated or measured per Appendix O.</div>
         <div class="item-ref">&#9744; AS 4666:2012 GASSING OF UNITS: (Section 5.7.6 Volume/Pressure)</div>
@@ -2231,17 +2246,17 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">8</div>
     <div class="sec-title">Compliance Markings</div>
-    <div class="sec-std-tag">AS 4666:2012 · §4 — All IGUs before shipment</div>
+    <div class="sec-std-tag">AS 4666:2012 · Section 4 — All IGUs before shipment</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 8.1 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">8.1</span><span class="item-badge std">§4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">8.1</span><span class="item-badge std">S4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Compliance Marking: Company name/logo, CSi ID 7709, AS 4666, Date of manufacture</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 4 Marking)</div>
-        <div class="item-desc">COMPLIANCE MARKING is in accordance with AS 4666: All insulated glazing units shall be clearly marked prior to final inspection/shipment. Marking shall include the following details as a minimum. Compliance marking requirements for safety glazing materials used in the manufacture of the IGU shall also be met (e.g. AS/NZS 2208 Safety glazing materials in buildings).</div>
+        <div class="item-desc" style="font-weight:700; color:#1a2a36; text-transform:uppercase; font-size:11px; letter-spacing:0.3px;">COMPLIANCE MARKING is in accordance with AS 4666: All insulated glazing units shall be clearly marked prior to final inspection/shipment. Marking shall include the following details as a minimum. Compliance marking requirements for safety glazing materials used in the manufacture of the IGU shall also be met (e.g. AS/NZS 2208 Safety glazing materials in buildings).</div>
       </div>
     </div>
     <div class="item-body">
@@ -2258,7 +2273,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. 100% check each production shift. Compliance markings for safety glazing materials (e.g. AS/NZS 2208) shall also be met."></textarea>
+            <textarea style="width:100%; min-height:120px; border:1.5px solid var(--border); border-radius:5px; padding:8px 10px; font-size:12px; font-family:inherit; color:#1a2a36; background:var(--light); resize:vertical;" placeholder="Visual inspection. 100% check each production shift.&#10;&#10;Compliance markings requirements for safety glazing materials used in the manufacture of the IGU shall also be met.&#10;&#10;(For example: AS/NZS 2208 Safety glazing materials in buildings shall be marked in compliance with that standard)."></textarea>
           </div>
         </div>
       </div>
@@ -2280,17 +2295,13 @@ input[type="file"] { display:none; }
   </div>
 
   <!-- Item 8.2 -->
-  <div class="check-item">
+  <div class="check-item check-item-simple">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">8.2</span><span class="item-badge std">§4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">8.2</span><span class="item-badge std">S4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Work Order / Customer Order Label Affixed to Finished Product</div>
         <div class="item-desc">The Insulated glazing units shall be identified by a work order/customer order label affixed to the finished product.</div>
       </div>
-    </div>
-    <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
-      <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
     </div>
     <div class="act-row">
       <span class="act-label">Activity Completed:</span>
@@ -2300,6 +2311,15 @@ input[type="file"] { display:none; }
       </div>
     </div>
   </div>
+  <div style="margin:8px 14px 16px; text-align:center; padding:12px 0;">
+    <p style="font-size:11px;font-style:italic;color:var(--gray);margin-bottom:8px;">
+      Example — Work Order / Customer Order Label
+    </p>
+    <img src="work-order-label.png"
+         alt="Example Work Order Label – NGS NT"
+         style="max-width:480px; width:100%; border:1px solid var(--border);
+                border-radius:4px; display:inline-block;">
+  </div>
 </div>
 
 <!-- ═══════════════════════════════ SECTION 9 — Final Product Check ══ -->
@@ -2307,17 +2327,18 @@ input[type="file"] { display:none; }
   <div class="section-banner">
     <div class="sec-badge">9</div>
     <div class="sec-title">Final Product Check</div>
-    <div class="sec-std-tag">AS 4666:2012 · §5.8.2–5.8.12 — Pre-shipment</div>
+    <div class="sec-std-tag">AS 4666:2012 · Sections 5.8.2–5.8.12 — Pre-shipment</div>
   </div>
   <div class="comp-banner">Component Checked</div>
   <!-- Item 9.1 -->
-  <div class="check-item">
+  <div class="check-item check-item-simple">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.1</span><span class="item-badge std">§5.8.2</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.1</span><span class="item-badge std">S5.8.2</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Test Format: Random samples (Table 6.1) before shipment. Non-conforming product rectified or replaced.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.2 Test Format)</div>
-        <div class="item-desc">Completed Unit Final Checks — Test Format: Prior to shipment random samples selected in the numbers specified in Table 6.1 shall be tested in accordance with Clause 2.2 of AS 4666. Where practicable samples shall be selected from different manufacturing lots and from different insulating glass unit make ups. Any non-conforming product shall be rectified or replaced.</div>
+        <div class="item-section-title">Completed Unit Final Checks</div>
+        <div class="item-desc item-desc-prominent">Test Format: Prior to shipment random samples selected in the numbers specified in Table 6.1 shall be tested in accordance with Clause 2.2 of AS 4666. Where practicable samples shall be selected from different manufacturing lots and from different insulating glass unit make ups. Any non-conforming product shall be rectified or replaced.</div>
       </div>
     </div>
     <div class="ns-row">
@@ -2336,7 +2357,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.2</span><span class="item-badge std">§5.8.3</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.2</span><span class="item-badge std">S5.8.3</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Sealant Cured: Visual &amp; mechanical hardness check. No uncured sealant on units ready for shipment.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.3 Sealant Cured)</div>
@@ -2349,7 +2370,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection, mechanical hardness check."></textarea>
+            <textarea style="min-height:90px;" placeholder="Visual inspection, mechanical hardness check.&#10;&#10;Check Sealant Hardness against manufacturers specification for a fully cured sealant.&#10;&#10;No sign of uncured sealant on units ready for shipment."></textarea>
           </div>
         </div>
       </div>
@@ -2373,7 +2394,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.3</span><span class="item-badge std">§5.8.4</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.3</span><span class="item-badge std">S5.8.4</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Dimensional Properties: Height × Width, Squareness, Flatness per §5.8.4.2–5.8.4.4 and Table 5.8</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.4 Dimensional Properties)</div>
@@ -2410,7 +2431,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.4 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.4</span><span class="item-badge std">§5.8.5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.4</span><span class="item-badge std">S5.8.5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Uniformity of Spacer Depth: Minimum sealant depth per Table 5.7</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.5 Uniformity of Spacer Depth)</div>
@@ -2447,7 +2468,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.5 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.5</span><span class="item-badge std">§5.8.6</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.5</span><span class="item-badge std">S5.8.6</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Voids in Sealants: Visual inspection. Random samples per Table 6.1.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.6 Voids in Sealants)</div>
@@ -2483,7 +2504,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.6 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.6</span><span class="item-badge std">§5.8.7</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.6</span><span class="item-badge std">S5.8.7</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Glass Alignment / Offset: Visual inspection. Random samples per Table 6.1.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.7 Glass Alignment/Offset)</div>
@@ -2519,7 +2540,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.7 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.7</span><span class="item-badge std">§5.8.9</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.7</span><span class="item-badge std">S5.8.9</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Cleanliness: Max 1mm proud on face, max 2mm on edge, max 3mm on corner (±20mm).</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.9 Cleanliness)</div>
@@ -2532,7 +2553,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection."></textarea>
+            <textarea style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;On the face of the glazing: No protrusion past the sealant and spacer depth shall be allowed. Any sealant shall be not greater than 1 mm high from the face of the glazing.&#10;&#10;On the edge of the unit: The sealant shall be uniform with no voids and shall be not greater than 2 mm proud of the edge of the glazing along the edges and not greater than 3 mm on any corner. From a corner point, the corner shall include 20 mm in each direction."></textarea>
           </div>
         </div>
       </div>
@@ -2556,7 +2577,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.8 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.8</span><span class="item-badge std">§5.8.10</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.8</span><span class="item-badge std">S5.8.10</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Marks, Scratches &amp; Inclusions: Per Table 5.5. IGU may have twice the amount of individual pane.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.10 Marks/Scratches and Inclusions)</div>
@@ -2569,7 +2590,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. Refer to Table 5.5, AS 4666."></textarea>
+            <textarea style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;Each piece of glazing material in the completed IGU may contain scratches, blemishes and inclusions. Refer to Table 5.5, AS 4666.&#10;&#10;A finished IGU may have twice the amount given in Table 5.5, however the restriction for each piece of glazing material given in Table 5.5 shall not be exceeded."></textarea>
           </div>
         </div>
       </div>
@@ -2593,7 +2614,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.9 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.9</span><span class="item-badge std">§5.8.11, App. P</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.9</span><span class="item-badge std">S5.8.11, App. P</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Moisture Content (Dew Point Test): Conducted on previous day production lot. Random samples per Table 6.1.</div>
         <div class="item-ref">&#9744; AS 4666:2012 MOISTURE CONTENT: (Section 5.8.11, Appendix P)</div>
@@ -2605,7 +2626,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. Test to Appendix P. Random samples selected in numbers as specified in Table 6.1, AS 4666."></textarea>
+            <textarea style="min-height:90px;" placeholder="Visual Inspection, Test to Appendix P.&#10;&#10;Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2629,7 +2650,7 @@ input[type="file"] { display:none; }
   <!-- Item 9.10 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">9.10</span><span class="item-badge std">§5.8.12</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">9.10</span><span class="item-badge std">S5.8.12</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Storage &amp; Handling: Support (§5.8.12.1), Angle (§5.8.12.2), Spacing/Interleaving (§5.8.12.3). Lifting to thickest face.</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5.8.12 — All)</div>
@@ -2642,7 +2663,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection."></textarea>
+            <textarea style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;Storage and handling of uncured units within the manufacturing environment shall be in accordance with the stated requirements of Sections 5.8.12.1 – Support, 5.8.12.2 – Angle, and 5.8.12.3 – Spacing/Interleaving.&#10;&#10;Lifting large units is conducted by attaching the lifting device to the thickest glazing material face of the IGU."></textarea>
           </div>
         </div>
       </div>
@@ -2679,17 +2700,17 @@ input[type="file"] { display:none; }
       <div class="item-hdr-text">
         <div class="item-title">Mandatory Equipment for Dimensional Properties</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Appendix A)</div>
-        <div class="item-desc">DETERMINATION OF DIMENSIONAL PROPERTIES: Do the IGU Line Operators have access to the following Mandatory Equipment for determination of dimensional properties of insulating glass units?</div>
+        <div class="item-desc">DETERMINATION OF DIMENSIONAL PROPERTIES: Do the IGU Line Operators have access to the following <strong>*Mandatory Equipment</strong> for determination of dimensional properties of insulating glass units?</div>
       </div>
     </div>
     <div class="item-body">
       <div class="cb-grid">
-        <div class="cb-item"><input type="checkbox" id="eq0"><label for="eq0">Point Micrometre (0.01mm)</label></div>
-        <div class="cb-item"><input type="checkbox" id="eq1"><label for="eq1">Plate Micrometre (0.01mm)</label></div>
-        <div class="cb-item"><input type="checkbox" id="eq2"><label for="eq2">Vernier Calliper / Digital (0.01mm)</label></div>
-        <div class="cb-item"><input type="checkbox" id="eq3"><label for="eq3">150mm Steel Rule or Steel Tapered Rule (0.5mm)</label></div>
-        <div class="cb-item"><input type="checkbox" id="eq4"><label for="eq4">Standard Measuring Tape (1.0mm)</label></div>
-        <div class="cb-item"><input type="checkbox" id="eq5"><label for="eq5">Straight Edge</label></div>
+        <div class="cb-item"><input type="checkbox" id="eq0"><label for="eq0">Point Micrometre*- 0.01mm</label></div>
+        <div class="cb-item"><input type="checkbox" id="eq1"><label for="eq1">Plate Micrometre*- 0.01mm</label></div>
+        <div class="cb-item"><input type="checkbox" id="eq2"><label for="eq2">Vernier Calliper*- 0.01mm (Digital Vernier Caliper acceptable)</label></div>
+        <div class="cb-item"><input type="checkbox" id="eq3"><label for="eq3">150mm Steel Rule or Steel Tapered Rule*- 0.5mm</label></div>
+        <div class="cb-item"><input type="checkbox" id="eq4"><label for="eq4">Standard Measuring Tape*- 1.0mm</label></div>
+        <div class="cb-item"><input type="checkbox" id="eq5"><label for="eq5">Straight Edge*</label></div>
       </div>
     </div>
     <div class="pf-row pf-ns-merged">
@@ -2722,7 +2743,7 @@ input[type="file"] { display:none; }
   <!-- Item 10.2 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">10.2</span><span class="item-badge std">§5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">10.2</span><span class="item-badge std">S5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Additional Equipment for Compliance Checks</div>
         <div class="item-ref">&#9744; AS 4666:2012 (Section 5 — Manufacturing and Periodic Testing)</div>
@@ -2735,15 +2756,15 @@ input[type="file"] { display:none; }
         <div class="cb-item"><input type="checkbox" id="aeq1"><label for="aeq1">Teflon Mould (127mm × 38mm × 6mm)</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq2"><label for="aeq2">Digital Thermometer</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq3"><label for="aeq3">Stopwatch</label></div>
-        <div class="cb-item"><input type="checkbox" id="aeq4"><label for="aeq4">Barometric Pressure / Humidity / Temp Gauge / Datalogger</label></div>
+        <div class="cb-item"><input type="checkbox" id="aeq4"><label for="aeq4">Barometric Pressure - Humidity/Temperature Gauge/Datalogger</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq5"><label for="aeq5">Dry Ice Maker (Snowpac Device)</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq6"><label for="aeq6">Crucible to hold dry ice</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq7"><label for="aeq7">Calculator</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq8"><label for="aeq8">Digital Scales</label></div>
-        <div class="cb-item"><input type="checkbox" id="aeq9"><label for="aeq9">1L beaker with sight scale (50ml graduations)</label></div>
-        <div class="cb-item"><input type="checkbox" id="aeq10"><label for="aeq10">Handheld UV light source</label></div>
+        <div class="cb-item"><input type="checkbox" id="aeq9"><label for="aeq9">One litre beaker with sight scale in 50ml graduations</label></div>
+        <div class="cb-item"><input type="checkbox" id="aeq10"><label for="aeq10">Handheld ultra-violet light source</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq11"><label for="aeq11">Delta T test kit</label></div>
-        <div class="cb-item"><input type="checkbox" id="aeq12"><label for="aeq12">Sparklite (IG gas concentration)</label></div>
+        <div class="cb-item"><input type="checkbox" id="aeq12"><label for="aeq12">Sparklite (Used to test IG gas concentration)</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq13"><label for="aeq13">Non-powdered latex gloves</label></div>
         <div class="cb-item"><input type="checkbox" id="aeq14"><label for="aeq14">Disposable paper towel</label></div>
       </div>
@@ -2778,7 +2799,7 @@ input[type="file"] { display:none; }
   <!-- Item 10.3 -->
   <div class="check-item">
     <div class="item-hdr">
-      <div class="item-hdr-badges"><span class="item-badge num">10.3</span><span class="item-badge std">§5</span></div>
+      <div class="item-hdr-badges"><span class="item-badge num">10.3</span><span class="item-badge std">S5</span></div>
       <div class="item-hdr-text">
         <div class="item-title">Equipment Calibrated and Functional: Within tolerance of 0.01mm. Records maintained.</div>
         <div class="item-desc">The measuring equipment is calibrated to be within the stated tolerance of 0.01mm and the equipment is functional?</div>
@@ -2814,6 +2835,13 @@ input[type="file"] { display:none; }
 
 <!-- ═════════════════════════════════════════════════ SUBMIT AREA ══ -->
 <div class="submit-wrap">
+  <div id="validation-panel" style="display:none; background:#fff3cd; border:2px solid #C00000; border-radius:8px; padding:16px; margin-bottom:16px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <strong style="color:#C00000; font-size:14px;">⚠ Items not yet completed:</strong>
+      <button onclick="document.getElementById('validation-panel').style.display='none'" style="background:none; border:none; font-size:18px; cursor:pointer; color:#666;">✕</button>
+    </div>
+    <ul id="validation-list" style="margin:0; padding-left:20px; font-size:13px; color:#333; line-height:1.8;"></ul>
+  </div>
   <button class="submit-btn" onclick="submitReport()">✓ Submit Report to Google Sheets</button>
   <div class="action-btns">
     <button class="action-btn" onclick="window.print()">🖨 Print / Save PDF</button>
@@ -2936,15 +2964,15 @@ document.querySelectorAll('.section-banner').forEach(banner => {
 
 // Insert Check List Item compliance header table before col-hdr (runs after, so inserts closer to banner)
 const CLI_DATA = {
-  '1':  { ref: 'AS 4666:2012 §5.8.2 &amp; §6.0',    desc: 'IGU Sampling Requirements — permanent record of sampling maintained for each production shift.' },
+  '1':  { ref: 'AS 4666:2012 Section 5.8.2 &amp; 6.0',    desc: 'IGU Sampling Requirements — permanent record of sampling maintained for each production shift.' },
   '2':  { ref: 'AS 4666:2012 Section 5.2',            desc: 'Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift.' },
   '3':  { ref: 'AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3', desc: 'GLASS: Compliance with order – Traceability – Types of Substrates' },
-  '4':  { ref: 'AS 4666:2012 §5.4.1–5.4.8',          desc: 'Verify spacer bar and connectors — compliance, dimensions and installation requirements.' },
-  '5':  { ref: 'AS 4666:2012 §5.5.2–5.5.9',          desc: 'Verify desiccant — compliance with specifications, batch traceability and fill procedure.' },
-  '6':  { ref: 'AS 4666:2012 §5.6.1–5.6.10',         desc: 'Verify sealants — compliance with specifications, batch traceability and application procedure.' },
-  '7':  { ref: 'AS 4666:2012 §5.7.1–5.7.6',          desc: 'Verify gas filling — compliance and concentration levels for IGU gassing procedure.' },
-  '8':  { ref: 'AS 4666:2012 §4',                     desc: 'Verify compliance markings are correct and present on all IGUs before shipment.' },
-  '9':  { ref: 'AS 4666:2012 §5.8.2–5.8.12',         desc: 'Final product check — pre-shipment visual inspection and verification of all IGU units.' },
+  '4':  { ref: 'AS 4666:2012 Sections 5.4.1–5.4.8',          desc: 'Verify spacer bar and connectors — compliance, dimensions and installation requirements.' },
+  '5':  { ref: 'AS 4666:2012 Sections 5.5.2–5.5.9',          desc: 'Verify desiccant — compliance with specifications, batch traceability and fill procedure.' },
+  '6':  { ref: 'AS 4666:2012 Sections 5.6.1–5.6.10',         desc: 'Verify sealants — compliance with specifications, batch traceability and application procedure.' },
+  '7':  { ref: 'AS 4666:2012 Sections 5.7.1–5.7.6',          desc: 'Verify gas filling — compliance and concentration levels for IGU gassing procedure.' },
+  '8':  { ref: 'AS 4666:2012 Section 4',                     desc: 'Verify compliance markings are correct and present on all IGUs before shipment.' },
+  '9':  { ref: 'AS 4666:2012 Sections 5.8.2–5.8.12',         desc: 'Final product check — pre-shipment visual inspection and verification of all IGU units.' },
   '10': { ref: 'AS 4666:2012 Appendix A',             desc: 'Verify all equipment required for sealant, gas, atmospheric and dew point testing is available and calibrated.' },
 };
 document.querySelectorAll('.section-banner').forEach(banner => {
@@ -3101,9 +3129,56 @@ const SUBMIT_LABEL = '✓ Submit Report to Google Sheets';
 function updateSubmitGate(allComplete) {
   const btn = document.querySelector('.submit-btn');
   if (!btn) return;
-  btn.disabled = !allComplete;
+  btn.disabled = false; // always clickable — gate enforced in submitReport()
   btn.classList.toggle('is-disabled', !allComplete);
   btn.textContent = allComplete ? SUBMIT_LABEL : 'Complete all sections to submit';
+
+  const badge = document.getElementById('progress-badge');
+  const badgeCount = document.getElementById('badge-count');
+  if (!badge || !badgeCount) return;
+  if (allComplete) {
+    badge.style.background = '#28a745';
+    badge.style.display = 'block';
+    badge.innerHTML = '✓ Ready to submit!';
+    setTimeout(() => { badge.style.display = 'none'; }, 3000);
+  } else {
+    const incompleteCount = [...document.querySelectorAll('.check-item')].filter(i => !evalItem(i).complete).length;
+    badge.style.background = '#C00000';
+    badge.innerHTML = '⚠ <span id="badge-count">' + incompleteCount + '</span> items pending';
+    badge.style.display = 'block';
+  }
+}
+
+function showValidationPanel() {
+  const list = document.getElementById('validation-list');
+  const panel = document.getElementById('validation-panel');
+  if (!list || !panel) return;
+  list.innerHTML = '';
+  document.querySelectorAll('.check-item').forEach(item => {
+    if (!evalItem(item).complete) {
+      const num   = (item.querySelector('.item-badge.num') || {}).textContent || '?';
+      const title = (item.querySelector('.item-title') || {}).textContent || '';
+      const label = num + (title ? ' — ' + title.trim().slice(0, 80) + (title.trim().length > 80 ? '…' : '') : '');
+      const li = document.createElement('li');
+      const a  = document.createElement('a');
+      a.href = '#';
+      a.textContent = label;
+      a.style.cssText = 'color:#C00000; text-decoration:underline; cursor:pointer;';
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        panel.style.display = 'none';
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        item.classList.remove('item-highlight');
+        void item.offsetWidth; // force reflow to restart animation
+        item.classList.add('item-highlight');
+        setTimeout(() => item.classList.remove('item-highlight'), 2500);
+      });
+      li.appendChild(a);
+      list.appendChild(li);
+    }
+  });
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function setPF(btn) {
@@ -3343,10 +3418,7 @@ function submitReport() {
   const status = document.getElementById('submitStatus');
   if (!isFormComplete()) {
     refreshAll();
-    status.style.display = 'block';
-    status.className = 'submit-status';
-    status.style.color = '#C00000';
-    status.textContent = '⚠ Please complete all required items before submitting.';
+    showValidationPanel();
     return;
   }
   status.style.display = 'block';
@@ -3454,5 +3526,8 @@ function submitReport() {
   });
 }
 </script>
+<div id="progress-badge" onclick="showValidationPanel()" style="position:fixed; bottom:24px; right:24px; background:#C00000; color:white; border-radius:50px; padding:10px 18px; font-size:13px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:9999; display:none; transition: all 0.3s ease;">
+  ⚠ <span id="badge-count">0</span> items pending
+</div>
 </body>
 </html>
