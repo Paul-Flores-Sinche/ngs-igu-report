@@ -224,8 +224,8 @@ function buildRow(r) {
     : '<span class="badge badge-pending">Pending</span>';
 
   var openBtn = r.driveUrl
-    ? '<a class="btn-open" href="' + r.driveUrl + '" target="_blank" rel="noopener">Open &#8599;</a>'
-    : '<span style="color:#9aa6ad;font-size:12px;">&mdash;</span>';
+    ? '<a href="' + r.driveUrl + '" target="_blank" rel="noopener" style="background:#1C2E3D;color:white;padding:4px 10px;border-radius:4px;text-decoration:none;font-size:11px;">Open Doc</a>'
+    : '<span style="color:#999;">—</span>';
 
   var approveBtn = approved
     ? ''
