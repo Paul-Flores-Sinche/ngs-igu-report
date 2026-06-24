@@ -256,7 +256,7 @@ function buildHtmlReport(data, dateStr, tz) {
   }
 
   function cbList(ids, labels, data) {
-    return ids.map((id, i) => (data[id] === 'true' || data[id] === true ? '☑' : '☐') + ' ' + labels[i]).join('<br>');
+    return ids.map((id, i) => (['Yes', 'true', true, 'on'].indexOf(data[id]) !== -1 ? '☑' : '☐') + ' ' + labels[i]).join('<br>');
   }
 
   // ── Derived values ─────────────────────────────────────────────────────────
