@@ -214,8 +214,8 @@ function buildHtmlReport(data, dateStr, tz) {
         cells +=
           '<td style="font-size:9px;font-weight:700;color:#2E86AB;text-transform:uppercase;' +
           'letter-spacing:0.5px;background:#f0f6f9;padding:4px 8px;white-space:nowrap;' +
-          'border:1px solid #dce8ed;">' + esc(pairs[i][0]) + '</td>' +
-          '<td style="font-size:10px;padding:4px 8px;color:#1a2a36;border:1px solid #dce8ed;">' +
+          'min-width:120px;border:1px solid #dce8ed;">' + esc(pairs[i][0]) + '</td>' +
+          '<td style="font-size:10px;padding:4px 8px;color:#1a2a36;min-width:100px;border:1px solid #dce8ed;">' +
           val(pairs[i][1]) + '</td>';
       } else {
         cells += '<td colspan="2" style="border:1px solid #dce8ed;"></td>';
@@ -226,7 +226,7 @@ function buildHtmlReport(data, dateStr, tz) {
 
   function detailBlock(rows) {
     return '<tr><td colspan="3" style="padding:4px 10px 8px 50px;background:#f8fafb;">' +
-      '<table style="width:100%;border-collapse:collapse;">' + rows.join('') + '</table>' +
+      '<table style="width:100%;table-layout:fixed;border-collapse:collapse;">' + rows.join('') + '</table>' +
       '</td></tr>';
   }
 
@@ -410,12 +410,12 @@ rowAct('2.1','Record Atmospheric Conditions at start of production shift and eve
   }).join('');
   if(!rows) return '';
   return '<tr><td colspan="3" style="padding:4px 10px 6px 50px;background:#f8fafb;">' +
-    '<table style="width:100%;border-collapse:collapse;font-size:10px;">' +
+    '<table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:10px;">' +
     '<tr style="background:#f0f4f6;">' +
-    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Time</th>' +
-    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Temp (°C)</th>' +
-    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Humidity (%)</th>' +
-    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Pressure (hPa)</th>' +
+    '<th style="width:25%;padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Time</th>' +
+    '<th style="width:25%;padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Temp (°C)</th>' +
+    '<th style="width:25%;padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Humidity (%)</th>' +
+    '<th style="width:25%;padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Pressure (hPa)</th>' +
     '</tr>' + rows +
     '</table></td></tr>';
 })() +
