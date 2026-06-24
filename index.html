@@ -840,12 +840,12 @@ input[type="file"] { display:none; }
           </tr>
         </thead>
         <tbody>
-          <tr><td><input type="time"></td><td><input type="text" placeholder="°C"></td><td><input type="text" placeholder="%"></td><td><input type="text" placeholder="hPa"></td></tr>
-          <tr><td><input type="time"></td><td><input type="text" placeholder="°C"></td><td><input type="text" placeholder="%"></td><td><input type="text" placeholder="hPa"></td></tr>
-          <tr><td><input type="time"></td><td><input type="text" placeholder="°C"></td><td><input type="text" placeholder="%"></td><td><input type="text" placeholder="hPa"></td></tr>
-          <tr><td><input type="time"></td><td><input type="text" placeholder="°C"></td><td><input type="text" placeholder="%"></td><td><input type="text" placeholder="hPa"></td></tr>
-          <tr><td><input type="time"></td><td><input type="text" placeholder="°C"></td><td><input type="text" placeholder="%"></td><td><input type="text" placeholder="hPa"></td></tr>
-          <tr><td><input type="time"></td><td><input type="text" placeholder="°C"></td><td><input type="text" placeholder="%"></td><td><input type="text" placeholder="hPa"></td></tr>
+          <tr><td><input type="time" id="atm_time_1"></td><td><input type="text" id="atm_temp_1" placeholder="°C"></td><td><input type="text" id="atm_hum_1" placeholder="%"></td><td><input type="text" id="atm_pres_1" placeholder="hPa"></td></tr>
+          <tr><td><input type="time" id="atm_time_2"></td><td><input type="text" id="atm_temp_2" placeholder="°C"></td><td><input type="text" id="atm_hum_2" placeholder="%"></td><td><input type="text" id="atm_pres_2" placeholder="hPa"></td></tr>
+          <tr><td><input type="time" id="atm_time_3"></td><td><input type="text" id="atm_temp_3" placeholder="°C"></td><td><input type="text" id="atm_hum_3" placeholder="%"></td><td><input type="text" id="atm_pres_3" placeholder="hPa"></td></tr>
+          <tr><td><input type="time" id="atm_time_4"></td><td><input type="text" id="atm_temp_4" placeholder="°C"></td><td><input type="text" id="atm_hum_4" placeholder="%"></td><td><input type="text" id="atm_pres_4" placeholder="hPa"></td></tr>
+          <tr><td><input type="time" id="atm_time_5"></td><td><input type="text" id="atm_temp_5" placeholder="°C"></td><td><input type="text" id="atm_hum_5" placeholder="%"></td><td><input type="text" id="atm_pres_5" placeholder="hPa"></td></tr>
+          <tr><td><input type="time" id="atm_time_6"></td><td><input type="text" id="atm_temp_6" placeholder="°C"></td><td><input type="text" id="atm_hum_6" placeholder="%"></td><td><input type="text" id="atm_pres_6" placeholder="hPa"></td></tr>
         </tbody>
       </table>
     </div>
@@ -2860,7 +2860,7 @@ input[type="file"] { display:none; }
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbyIB4JtPAMz--owwaqm3VM-vI_1xIc0vKjtTZzDf--n8jh5m8gE3FcxhYV0LXkQ6t-W/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycby5Yx9fOdqkezJ3UTmars7m4vWrWA9Pz5IhI-9OLK6NEFyjKBo1XCWCyzredpX0ug7d/exec";
 const DRAFT_KEY = 'ngs_igu_v5'; // v5: Notes converted to editable textareas — anon input order changed, old drafts incompatible
 
 // --- DRAFT SAVE / RESTORE ---
@@ -3445,6 +3445,12 @@ function submitReport() {
     s1_actual_units: g('s1_actual_units'),
     s1:   getAct('s1', 0),
     s2:   getAct('s2', 0),
+    atm_time_1: g('atm_time_1'), atm_temp_1: g('atm_temp_1'), atm_hum_1: g('atm_hum_1'), atm_pres_1: g('atm_pres_1'),
+    atm_time_2: g('atm_time_2'), atm_temp_2: g('atm_temp_2'), atm_hum_2: g('atm_hum_2'), atm_pres_2: g('atm_pres_2'),
+    atm_time_3: g('atm_time_3'), atm_temp_3: g('atm_temp_3'), atm_hum_3: g('atm_hum_3'), atm_pres_3: g('atm_pres_3'),
+    atm_time_4: g('atm_time_4'), atm_temp_4: g('atm_temp_4'), atm_hum_4: g('atm_hum_4'), atm_pres_4: g('atm_pres_4'),
+    atm_time_5: g('atm_time_5'), atm_temp_5: g('atm_temp_5'), atm_hum_5: g('atm_hum_5'), atm_pres_5: g('atm_pres_5'),
+    atm_time_6: g('atm_time_6'), atm_temp_6: g('atm_temp_6'), atm_hum_6: g('atm_hum_6'), atm_pres_6: g('atm_pres_6'),
     s31:  getPF('s3', 0), s32: getPF('s3', 1), s33: getPF('s3', 2),
     s34:  getPF('s3', 3), s35: getPF('s3', 4),
     s41:  getPF('s4', 0), s42: getPF('s4', 1), s43: getPF('s4', 2),
@@ -3485,6 +3491,11 @@ function submitReport() {
     aeq12: document.getElementById('aeq12')?.checked ? 'Yes' : 'No',
     aeq13: document.getElementById('aeq13')?.checked ? 'Yes' : 'No',
     aeq14: document.getElementById('aeq14')?.checked ? 'Yes' : 'No',
+
+    m1: document.getElementById('m1')?.checked ? 'Yes' : 'No',
+    m2: document.getElementById('m2')?.checked ? 'Yes' : 'No',
+    m3: document.getElementById('m3')?.checked ? 'Yes' : 'No',
+    m4: document.getElementById('m4')?.checked ? 'Yes' : 'No',
 
     // Notes & Signatures
     s11_notes: g('s11_notes'),   s11_sig: g('s11_sig'),

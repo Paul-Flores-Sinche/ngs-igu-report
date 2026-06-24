@@ -255,6 +255,10 @@ function buildHtmlReport(data, dateStr, tz) {
       '</tr>';
   }
 
+  function cbList(ids, labels, data) {
+    return ids.map((id, i) => (data[id] === 'true' || data[id] === true ? '☑' : '☐') + ' ' + labels[i]).join('<br>');
+  }
+
   // ── Derived values ─────────────────────────────────────────────────────────
   const overallBg  = hasFails ? '#fdecea' : '#e8f8ef';
   const overallClr = hasFails ? '#C0392B' : '#27AE60';
@@ -371,6 +375,12 @@ esc(data.overallResult || '—') + '</div>' +
 '<table ' + STBL + '>' +
 secBanner('1','IGU Sampling Requirements','AS 4666:2012 · §5.8.2 & §6.0') +
 rowAct('1.1','Number of IGU units to sample from production lot (Table 5.1, AS 4666)',data.s1) +
+'<tr><td colspan="3" style="padding:4px 14px 4px 50px;background:#f8fafb;font-size:10px;">' +
+'<span style="font-weight:700;color:#2E86AB;text-transform:uppercase;letter-spacing:0.5px;">Units to check this shift:</span>&nbsp;' +
+esc(data.s1_actual_units || '—') + '&emsp;' +
+'<span style="font-weight:700;color:#2E86AB;text-transform:uppercase;letter-spacing:0.5px;">Lot size range:</span>&nbsp;' +
+esc(data.s1_actual_lot || '—') +
+'</td></tr>' +
 rowNotes(data.s11_notes, data.s11_sig) +
 '</table>\n\n' +
 
@@ -386,6 +396,29 @@ secBanner('2','Atmospheric Conditions','AS 4666:2012 · §5.2 — Every 4 hours'
 '<span style="font-size:11px;color:#1a2a36;">' + val(data.totalUnits) + '</span>' +
 '</td></tr>' +
 rowAct('2.1','Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift',data.s2) +
+(function(){
+  var rows = [1,2,3,4,5,6].map(function(i){
+    var t=data['atm_time_'+i], c=data['atm_temp_'+i],
+        h=data['atm_hum_'+i],  p=data['atm_pres_'+i];
+    if(!t&&!c&&!h&&!p) return '';
+    return '<tr>' +
+      '<td style="padding:3px 8px;border:1px solid #dce8ed;">' + val(t) + '</td>' +
+      '<td style="padding:3px 8px;border:1px solid #dce8ed;">' + val(c) + '</td>' +
+      '<td style="padding:3px 8px;border:1px solid #dce8ed;">' + val(h) + '</td>' +
+      '<td style="padding:3px 8px;border:1px solid #dce8ed;">' + val(p) + '</td>' +
+      '</tr>';
+  }).join('');
+  if(!rows) return '';
+  return '<tr><td colspan="3" style="padding:4px 10px 6px 50px;background:#f8fafb;">' +
+    '<table style="width:100%;border-collapse:collapse;font-size:10px;">' +
+    '<tr style="background:#f0f4f6;">' +
+    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Time</th>' +
+    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Temp (°C)</th>' +
+    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Humidity (%)</th>' +
+    '<th style="padding:4px 8px;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Pressure (hPa)</th>' +
+    '</tr>' + rows +
+    '</table></td></tr>';
+})() +
 rowNotes(data.s21_notes, data.s21_sig) +
 '</table>\n\n' +
 
@@ -515,6 +548,11 @@ rowNotes(data.s74_notes, data.s74_sig) +
 '<table ' + STBL + '>' +
 secBanner('8','Compliance Markings','§4') +
 rowPF('8.1','Compliance Marking: Company name/logo, CSi ID 7709, AS 4666, Date of manufacture',data.s81) +
+'<tr><td colspan="4" style="padding:6px 8px;font-size:10px;line-height:1.6">' +
+cbList(['m1','m2','m3','m4'],
+['Company Name or Logo','Manufacturing Site Identifier (CSi ID 7709)',
+'Manufacturing Standard: AS 4666','Date of Manufacture (Month and Year)'], data) +
+'</td></tr>' +
 rowNotes(data.s81_notes, data.s81_sig) +
 rowAct('8.1','Compliance Marking — Activity Completed',data.s81_act) +
 rowAct('8.2','Work Order / Customer Order Label Affixed to Finished Product',data.s82) +
@@ -549,8 +587,16 @@ rowNotes(data.s910_notes, data.s910_sig) +
 '<table ' + STBL + '>' +
 secBanner('10','Equipment Availability','Appendix A · §5') +
 rowPF('10.1','Mandatory Equipment for Dimensional Properties',data.s101) +
+'<tr><td colspan="4" style="padding:6px 8px;font-size:10px;line-height:1.6">' +
+cbList(['eq0','eq1','eq2','eq3','eq4','eq5'],
+['Point Micrometre* 0.01mm','Plate Micrometre* 0.01mm','Vernier Calliper* 0.01mm','150mm Steel Rule or Steel Tapered Rule* 0.5mm','Standard Measuring Tape* 1.0mm','Straight Edge*'], data) +
+'</td></tr>' +
 rowNotes(data.s101_notes, data.s101_sig) +
 rowPF('10.2','Additional Equipment for Compliance Checks',data.s102) +
+'<tr><td colspan="4" style="padding:6px 8px;font-size:10px;line-height:1.6">' +
+cbList(['aeq0','aeq1','aeq2','aeq3','aeq4','aeq5','aeq6','aeq7','aeq8','aeq9','aeq10','aeq11','aeq12','aeq13','aeq14'],
+['Durometer Type A2 (0-100 increments)','Teflon Mould (127mm x 38mm x 6mm)','Digital Thermometer','Stopwatch','Barometric Pressure - Humidity/Temperature Gauge/Datalogger','Dry Ice Maker (Snowpac Device)','Crucible to hold dry ice','Calculator','Digital Scales','One litre beaker with sight scale in 50ml graduations','Handheld ultra-violet light source','Delta T test kit','Sparklite (Used to test IG gas concentration)','Non-powdered latex gloves','Disposable paper towel'], data) +
+'</td></tr>' +
 rowNotes(data.s102_notes, data.s102_sig) +
 rowPF('10.3','Equipment Calibrated and Functional: Within tolerance of 0.01mm. Records maintained.',data.s103) +
 rowNotes(data.s103_notes, data.s103_sig) +
