@@ -47,6 +47,13 @@ function doGet(e) {
       }
       const tz = Session.getScriptTimeZone();
       const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      ['Drive URL', 'Approved By', 'Approved At'].forEach(function(name) {
+        if (headers.indexOf(name) === -1) {
+          var nextCol = headers.length + 1;
+          sheet.getRange(1, nextCol).setValue(name);
+          headers.push(name);
+        }
+      });
       const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
       const col = function(name) { return headers.indexOf(name); };
       const fmt = function(v) {
