@@ -782,11 +782,11 @@ input[type="file"] { display:none; }
     <div class="ns-row">
       <div class="ns-cell">
         <div class="ns-lbl">Notes</div>
-        <textarea placeholder="Records maintained for S5.8.2..."></textarea>
+        <textarea id="s11_notes" placeholder="Records maintained for S5.8.2..."></textarea>
       </div>
       <div class="ns-cell">
         <div class="ns-lbl">Signature</div>
-        <input type="text" placeholder="Name &amp; sign">
+        <input id="s11_sig" type="text" placeholder="Name &amp; sign">
       </div>
     </div>
     <div class="act-row">
@@ -852,11 +852,11 @@ input[type="file"] { display:none; }
     <div class="ns-row">
       <div class="ns-cell">
         <div class="ns-lbl">Notes</div>
-        <textarea placeholder="Records maintained for S5.2..."></textarea>
+        <textarea id="s21_notes" placeholder="Records maintained for S5.2..."></textarea>
       </div>
       <div class="ns-cell">
         <div class="ns-lbl">Signature</div>
-        <input type="text" placeholder="Name &amp; sign">
+        <input id="s21_sig" type="text" placeholder="Name &amp; sign">
       </div>
     </div>
     <div class="act-row">
@@ -892,7 +892,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="1. (5.3.1) The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666. 2. (5.3.2) The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained. To be conducted every customer order."></textarea>
+            <textarea id="s31_notes" placeholder="1. (5.3.1) The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666. 2. (5.3.2) The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained. To be conducted every customer order."></textarea>
           </div>
         </div>
       </div>
@@ -900,7 +900,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Compliance with order  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s31_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -928,7 +928,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="To be conducted every customer order or every half hour whichever is the lesser."></textarea>
+            <textarea id="s32_notes" placeholder="To be conducted every customer order or every half hour whichever is the lesser."></textarea>
           </div>
         </div>
       </div>
@@ -936,7 +936,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Edge Characteristics Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s32_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -964,7 +964,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="A visual inspection to be conducted every customer order or every half hour whichever is the lesser."></textarea>
+            <textarea id="s33_notes" placeholder="A visual inspection to be conducted every customer order or every half hour whichever is the lesser."></textarea>
           </div>
         </div>
       </div>
@@ -972,7 +972,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Dimensional Properties Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s33_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1000,7 +1000,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="100% inspection of all glazing materials. Particular attention to internal surfaces."></textarea>
+            <textarea id="s34_notes" placeholder="100% inspection of all glazing materials. Particular attention to internal surfaces."></textarea>
           </div>
         </div>
       </div>
@@ -1008,7 +1008,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Glazing Cleanliness Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s34_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1036,7 +1036,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="100% inspection all glazing materials."></textarea>
+            <textarea id="s35_notes" placeholder="100% inspection all glazing materials."></textarea>
           </div>
         </div>
       </div>
@@ -1044,7 +1044,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Scratches, Marks and Inclusions, etc Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s35_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1105,7 +1105,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. Spacer materials, size, quantity, grade, type of finish/colour, wall thickness."></textarea>
+            <textarea id="s41_notes" placeholder="One check each production shift. Spacer materials, size, quantity, grade, type of finish/colour, wall thickness."></textarea>
           </div>
         </div>
       </div>
@@ -1113,7 +1113,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Spacer Bar Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s41_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1148,7 +1148,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each customer order produced."></textarea>
+            <textarea id="s42_notes" placeholder="One check each customer order produced."></textarea>
           </div>
         </div>
       </div>
@@ -1156,7 +1156,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Customer Stock Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s42_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1193,7 +1193,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s43_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1201,7 +1201,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Straightness, Dents, Marks, etc Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s43_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1237,7 +1237,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s44_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1245,7 +1245,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Compatibility, Alignment, Joint Check Completed.  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s44_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1274,7 +1274,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s45_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1282,7 +1282,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Spacer Bar Cleanliness Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s45_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1311,7 +1311,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s46_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1319,7 +1319,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Spacer Bar Dimensional Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s46_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1348,7 +1348,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s47_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1356,7 +1356,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Spacer Bar Post Assembly Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s47_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1415,7 +1415,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
+            <textarea id="s51_notes" placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
           </div>
         </div>
       </div>
@@ -1423,7 +1423,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Desiccant Material Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s51_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1452,7 +1452,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s52_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1460,7 +1460,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Desiccant Filling Record Maintained For Customer Order.  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s52_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1489,7 +1489,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s53_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1497,7 +1497,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Desiccant: Effectiveness / Fit for Purpose  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s53_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1526,7 +1526,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s54_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1534,7 +1534,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Volume of Desiccant  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s54_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1569,7 +1569,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each customer order or every two hours of each production shift, whichever is the lesser."></textarea>
+            <textarea id="s55_notes" placeholder="One check each customer order or every two hours of each production shift, whichever is the lesser."></textarea>
           </div>
         </div>
       </div>
@@ -1577,7 +1577,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Desiccant Exposure  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s55_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1612,7 +1612,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each customer order."></textarea>
+            <textarea id="s56_notes" placeholder="One check each customer order."></textarea>
           </div>
         </div>
       </div>
@@ -1620,7 +1620,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Desiccant Suitability With Gas In Use  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s56_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1677,7 +1677,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
+            <textarea id="s61_notes" placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
           </div>
         </div>
       </div>
@@ -1685,7 +1685,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Sealant Material Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s61_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1722,7 +1722,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
+            <textarea id="s62p_notes" placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
           </div>
         </div>
       </div>
@@ -1730,7 +1730,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Primary Sealant Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s62p_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1748,7 +1748,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
+            <textarea id="s62f_notes" placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
           </div>
         </div>
       </div>
@@ -1756,7 +1756,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Secondary Sealant Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s62f_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1814,7 +1814,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s63_notes" placeholder="One check each production shift. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -1822,7 +1822,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Minimum Sealant Dimensions  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s63_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1851,7 +1851,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s64_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1859,7 +1859,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Sealant/Glass Compatibility  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s64_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1888,7 +1888,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s65_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1896,7 +1896,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Secondary Adhesion  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s65_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1925,7 +1925,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s66_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1933,7 +1933,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Mix Ratio  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s66_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -1962,7 +1962,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s67_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -1970,7 +1970,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Mix Homogeneity  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s67_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2012,7 +2012,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s68_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2020,7 +2020,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Sealant Cure Rate  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s68_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2049,7 +2049,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s69_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2057,7 +2057,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Sealant Material/s Storage Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s69_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2108,7 +2108,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s71_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2116,7 +2116,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Gas Record Maintained  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s71_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2145,7 +2145,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s72_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2153,7 +2153,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Gas Filling Record Maintained For Customer Order.  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s72_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2182,7 +2182,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift."></textarea>
+            <textarea id="s73_notes" placeholder="One check each production shift."></textarea>
           </div>
         </div>
       </div>
@@ -2190,7 +2190,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Desiccant Pore Size verified as smaller than Gas Molecular Sieve Size.  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s73_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2219,7 +2219,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="One check each production shift. May be calculated or measured in accordance with Appendix O."></textarea>
+            <textarea id="s74_notes" placeholder="One check each production shift. May be calculated or measured in accordance with Appendix O."></textarea>
           </div>
         </div>
       </div>
@@ -2227,7 +2227,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">GAS Fill is verified as 90% of IGU Cavity Volume:  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s74_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2273,7 +2273,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea style="width:100%; min-height:120px; border:1.5px solid var(--border); border-radius:5px; padding:8px 10px; font-size:12px; font-family:inherit; color:#1a2a36; background:var(--light); resize:vertical;" placeholder="Visual inspection. 100% check each production shift.&#10;&#10;Compliance markings requirements for safety glazing materials used in the manufacture of the IGU shall also be met.&#10;&#10;(For example: AS/NZS 2208 Safety glazing materials in buildings shall be marked in compliance with that standard)."></textarea>
+            <textarea id="s81_notes" style="width:100%; min-height:120px; border:1.5px solid var(--border); border-radius:5px; padding:8px 10px; font-size:12px; font-family:inherit; color:#1a2a36; background:var(--light); resize:vertical;" placeholder="Visual inspection. 100% check each production shift.&#10;&#10;Compliance markings requirements for safety glazing materials used in the manufacture of the IGU shall also be met.&#10;&#10;(For example: AS/NZS 2208 Safety glazing materials in buildings shall be marked in compliance with that standard)."></textarea>
           </div>
         </div>
       </div>
@@ -2281,7 +2281,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Compliance Markings  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s81_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2342,8 +2342,8 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea placeholder="Notes..."></textarea></div>
-      <div class="ns-cell"><div class="ns-lbl">Signature</div><input type="text" placeholder="Name &amp; sign"></div>
+      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea id="s91_notes" placeholder="Notes..."></textarea></div>
+      <div class="ns-cell"><div class="ns-lbl">Signature</div><input id="s91_sig" type="text" placeholder="Name &amp; sign"></div>
     </div>
     <div class="act-row">
       <span class="act-label">Activity Completed: <span style="font-size:11px;color:var(--accent);margin-left:6px;">(Records maintained for 5.8.2 — if non-conforming product is found, another product shall be inspected in its place)</span></span>
@@ -2370,7 +2370,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea style="min-height:90px;" placeholder="Visual inspection, mechanical hardness check.&#10;&#10;Check Sealant Hardness against manufacturers specification for a fully cured sealant.&#10;&#10;No sign of uncured sealant on units ready for shipment."></textarea>
+            <textarea id="s92_notes" style="min-height:90px;" placeholder="Visual inspection, mechanical hardness check.&#10;&#10;Check Sealant Hardness against manufacturers specification for a fully cured sealant.&#10;&#10;No sign of uncured sealant on units ready for shipment."></textarea>
           </div>
         </div>
       </div>
@@ -2378,7 +2378,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Sealant Cure Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s92_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2407,7 +2407,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s93_notes" placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2415,7 +2415,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Dimensional Properties Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s93_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2444,7 +2444,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. Minimum sealant depth given in AS 4666, Table 5.7. Random samples selected in numbers as specified in Table 6.1."></textarea>
+            <textarea id="s94_notes" placeholder="Visual inspection. Minimum sealant depth given in AS 4666, Table 5.7. Random samples selected in numbers as specified in Table 6.1."></textarea>
           </div>
         </div>
       </div>
@@ -2452,7 +2452,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Uniformity of Spacer Depth Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s94_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2480,7 +2480,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s95_notes" placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2488,7 +2488,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Voids in Sealants Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s95_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2516,7 +2516,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s96_notes" placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2524,7 +2524,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Glass Alignment / Offset Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s96_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2553,7 +2553,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;On the face of the glazing: No protrusion past the sealant and spacer depth shall be allowed. Any sealant shall be not greater than 1 mm high from the face of the glazing.&#10;&#10;On the edge of the unit: The sealant shall be uniform with no voids and shall be not greater than 2 mm proud of the edge of the glazing along the edges and not greater than 3 mm on any corner. From a corner point, the corner shall include 20 mm in each direction."></textarea>
+            <textarea id="s97_notes" style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;On the face of the glazing: No protrusion past the sealant and spacer depth shall be allowed. Any sealant shall be not greater than 1 mm high from the face of the glazing.&#10;&#10;On the edge of the unit: The sealant shall be uniform with no voids and shall be not greater than 2 mm proud of the edge of the glazing along the edges and not greater than 3 mm on any corner. From a corner point, the corner shall include 20 mm in each direction."></textarea>
           </div>
         </div>
       </div>
@@ -2561,7 +2561,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Sealant Cleanliness Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s97_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2590,7 +2590,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;Each piece of glazing material in the completed IGU may contain scratches, blemishes and inclusions. Refer to Table 5.5, AS 4666.&#10;&#10;A finished IGU may have twice the amount given in Table 5.5, however the restriction for each piece of glazing material given in Table 5.5 shall not be exceeded."></textarea>
+            <textarea id="s98_notes" style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;Each piece of glazing material in the completed IGU may contain scratches, blemishes and inclusions. Refer to Table 5.5, AS 4666.&#10;&#10;A finished IGU may have twice the amount given in Table 5.5, however the restriction for each piece of glazing material given in Table 5.5 shall not be exceeded."></textarea>
           </div>
         </div>
       </div>
@@ -2598,7 +2598,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Marks / Scratches and Inclusions Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s98_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2626,7 +2626,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea style="min-height:90px;" placeholder="Visual Inspection, Test to Appendix P.&#10;&#10;Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s99_notes" style="min-height:90px;" placeholder="Visual Inspection, Test to Appendix P.&#10;&#10;Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
           </div>
         </div>
       </div>
@@ -2634,7 +2634,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Moisture Content Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s99_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2663,7 +2663,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;Storage and handling of uncured units within the manufacturing environment shall be in accordance with the stated requirements of Sections 5.8.12.1 – Support, 5.8.12.2 – Angle, and 5.8.12.3 – Spacing/Interleaving.&#10;&#10;Lifting large units is conducted by attaching the lifting device to the thickest glazing material face of the IGU."></textarea>
+            <textarea id="s910_notes" style="min-height:110px;" placeholder="Visual Inspection.&#10;&#10;Storage and handling of uncured units within the manufacturing environment shall be in accordance with the stated requirements of Sections 5.8.12.1 – Support, 5.8.12.2 – Angle, and 5.8.12.3 – Spacing/Interleaving.&#10;&#10;Lifting large units is conducted by attaching the lifting device to the thickest glazing material face of the IGU."></textarea>
           </div>
         </div>
       </div>
@@ -2671,7 +2671,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Storage and Handling Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s910_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2719,7 +2719,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
+            <textarea id="s101_notes" placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
           </div>
         </div>
       </div>
@@ -2727,7 +2727,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Mandatory Equipment Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s101_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2775,7 +2775,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
+            <textarea id="s102_notes" placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
           </div>
         </div>
       </div>
@@ -2783,7 +2783,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Additional Equipment Check  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s102_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2811,7 +2811,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea placeholder="Monitoring and measurement devices shall be calibrated to within the stated tolerance of 0.01mm. Records are to be maintained."></textarea>
+            <textarea id="s103_notes" placeholder="Monitoring and measurement devices shall be calibrated to within the stated tolerance of 0.01mm. Records are to be maintained."></textarea>
           </div>
         </div>
       </div>
@@ -2819,7 +2819,7 @@ input[type="file"] { display:none; }
         <button class="pf-btn fail" onclick="setPF(this)">Equipment Calibrated and Functional  &#9744; Fail:</button>
         <div class="pf-ns-content">
           <div class="pf-ns-sig-lbl">Signature</div>
-          <input type="text" placeholder="Name &amp; sign">
+          <input id="s103_sig" type="text" placeholder="Name &amp; sign">
         </div>
       </div>
     </div>
@@ -2860,7 +2860,7 @@ input[type="file"] { display:none; }
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbypbr40mw_3HdsWirucDhKRlV_ucgRXzQhciUrQvc4QOKlOrEuMD7iwH7-sBF1L9ss/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbyIB4JtPAMz--owwaqm3VM-vI_1xIc0vKjtTZzDf--n8jh5m8gE3FcxhYV0LXkQ6t-W/exec";
 const DRAFT_KEY = 'ngs_igu_v5'; // v5: Notes converted to editable textareas — anon input order changed, old drafts incompatible
 
 // --- DRAFT SAVE / RESTORE ---
@@ -3485,6 +3485,56 @@ function submitReport() {
     aeq12: document.getElementById('aeq12')?.checked ? 'Yes' : 'No',
     aeq13: document.getElementById('aeq13')?.checked ? 'Yes' : 'No',
     aeq14: document.getElementById('aeq14')?.checked ? 'Yes' : 'No',
+
+    // Notes & Signatures
+    s11_notes: g('s11_notes'),   s11_sig: g('s11_sig'),
+    s21_notes: g('s21_notes'),   s21_sig: g('s21_sig'),
+    s31_notes: g('s31_notes'),   s31_sig: g('s31_sig'),
+    s32_notes: g('s32_notes'),   s32_sig: g('s32_sig'),
+    s33_notes: g('s33_notes'),   s33_sig: g('s33_sig'),
+    s34_notes: g('s34_notes'),   s34_sig: g('s34_sig'),
+    s35_notes: g('s35_notes'),   s35_sig: g('s35_sig'),
+    s41_notes: g('s41_notes'),   s41_sig: g('s41_sig'),
+    s42_notes: g('s42_notes'),   s42_sig: g('s42_sig'),
+    s43_notes: g('s43_notes'),   s43_sig: g('s43_sig'),
+    s44_notes: g('s44_notes'),   s44_sig: g('s44_sig'),
+    s45_notes: g('s45_notes'),   s45_sig: g('s45_sig'),
+    s46_notes: g('s46_notes'),   s46_sig: g('s46_sig'),
+    s47_notes: g('s47_notes'),   s47_sig: g('s47_sig'),
+    s51_notes: g('s51_notes'),   s51_sig: g('s51_sig'),
+    s52_notes: g('s52_notes'),   s52_sig: g('s52_sig'),
+    s53_notes: g('s53_notes'),   s53_sig: g('s53_sig'),
+    s54_notes: g('s54_notes'),   s54_sig: g('s54_sig'),
+    s55_notes: g('s55_notes'),   s55_sig: g('s55_sig'),
+    s56_notes: g('s56_notes'),   s56_sig: g('s56_sig'),
+    s61_notes: g('s61_notes'),   s61_sig: g('s61_sig'),
+    s62p_notes: g('s62p_notes'), s62p_sig: g('s62p_sig'),
+    s62f_notes: g('s62f_notes'), s62f_sig: g('s62f_sig'),
+    s63_notes: g('s63_notes'),   s63_sig: g('s63_sig'),
+    s64_notes: g('s64_notes'),   s64_sig: g('s64_sig'),
+    s65_notes: g('s65_notes'),   s65_sig: g('s65_sig'),
+    s66_notes: g('s66_notes'),   s66_sig: g('s66_sig'),
+    s67_notes: g('s67_notes'),   s67_sig: g('s67_sig'),
+    s68_notes: g('s68_notes'),   s68_sig: g('s68_sig'),
+    s69_notes: g('s69_notes'),   s69_sig: g('s69_sig'),
+    s71_notes: g('s71_notes'),   s71_sig: g('s71_sig'),
+    s72_notes: g('s72_notes'),   s72_sig: g('s72_sig'),
+    s73_notes: g('s73_notes'),   s73_sig: g('s73_sig'),
+    s74_notes: g('s74_notes'),   s74_sig: g('s74_sig'),
+    s81_notes: g('s81_notes'),   s81_sig: g('s81_sig'),
+    s91_notes: g('s91_notes'),   s91_sig: g('s91_sig'),
+    s92_notes: g('s92_notes'),   s92_sig: g('s92_sig'),
+    s93_notes: g('s93_notes'),   s93_sig: g('s93_sig'),
+    s94_notes: g('s94_notes'),   s94_sig: g('s94_sig'),
+    s95_notes: g('s95_notes'),   s95_sig: g('s95_sig'),
+    s96_notes: g('s96_notes'),   s96_sig: g('s96_sig'),
+    s97_notes: g('s97_notes'),   s97_sig: g('s97_sig'),
+    s98_notes: g('s98_notes'),   s98_sig: g('s98_sig'),
+    s99_notes: g('s99_notes'),   s99_sig: g('s99_sig'),
+    s910_notes: g('s910_notes'), s910_sig: g('s910_sig'),
+    s101_notes: g('s101_notes'), s101_sig: g('s101_sig'),
+    s102_notes: g('s102_notes'), s102_sig: g('s102_sig'),
+    s103_notes: g('s103_notes'), s103_sig: g('s103_sig'),
 
     desiccantFillTime:  g('s55_fill_time'),
     desiccantAssemTime: g('s55_assem_time'),
