@@ -2860,7 +2860,7 @@ input[type="file"] { display:none; }
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbyEEeSMJqvUIePBA490lUifMqhnMWfymzdTGmx9viyWrNaU0ZH26DAAHYjX3kqXnL0s/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbypbr40mw_3HdsWirucDhKRlV_ucgRXzQhciUrQvc4QOKlOrEuMD7iwH7-sBF1L9ss/exec";
 const DRAFT_KEY = 'ngs_igu_v5'; // v5: Notes converted to editable textareas — anon input order changed, old drafts incompatible
 
 // --- DRAFT SAVE / RESTORE ---
@@ -3462,6 +3462,29 @@ function submitReport() {
     s94:  getPF('s9', 2),  s95: getPF('s9', 3), s96: getPF('s9', 4),
     s97:  getPF('s9', 5),  s98: getPF('s9', 6), s99: getPF('s9', 7), s910: getPF('s9', 8),
     s101: getPF('s10', 0), s102: getPF('s10', 1), s103: getPF('s10', 2),
+
+    eq0: document.getElementById('eq0')?.checked ? 'Yes' : 'No',
+    eq1: document.getElementById('eq1')?.checked ? 'Yes' : 'No',
+    eq2: document.getElementById('eq2')?.checked ? 'Yes' : 'No',
+    eq3: document.getElementById('eq3')?.checked ? 'Yes' : 'No',
+    eq4: document.getElementById('eq4')?.checked ? 'Yes' : 'No',
+    eq5: document.getElementById('eq5')?.checked ? 'Yes' : 'No',
+
+    aeq0:  document.getElementById('aeq0')?.checked  ? 'Yes' : 'No',
+    aeq1:  document.getElementById('aeq1')?.checked  ? 'Yes' : 'No',
+    aeq2:  document.getElementById('aeq2')?.checked  ? 'Yes' : 'No',
+    aeq3:  document.getElementById('aeq3')?.checked  ? 'Yes' : 'No',
+    aeq4:  document.getElementById('aeq4')?.checked  ? 'Yes' : 'No',
+    aeq5:  document.getElementById('aeq5')?.checked  ? 'Yes' : 'No',
+    aeq6:  document.getElementById('aeq6')?.checked  ? 'Yes' : 'No',
+    aeq7:  document.getElementById('aeq7')?.checked  ? 'Yes' : 'No',
+    aeq8:  document.getElementById('aeq8')?.checked  ? 'Yes' : 'No',
+    aeq9:  document.getElementById('aeq9')?.checked  ? 'Yes' : 'No',
+    aeq10: document.getElementById('aeq10')?.checked ? 'Yes' : 'No',
+    aeq11: document.getElementById('aeq11')?.checked ? 'Yes' : 'No',
+    aeq12: document.getElementById('aeq12')?.checked ? 'Yes' : 'No',
+    aeq13: document.getElementById('aeq13')?.checked ? 'Yes' : 'No',
+    aeq14: document.getElementById('aeq14')?.checked ? 'Yes' : 'No',
 
     desiccantFillTime:  g('s55_fill_time'),
     desiccantAssemTime: g('s55_assem_time'),
