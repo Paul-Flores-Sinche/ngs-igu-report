@@ -89,10 +89,15 @@ function doGet(e) {
       const ss = SpreadsheetApp.getActiveSpreadsheet();
       const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
       const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-      const approvedByCol = headers.indexOf('Approved By') + 1;
-      const approvedAtCol = headers.indexOf('Approved At') + 1;
-      if (!approvedByCol || !approvedAtCol) {
-        return jsonOut({ status: 'error', message: 'Approval columns not found — redeploy required' });
+      let approvedByCol = headers.indexOf('Approved By') + 1;
+      let approvedAtCol = headers.indexOf('Approved At') + 1;
+      if (!approvedByCol) {
+        approvedByCol = headers.length + 1;
+        sheet.getRange(1, approvedByCol).setValue('Approved By');
+      }
+      if (!approvedAtCol) {
+        approvedAtCol = approvedByCol + 1;
+        sheet.getRange(1, approvedAtCol).setValue('Approved At');
       }
       sheet.getRange(rowIndex, approvedByCol).setValue(supervisorName);
       sheet.getRange(rowIndex, approvedAtCol).setValue(new Date());
