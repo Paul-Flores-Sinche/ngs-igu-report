@@ -22,11 +22,11 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     console.log('Parsed OK — date:', data.date, '| line:', data.productionLine);
 
-    logToSheet(data);
-    console.log('Sheet logged');
-
     const pdfFile = generateAndSavePDF(data);
     console.log('PDF saved:', pdfFile.getUrl());
+
+    logToSheet(data, pdfFile.getUrl());
+    console.log('Sheet logged');
 
     return jsonOut({ status: 'ok', driveUrl: pdfFile.getUrl(), fileName: pdfFile.getName() });
   } catch (err) {
@@ -36,6 +36,72 @@ function doPost(e) {
 }
 
 function doGet(e) {
+  const action = e && e.parameter && e.parameter.action;
+
+  if (action === 'getReports') {
+    try {
+      const ss = SpreadsheetApp.getActiveSpreadsheet();
+      const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+      if (!sheet || sheet.getLastRow() < 2) {
+        return jsonOut({ status: 'ok', reports: [] });
+      }
+      const tz = Session.getScriptTimeZone();
+      const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
+      const col = function(name) { return headers.indexOf(name); };
+      const fmt = function(v) {
+        if (!v || v === '') return '';
+        if (v instanceof Date) return Utilities.formatDate(v, tz, 'dd/MM/yyyy HH:mm');
+        return String(v);
+      };
+      const fmtDate = function(v) {
+        if (!v || v === '') return '';
+        if (v instanceof Date) return Utilities.formatDate(v, tz, 'dd/MM/yyyy');
+        return String(v);
+      };
+      const reports = rows.map(function(row, i) {
+        return {
+          rowIndex:       i + 2,
+          timestamp:      fmt(row[col('Timestamp')]),
+          date:           fmtDate(row[col('Date')]),
+          shiftStart:     String(row[col('Shift Start')] || ''),
+          productionLine: String(row[col('Production Line')] || ''),
+          completedBy:    String(row[col('Completed By')] || ''),
+          overallResult:  String(row[col('Overall Result')] || ''),
+          driveUrl:       String(row[col('Drive URL')] || ''),
+          approvedBy:     String(row[col('Approved By')] || ''),
+          approvedAt:     fmt(row[col('Approved At')]),
+        };
+      });
+      return jsonOut({ status: 'ok', reports: reports });
+    } catch(err) {
+      return jsonOut({ status: 'error', message: err.toString() });
+    }
+  }
+
+  if (action === 'approve') {
+    try {
+      const rowIndex = parseInt(e.parameter.rowIndex);
+      const supervisorName = e.parameter.supervisorName || '';
+      if (!rowIndex || !supervisorName) {
+        return jsonOut({ status: 'error', message: 'Missing rowIndex or supervisorName' });
+      }
+      const ss = SpreadsheetApp.getActiveSpreadsheet();
+      const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+      const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      const approvedByCol = headers.indexOf('Approved By') + 1;
+      const approvedAtCol = headers.indexOf('Approved At') + 1;
+      if (!approvedByCol || !approvedAtCol) {
+        return jsonOut({ status: 'error', message: 'Approval columns not found — redeploy required' });
+      }
+      sheet.getRange(rowIndex, approvedByCol).setValue(supervisorName);
+      sheet.getRange(rowIndex, approvedAtCol).setValue(new Date());
+      return jsonOut({ status: 'ok' });
+    } catch(err) {
+      return jsonOut({ status: 'error', message: err.toString() });
+    }
+  }
+
   return jsonOut({ status: 'ok', message: 'NGS IGU Report API running' });
 }
 
@@ -47,7 +113,7 @@ function jsonOut(obj) {
 
 // ─── GOOGLE SHEETS LOGGING ────────────────────────────────────────────────────
 
-function logToSheet(data) {
+function logToSheet(data, driveUrl) {
   const ss    = SpreadsheetApp.getActiveSpreadsheet();
   let   sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
 
@@ -71,6 +137,7 @@ function logToSheet(data) {
       'Sealant Manufacturer','Sealant Batch','Sealant Product',
       'Sealant Receipt','Sealant Expiry',
       'Desic Fill Time','Desic Assem Time',
+      'Drive URL','Approved By','Approved At',
     ];
     sheet.appendRow(headers);
     const hr = sheet.getRange(1, 1, 1, headers.length);
@@ -100,6 +167,7 @@ function logToSheet(data) {
     data.s61_manufacturer||'', data.s61_batch||'', data.s61_product||'',
     data.s61_date_receipt||'', data.s61_expiry||'',
     data.desiccantFillTime||'', data.desiccantAssemTime||'',
+    driveUrl||'', '', '',
   ]);
 }
 

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supervisor Dashboard – NGS NT</title>
+<style>
+:root {
+  --dark:    #1C2E3D;
+  --dark2:   #243a4d;
+  --pass:    #27AE60;
+  --fail:    #C0392B;
+  --accent:  #2E86AB;
+  --red:     #C00000;
+  --border:  #b8c4cc;
+  --light:   #f4f7f9;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2a36; font-size:14px; }
+
+/* ── Login overlay ─────────────────────────────── */
+.login-overlay { position:fixed; inset:0; z-index:9999; background:var(--dark); display:flex; align-items:center; justify-content:center; padding:20px; }
+.login-overlay.hidden { display:none; }
+.login-card { width:100%; max-width:360px; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.45); }
+.login-header { background:var(--dark); padding:22px 24px; text-align:center; border-bottom:3px solid var(--red); }
+.login-title { color:#fff; font-size:18px; font-weight:700; }
+.login-sub { color:rgba(255,255,255,0.55); font-size:11px; margin-top:4px; letter-spacing:1px; text-transform:uppercase; }
+.login-body { padding:24px; }
+.login-label { display:block; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#4a6070; margin-bottom:6px; }
+.login-input { width:100%; padding:11px 12px; border:1.5px solid var(--border); border-radius:5px; font-size:15px; font-family:inherit; }
+.login-input:focus { outline:none; border-color:var(--red); }
+.login-btn { width:100%; margin-top:14px; padding:12px; background:var(--red); color:#fff; border:none; border-radius:5px; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; cursor:pointer; }
+.login-btn:hover { background:#a00000; }
+.login-error { margin-top:12px; color:var(--red); font-size:12.5px; font-weight:600; text-align:center; min-height:16px; }
+
+/* ── Page wrapper ───────────────────────────────── */
+.page { max-width:1160px; margin:0 auto; background:#fff; box-shadow:0 2px 24px rgba(0,0,0,0.18); min-height:100vh; }
+
+/* ── Header ─────────────────────────────────────── */
+.doc-header { background:var(--dark); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--red); }
+.doc-header-left h1 { font-size:18px; font-weight:700; color:#fff; }
+.doc-header-left p { font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px; letter-spacing:1px; text-transform:uppercase; }
+.doc-header-right { font-size:11px; color:rgba(255,255,255,0.45); text-align:right; line-height:1.6; }
+.logout-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); color:rgba(255,255,255,0.8); padding:5px 14px; border-radius:4px; font-size:12px; cursor:pointer; margin-top:6px; display:inline-block; }
+.logout-btn:hover { background:rgba(255,255,255,0.18); }
+
+/* ── Toolbar ─────────────────────────────────────── */
+.toolbar { padding:11px 20px; background:var(--light); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.refresh-btn { padding:7px 18px; background:var(--accent); color:#fff; border:none; border-radius:5px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
+.refresh-btn:hover { background:#236a8c; }
+.status-msg { font-size:12px; color:#4a6070; font-style:italic; }
+
+/* ── Table ───────────────────────────────────────── */
+.table-wrap { padding:20px; overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { background:var(--dark); color:rgba(255,255,255,0.78); padding:9px 12px; text-align:left; font-size:10px; letter-spacing:1px; text-transform:uppercase; white-space:nowrap; }
+td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+tr:hover td { background:#f0f6fa; }
+tr.approved-row td { background:#f0fbf4; }
+tr.approved-row:hover td { background:#e5f6ea; }
+
+/* ── Badges ──────────────────────────────────────── */
+.badge { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:3px; color:#fff; white-space:nowrap; }
+.badge-pass     { background:var(--pass); }
+.badge-fail     { background:var(--fail); }
+.badge-pending  { background:#9aa6ad; }
+.badge-approved { background:var(--pass); }
+
+/* ── Action buttons ──────────────────────────────── */
+.btn-open { padding:5px 12px; background:var(--accent); color:#fff; border:none; border-radius:4px; font-size:12px; font-weight:600; cursor:pointer; text-decoration:none; display:inline-block; }
+.btn-open:hover { background:#236a8c; }
+.btn-approve { padding:5px 12px; background:#fff; color:var(--red); border:1.5px solid var(--red); border-radius:4px; font-size:12px; font-weight:600; cursor:pointer; font-family:inherit; }
+.btn-approve:hover { background:var(--red); color:#fff; }
+.btn-approve:disabled { opacity:0.5; cursor:default; }
+
+/* ── Empty / loading state ───────────────────────── */
+.state-msg { text-align:center; padding:48px 20px; color:#9aa6ad; font-size:14px; font-style:italic; }
+</style>
+</head>
+<body>
+
+<!-- Login overlay -->
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="login-title">Supervisor Dashboard</div>
+      <div class="login-sub">Northern Glass Solutions &middot; NT</div>
+    </div>
+    <div class="login-body">
+      <label class="login-label" for="loginPw">Supervisor Password</label>
+      <input type="password" id="loginPw" class="login-input" placeholder="Enter password" autocomplete="off"
+             onkeydown="if(event.key==='Enter'){event.preventDefault();checkPassword();}">
+      <button type="button" class="login-btn" onclick="checkPassword()">Unlock</button>
+      <div class="login-error" id="loginError"></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <h1>Supervisor Dashboard</h1>
+      <p>IGU Daily Test Reports &middot; AS 4666:2012</p>
+    </div>
+    <div class="doc-header-right">
+      NGS NT &nbsp;&middot;&nbsp; CSi ID 7709
+      <br>
+      <button class="logout-btn" onclick="logout()">Log out</button>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="refresh-btn" onclick="loadReports()">&#8635; Refresh</button>
+    <span class="status-msg" id="statusMsg">Loading reports&hellip;</span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table id="reportTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Shift Start</th>
+          <th>Line</th>
+          <th>Completed By</th>
+          <th>Result</th>
+          <th>Report</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="reportBody">
+        <tr><td colspan="8" class="state-msg">Loading&hellip;</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Update this after every new Apps Script deployment (same URL as index.html SHEET_URL)
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxwcrm-iO2sV8emeNW-HiegGww5_GuQCIc4YMUUE48w0Gmza5WPst3ZHyoks5BrFP6c/exec';
+const SUP_KEY   = 'ngs_sup_auth';
+const SUP_PASS  = 'NGSNT2026sup';
+
+// ── Auth ──────────────────────────────────────────────────────────────
+
+function checkPassword() {
+  var pw  = document.getElementById('loginPw').value;
+  var err = document.getElementById('loginError');
+  if (pw === SUP_PASS) {
+    sessionStorage.setItem(SUP_KEY, 'ok');
+    document.getElementById('loginOverlay').classList.add('hidden');
+    err.textContent = '';
+    loadReports();
+  } else {
+    err.textContent = 'Incorrect password.';
+    document.getElementById('loginPw').value = '';
+    document.getElementById('loginPw').focus();
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem(SUP_KEY);
+  location.reload();
+}
+
+(function init() {
+  if (sessionStorage.getItem(SUP_KEY) === 'ok') {
+    document.getElementById('loginOverlay').classList.add('hidden');
+    loadReports();
+  } else {
+    setTimeout(function() { document.getElementById('loginPw').focus(); }, 100);
+  }
+})();
+
+// ── Data loading ──────────────────────────────────────────────────────
+
+function setStatus(msg) {
+  document.getElementById('statusMsg').textContent = msg;
+}
+
+function loadReports() {
+  setStatus('Loading…');
+  var body = document.getElementById('reportBody');
+  body.innerHTML = '<tr><td colspan="8" class="state-msg">Loading…</td></tr>';
+
+  fetch(SHEET_URL + '?action=getReports')
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+      if (res.status !== 'ok') throw new Error(res.message || 'Unknown error');
+      var reports = res.reports || [];
+      if (!reports.length) {
+        body.innerHTML = '<tr><td colspan="8" class="state-msg">No reports submitted yet.</td></tr>';
+        setStatus('No reports found.');
+        return;
+      }
+      body.innerHTML = '';
+      var reversed = reports.slice().reverse();
+      reversed.forEach(function(r) { body.appendChild(buildRow(r)); });
+      setStatus('Loaded ' + reports.length + ' report' + (reports.length !== 1 ? 's' : '') + '. Last refreshed: ' + new Date().toLocaleTimeString());
+    })
+    .catch(function(err) {
+      body.innerHTML = '<tr><td colspan="8" class="state-msg">Failed to load reports: ' + esc(err.message) + '</td></tr>';
+      setStatus('Error loading reports.');
+    });
+}
+
+// ── Row rendering ─────────────────────────────────────────────────────
+
+function buildRow(r) {
+  var tr = document.createElement('tr');
+  if (r.approvedBy) tr.classList.add('approved-row');
+
+  var isPass     = (r.overallResult || '').indexOf('PASS') !== -1;
+  var resultBadge = '<span class="badge ' + (isPass ? 'badge-pass' : 'badge-fail') + '">' +
+                    (isPass ? '&#10003; ALL PASS' : '&#10007; FAIL') + '</span>';
+
+  var approved   = !!r.approvedBy;
+  var statusCell = approved
+    ? '<span class="badge badge-approved">&#10003; ' + esc(r.approvedBy) + '</span>' +
+      '<br><span style="font-size:10px;color:#4a6070;">' + esc(r.approvedAt) + '</span>'
+    : '<span class="badge badge-pending">Pending</span>';
+
+  var openBtn = r.driveUrl
+    ? '<a class="btn-open" href="' + r.driveUrl + '" target="_blank" rel="noopener">Open &#8599;</a>'
+    : '<span style="color:#9aa6ad;font-size:12px;">&mdash;</span>';
+
+  var approveBtn = approved
+    ? ''
+    : '<button class="btn-approve" data-row="' + r.rowIndex + '" onclick="approveReport(this)">Approve</button>';
+
+  tr.innerHTML =
+    '<td>' + esc(r.date) + '</td>' +
+    '<td style="font-family:monospace;">' + esc(r.shiftStart) + '</td>' +
+    '<td>' + esc(r.productionLine) + '</td>' +
+    '<td>' + esc(r.completedBy) + '</td>' +
+    '<td>' + resultBadge + '</td>' +
+    '<td>' + openBtn + '</td>' +
+    '<td>' + statusCell + '</td>' +
+    '<td>' + approveBtn + '</td>';
+
+  return tr;
+}
+
+// ── Approve action ────────────────────────────────────────────────────
+
+function approveReport(btn) {
+  var rowIndex = btn.getAttribute('data-row');
+  var name = prompt('Enter supervisor name to approve this report:');
+  if (!name || !name.trim()) return;
+
+  btn.disabled    = true;
+  btn.textContent = 'Saving…';
+
+  var url = SHEET_URL + '?action=approve&rowIndex=' + encodeURIComponent(rowIndex) +
+            '&supervisorName=' + encodeURIComponent(name.trim());
+
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+      if (res.status !== 'ok') throw new Error(res.message || 'Error');
+      loadReports();
+    })
+    .catch(function(err) {
+      alert('Approval failed: ' + err.message);
+      btn.disabled    = false;
+      btn.textContent = 'Approve';
+    });
+}
+
+// ── Util ──────────────────────────────────────────────────────────────
+
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+</script>
+</body>
+</html>
