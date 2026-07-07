@@ -156,6 +156,38 @@ body { font-family: Arial, Helvetica, sans-serif; background:#dde3e8; color:#1a2
   80%  { box-shadow: 0 0 0 6px rgba(192,0,0,0.1); background: #fff8e1; }
   100% { box-shadow: none; background: transparent; }
 }
+/* ── Floating "reminder cloud" (replaces bottom-of-page validation panel) ── */
+#validation-panel {
+  position: fixed !important;
+  bottom: 88px !important;
+  right: 24px !important;
+  left: auto !important;
+  width: 300px;
+  max-width: calc(100vw - 32px);
+  max-height: 55vh;
+  overflow-y: auto;
+  margin-bottom: 0 !important;
+  z-index: 9998;
+  transform-origin: bottom right;
+  animation: cloudPop .22s ease;
+}
+#validation-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  right: 30px;
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 9px solid #C00000;
+}
+@keyframes cloudPop {
+  from { opacity: 0; transform: translateY(10px) scale(.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 480px) {
+  #validation-panel { right: 12px; bottom: 78px; width: calc(100vw - 24px); }
+}
 .compliance-note { font-size:11.5px; color:#b71c1c; font-weight:600; margin-top:5px; line-height:1.5; border-left:3px solid #e53935; padding-left:8px; background:#fff5f5; border-radius:0 4px 4px 0; padding:4px 8px; }
 
 /* Special content inside items */
@@ -411,12 +443,6 @@ input[type="file"] { display:none; }
 .ch-pf, .ch-act { text-align:center; }
 
 /* Check List Item compliance header table */
-.cli-tbl { width:100%; border-collapse:collapse; font-size:12px; }
-.cli-tbl th { background:#f0f4f8; padding:5px 14px; text-align:left; font-size:9.5px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#1e3a5f; border:1px solid #c8d4e0; }
-.cli-tbl td { padding:8px 14px; border:1px solid #c8d4e0; vertical-align:top; }
-.cli-tbl .cli-num { width:72px; text-align:center; font-size:20px; font-weight:700; color:#1e3a5f; border-right:2px solid #1e3a5f; }
-.cli-tbl .cli-ref { font-weight:600; color:#1e3a5f; display:flex; align-items:center; gap:6px; }
-.cli-tbl .cli-desc { margin-top:5px; color:#444; line-height:1.5; }
 
 /* ══════════════════════════════════════════════════════════
    PDF FIDELITY — compact document / table-row style
@@ -782,7 +808,7 @@ input[type="file"] { display:none; }
     <div class="ns-row">
       <div class="ns-cell">
         <div class="ns-lbl">Notes</div>
-        <textarea id="s11_notes" placeholder="Records maintained for S5.8.2..."></textarea>
+        <textarea id="s11_notes" placeholder="Add your notes here…"></textarea>
       </div>
       <div class="ns-cell">
         <div class="ns-lbl">Signature</div>
@@ -852,7 +878,7 @@ input[type="file"] { display:none; }
     <div class="ns-row">
       <div class="ns-cell">
         <div class="ns-lbl">Notes</div>
-        <textarea id="s21_notes" placeholder="Records maintained for S5.2..."></textarea>
+        <textarea id="s21_notes" placeholder="Add your notes here…"></textarea>
       </div>
       <div class="ns-cell">
         <div class="ns-lbl">Signature</div>
@@ -892,7 +918,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s31_notes" placeholder="1. (5.3.1) The company maintains a permanent record of glazing materials, date of receipt and compliance with order specification for the completed insulating glass units. Thickness limits for glazing materials are given in Table 5.1, measured in accordance with Appendix A, AS 4666. 2. (5.3.2) The company maintains a system that ensures glazing material types included in the fabrication of an insulating glass unit are traceable, records shall be maintained. To be conducted every customer order."></textarea>
+            <textarea id="s31_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -928,7 +954,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s32_notes" placeholder="To be conducted every customer order or every half hour whichever is the lesser."></textarea>
+            <textarea id="s32_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -964,7 +990,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s33_notes" placeholder="A visual inspection to be conducted every customer order or every half hour whichever is the lesser."></textarea>
+            <textarea id="s33_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1000,7 +1026,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s34_notes" placeholder="100% inspection of all glazing materials. Particular attention to internal surfaces."></textarea>
+            <textarea id="s34_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1036,7 +1062,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s35_notes" placeholder="100% inspection all glazing materials."></textarea>
+            <textarea id="s35_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1105,7 +1131,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s41_notes" placeholder="One check each production shift. Spacer materials, size, quantity, grade, type of finish/colour, wall thickness."></textarea>
+            <textarea id="s41_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1148,7 +1174,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s42_notes" placeholder="One check each customer order produced."></textarea>
+            <textarea id="s42_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1193,7 +1219,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s43_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s43_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1237,7 +1263,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s44_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s44_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1274,7 +1300,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s45_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s45_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1311,7 +1337,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s46_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s46_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1348,7 +1374,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s47_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s47_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1415,7 +1441,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s51_notes" placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
+            <textarea id="s51_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1452,7 +1478,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s52_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s52_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1489,7 +1515,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s53_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s53_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1526,7 +1552,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s54_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s54_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1569,7 +1595,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s55_notes" placeholder="One check each customer order or every two hours of each production shift, whichever is the lesser."></textarea>
+            <textarea id="s55_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1612,7 +1638,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s56_notes" placeholder="One check each customer order."></textarea>
+            <textarea id="s56_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1677,7 +1703,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s61_notes" placeholder="One check each production shift. Desiccant materials expiry date, molecular sieve."></textarea>
+            <textarea id="s61_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1722,7 +1748,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s62p_notes" placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
+            <textarea id="s62p_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1748,7 +1774,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s62f_notes" placeholder="One check each production shift. Sealant Manufacturer/Type – Batch Number – Expiry Date."></textarea>
+            <textarea id="s62f_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1814,7 +1840,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s63_notes" placeholder="One check each production shift. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s63_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1851,7 +1877,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s64_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s64_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1888,7 +1914,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s65_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s65_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1925,7 +1951,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s66_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s66_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -1962,7 +1988,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s67_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s67_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2012,7 +2038,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s68_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s68_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2049,7 +2075,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s69_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s69_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2108,7 +2134,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s71_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s71_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2145,7 +2171,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s72_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s72_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2182,7 +2208,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s73_notes" placeholder="One check each production shift."></textarea>
+            <textarea id="s73_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2219,7 +2245,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s74_notes" placeholder="One check each production shift. May be calculated or measured in accordance with Appendix O."></textarea>
+            <textarea id="s74_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2342,7 +2368,8 @@ input[type="file"] { display:none; }
       </div>
     </div>
     <div class="ns-row">
-      <div class="ns-cell"><div class="ns-lbl">Notes</div><textarea id="s91_notes" placeholder="Notes..."></textarea></div>
+      <div class="ns-cell"><div class="ns-lbl">Notes</div>
+        <textarea id="s91_notes" placeholder="Add your notes here…"></textarea></div>
       <div class="ns-cell"><div class="ns-lbl">Signature</div><input id="s91_sig" type="text" placeholder="Name &amp; sign"></div>
     </div>
     <div class="act-row">
@@ -2407,7 +2434,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s93_notes" placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s93_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2444,7 +2471,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s94_notes" placeholder="Visual inspection. Minimum sealant depth given in AS 4666, Table 5.7. Random samples selected in numbers as specified in Table 6.1."></textarea>
+            <textarea id="s94_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2480,7 +2507,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s95_notes" placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s95_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2516,7 +2543,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s96_notes" placeholder="Visual inspection. Random samples selected in numbers as specified in Table 6.1, AS 4666, from different manufacturing lots and from different insulating glass unit makeups."></textarea>
+            <textarea id="s96_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2719,7 +2746,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s101_notes" placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
+            <textarea id="s101_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2775,7 +2802,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s102_notes" placeholder="Monitoring and measurement devices shall be calibrated, identified, protected from adjustments, damage and deterioration during handling, maintenance and storage."></textarea>
+            <textarea id="s102_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2811,7 +2838,7 @@ input[type="file"] { display:none; }
         <div class="pf-ns-content">
           <div class="pf-ns-fixed">
             <p style="margin:0 0 5px;"><strong>Notes:</strong></p>
-            <textarea id="s103_notes" placeholder="Monitoring and measurement devices shall be calibrated to within the stated tolerance of 0.01mm. Records are to be maintained."></textarea>
+            <textarea id="s103_notes" placeholder="Add your notes here…"></textarea>
           </div>
         </div>
       </div>
@@ -2835,7 +2862,7 @@ input[type="file"] { display:none; }
 
 <!-- ═════════════════════════════════════════════════ SUBMIT AREA ══ -->
 <div class="submit-wrap">
-  <div id="validation-panel" style="display:none; background:#fff3cd; border:2px solid #C00000; border-radius:8px; padding:16px; margin-bottom:16px;">
+  <div id="validation-panel" style="display:none; background:#fff3cd; border:2px solid #C00000; border-radius:16px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,0.25);">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
       <strong style="color:#C00000; font-size:14px;">⚠ Items not yet completed:</strong>
       <button onclick="document.getElementById('validation-panel').style.display='none'" style="background:none; border:none; font-size:18px; cursor:pointer; color:#666;">✕</button>
@@ -2960,37 +2987,6 @@ document.querySelectorAll('.section-banner').forEach(banner => {
     '<span>Notes / Signature</span>' +
     '<span class="ch-act">Done</span>';
   banner.after(cl);
-});
-
-// Insert Check List Item compliance header table before col-hdr (runs after, so inserts closer to banner)
-const CLI_DATA = {
-  '1':  { ref: 'AS 4666:2012 Section 5.8.2 &amp; 6.0',    desc: 'IGU Sampling Requirements — permanent record of sampling maintained for each production shift.' },
-  '2':  { ref: 'AS 4666:2012 Section 5.2',            desc: 'Record Atmospheric Conditions at start of production shift and every four (4) hours until the end of production shift.' },
-  '3':  { ref: 'AS 4666:2012 Section 5.3.1, 5.3.2 and 5.3.3', desc: 'GLASS: Compliance with order – Traceability – Types of Substrates' },
-  '4':  { ref: 'AS 4666:2012 Sections 5.4.1–5.4.8',          desc: 'Verify spacer bar and connectors — compliance, dimensions and installation requirements.' },
-  '5':  { ref: 'AS 4666:2012 Sections 5.5.2–5.5.9',          desc: 'Verify desiccant — compliance with specifications, batch traceability and fill procedure.' },
-  '6':  { ref: 'AS 4666:2012 Sections 5.6.1–5.6.10',         desc: 'Verify sealants — compliance with specifications, batch traceability and application procedure.' },
-  '7':  { ref: 'AS 4666:2012 Sections 5.7.1–5.7.6',          desc: 'Verify gas filling — compliance and concentration levels for IGU gassing procedure.' },
-  '8':  { ref: 'AS 4666:2012 Section 4',                     desc: 'Verify compliance markings are correct and present on all IGUs before shipment.' },
-  '9':  { ref: 'AS 4666:2012 Sections 5.8.2–5.8.12',         desc: 'Final product check — pre-shipment visual inspection and verification of all IGU units.' },
-  '10': { ref: 'AS 4666:2012 Appendix A',             desc: 'Verify all equipment required for sealant, gas, atmospheric and dew point testing is available and calibrated.' },
-};
-document.querySelectorAll('.section-banner').forEach(banner => {
-  const badge = banner.querySelector('.sec-badge');
-  if (!badge) return;
-  const num = badge.textContent.trim();
-  const data = CLI_DATA[num];
-  if (!data) return;
-  const tbl = document.createElement('table');
-  tbl.className = 'cli-tbl';
-  tbl.innerHTML =
-    '<thead><tr><th>Check List Item No.</th><th>Standard requirement to be verified.</th></tr></thead>' +
-    '<tbody><tr>' +
-    '<td class="cli-num">' + num + '.</td>' +
-    '<td><div class="cli-ref"><input type="checkbox"> ' + data.ref + '</div>' +
-    '<div class="cli-desc">' + data.desc + '</div></td>' +
-    '</tr></tbody>';
-  banner.after(tbl);
 });
 
 document.getElementById('f_date').valueAsDate = new Date();
@@ -3133,6 +3129,14 @@ function updateSubmitGate(allComplete) {
   btn.classList.toggle('is-disabled', !allComplete);
   btn.textContent = allComplete ? SUBMIT_LABEL : 'Complete all sections to submit';
 
+  // If the reminder cloud is open, refresh its contents live so items
+  // disappear the moment the worker fixes them — no need to reopen it.
+  const openPanel = document.getElementById('validation-panel');
+  if (openPanel && openPanel.style.display === 'block') {
+    const stillPending = renderValidationList();
+    if (!stillPending) openPanel.style.display = 'none';
+  }
+
   const badge = document.getElementById('progress-badge');
   const badgeCount = document.getElementById('badge-count');
   if (!badge || !badgeCount) return;
@@ -3149,7 +3153,7 @@ function updateSubmitGate(allComplete) {
   }
 }
 
-function showValidationPanel() {
+function renderValidationList() {
   const list = document.getElementById('validation-list');
   const panel = document.getElementById('validation-panel');
   if (!list || !panel) return;
@@ -3177,8 +3181,16 @@ function showValidationPanel() {
       list.appendChild(li);
     }
   });
-  panel.style.display = 'block';
-  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return list.children.length;
+}
+
+// Open (or refresh) the floating cloud. Called from the badge click.
+function showValidationPanel() {
+  const panel = document.getElementById('validation-panel');
+  if (!panel) return;
+  const pending = renderValidationList();
+  panel.style.display = pending ? 'block' : 'none';
+  // No scroll: the panel floats fixed above the badge, always in view.
 }
 
 function setPF(btn) {
