@@ -7,6 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Single-file web form for NGS NT's IGU Daily Test Report (AS 4666:2012). The entire frontend is `index.html`. The backend (`Code.gs`) is a Google Apps Script web app — it lives in this repo for reference but is deployed separately via the Apps Script editor.
 
 - **Live URL:** https://ngs-daily-report.vercel.app
+- **Supervisor Dashboard:** https://ngs-daily-report.vercel.app/dashboard.html
+- **Dashboard password:** NGSNT2026sup
 - **GitHub remote:** https://github.com/Paul-Flores-Sinche/ngs-igu-report.git
 - **Drive folder for saved reports:** `12YgmAFL5sYvTqwgD3MYsuOlbxU6K_F1B`
 
@@ -38,7 +40,7 @@ All HTML, CSS, and JavaScript live in this one file (~1450 lines):
 ### Key constants (top of `<script>`)
 
 ```js
-const SHEET_URL = "https://script.google.com/macros/s/...";  // Apps Script deployment URL
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbx9BAW8_bna3fAE8kgDnaBrH83w38dAgcIaDNR7SKZqk24z0o484drYo6ItcjqiAbZX/exec";  // Apps Script deployment URL
 const DRAFT_KEY = 'ngs_igu_draft';                           // localStorage key
 ```
 
@@ -72,6 +74,22 @@ Photos (base64 data URLs from `img41`, `img51`, `img61`) are embedded inline in 
 `OCR_FIELDS` maps parsed keys (`manufacturer`, `batch`, `expiry`, etc.) to HTML element IDs. Fields are only filled if currently empty — OCR never overwrites existing data.
 
 `parseLabel()` uses regex heuristics. Section-specific patterns (spacer dimensions, molecular sieve type) are guarded by `if (section === '41')` / `if (section === '51')` blocks.
+
+## Notes and Signature Fields
+
+96 `id` attributes were added across all textarea and signature inputs so every section can capture a note and a sign-off.
+
+- **Naming convention:** `s{section}_notes` and `s{section}_sig` (e.g. `s31_notes`, `s31_sig`)
+- **Special cases:** `s62p_notes`/`s62p_sig` (6.2 Pass), `s62f_notes`/`s62f_sig` (6.2 Fail), `s910_notes`/`s910_sig` (9.10)
+- All 48 pairs are collected in `submitReport()` and rendered in `buildHtmlReport()` via `rowNotes()`
+
+## Supervisor Dashboard (dashboard.html)
+
+- Separate file served at `/dashboard.html`
+- Password gate: sessionStorage key `ngs_sup_auth`, value `NGSNT2026sup`
+- Reads reports via Apps Script `doGet?action=getReports`
+- Approve action via Apps Script `doGet?action=approve&rowIndex=N&supervisorName=X`
+- Auto-creates `Drive URL`, `Approved By`, `Approved At` columns in the sheet if missing
 
 ## Google Apps Script backend (`Code.gs`)
 
@@ -110,4 +128,20 @@ The script receives the full `data` object from `submitReport()`. Fields consume
 
 **Other:** `desiccantFillTime`, `desiccantAssemTime`, `sealUnitType63`, `photo41`, `photo51`, `photo61`
 
+**Equipment checkboxes:** `eq0`–`eq5` (10.1), `aeq0`–`aeq14` (10.2) — collected as `'Yes'`/`'No'`
+
+**Compliance markings:** `m1`–`m4` (8.1) — collected as `'Yes'`/`'No'`
+
+**Atmospheric readings:** `atm_time_1`–`atm_time_6`, `atm_temp_1`–`atm_temp_6`, `atm_hum_1`–`atm_hum_6`, `atm_pres_1`–`atm_pres_6`
+
+**Notes/signatures:** `s11_notes` through `s103_sig` (48 pairs — see [Notes and Signature Fields](#notes-and-signature-fields))
+
+**Drive URL** is now logged to the sheet via a new column (see [Supervisor Dashboard](#supervisor-dashboard-dashboardhtml))
+
 When adding new fields to `index.html`'s `data` object, also add them to `logToSheet`'s header array and `appendRow` call in `Code.gs`, then redeploy.
+
+## Pending
+
+- Detail tables (4.1, 5.1, 6.1, 2.1) have columns that are too narrow — Google Docs ignores CSS width on HTML blob conversion; needs a Google Docs API approach instead
+- Auto-save with localStorage — `DRAFT_KEY` already defined, implementation pending
+- SEO work on https://www.ngsnt.com.au/ (separate project)
