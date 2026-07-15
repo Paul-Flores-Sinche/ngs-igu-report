@@ -3024,6 +3024,41 @@ if (restoreState()) {
   showToast('Draft restored from last session');
   // re-sync read-only mirrors after state restore
   document.getElementById('s2_date').value = document.getElementById('f_date').value;
+} else {
+  applyPreCheckedDefaults();
+}
+
+// ─── Pre-checked defaults (per Dr. Rana, 15/07/2026) ────────────────────────
+// These items are marked Pass + Activity Completed: Yes by default on a
+// brand-new form, since in normal operation they almost always pass and
+// re-entering them every shift was unnecessary friction. The worker can
+// still change any of them to Fail / No if something is actually wrong —
+// this only sets the initial state, it never locks the control.
+function applyPreCheckedDefaults() {
+  const DEFAULT_PASS_ITEMS = [
+    '3.1', '3.4', '4.1', '4.2', '4.6', '5.6',
+    '6.4', '6.5', '7.1', '7.2', '7.3', '8.1',
+    '10.1', '10.2', '10.3'
+  ];
+  document.querySelectorAll('.check-item').forEach(item => {
+    const badge = item.querySelector('.item-badge.num');
+    if (!badge || !DEFAULT_PASS_ITEMS.includes(badge.textContent.trim())) return;
+
+    const passBtn = item.querySelector('.pf-row .pf-btn.pass');
+    if (passBtn) {
+      item.querySelectorAll('.pf-row .pf-btn').forEach(b => b.classList.remove('active'));
+      passBtn.classList.add('active');
+    }
+    const yesBtn = item.querySelector('.toggle-group .toggle');
+    if (yesBtn) {
+      item.querySelectorAll('.toggle-group .toggle').forEach(b => b.classList.remove('yes', 'no'));
+      yesBtn.classList.add('yes');
+    }
+  });
+  updateProgress();
+  updateSummary();
+  refreshAll();
+  saveState();
 }
 
 // Initialise mandatory-completion logic (mark required fields, paint initial states)
