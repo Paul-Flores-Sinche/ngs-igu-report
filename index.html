@@ -3055,6 +3055,12 @@ function applyPreCheckedDefaults() {
       yesBtn.classList.add('yes');
     }
   });
+
+  // Gas type used at NGS is always Argon — pre-check it (worker can uncheck
+  // and pick another gas type on the rare occasion it's different).
+  const argonEl = document.getElementById('gas_argon');
+  if (argonEl) argonEl.checked = true;
+
   updateProgress();
   updateSummary();
   refreshAll();
