@@ -149,7 +149,7 @@ function logToSheet(data, driveUrl) {
       'Sealant Manufacturer','Sealant Batch','Sealant Product',
       'Sealant Receipt','Sealant Expiry',
       'Desic Fill Time','Desic Assem Time',
-      'Drive URL','Approved By','Approved At',
+      'Approved By','Approved At','Drive URL',
     ];
     sheet.appendRow(headers);
     const hr = sheet.getRange(1, 1, 1, headers.length);
@@ -179,7 +179,7 @@ function logToSheet(data, driveUrl) {
     data.s61_manufacturer||'', data.s61_batch||'', data.s61_product||'',
     data.s61_date_receipt||'', data.s61_expiry||'',
     data.desiccantFillTime||'', data.desiccantAssemTime||'',
-    driveUrl||'', '', '',
+    '', '', driveUrl||'',
   ]);
 }
 
