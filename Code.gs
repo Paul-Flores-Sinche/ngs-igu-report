@@ -286,16 +286,21 @@ function buildHtmlReport(data, dateStr, tz) {
       '</tr>';
   }
 
-  // Detail sub-table: pairs is array of up to 3 [label, value] pairs per row
+  // Detail sub-table: pairs is array of up to 3 [label, value] pairs per row.
+  // NOTE: this used to render INSIDE the outer section table (nested table),
+  // which Google Docs' HTML→Doc converter squeezes down to an unreadably
+  // narrow width. It now closes the outer table, renders as a standalone
+  // fixed-width table, then reopens a matching table to continue the
+  // section — this is the fix for the "narrow table" readability bug.
   function detailRow(pairs) {
     let cells = '';
     for (let i = 0; i < 3; i++) {
       if (pairs[i]) {
         cells +=
-          '<td width="17%" style="font-size:9px;font-weight:700;color:#2E86AB;text-transform:uppercase;' +
-          'letter-spacing:0.5px;background:#f0f6f9;padding:4px 8px;' +
+          '<td style="width:16%;font-size:9px;font-weight:700;color:#2E86AB;text-transform:uppercase;' +
+          'letter-spacing:0.5px;background:#f0f6f9;padding:5px 8px;' +
           'border:1px solid #dce8ed;">' + esc(pairs[i][0]) + '</td>' +
-          '<td width="17%" style="font-size:10px;padding:4px 8px;color:#1a2a36;border:1px solid #dce8ed;">' +
+          '<td style="width:17%;font-size:10px;padding:5px 8px;color:#1a2a36;border:1px solid #dce8ed;">' +
           val(pairs[i][1]) + '</td>';
       } else {
         cells += '<td colspan="2" style="border:1px solid #dce8ed;"></td>';
@@ -305,9 +310,13 @@ function buildHtmlReport(data, dateStr, tz) {
   }
 
   function detailBlock(rows) {
-    return '<tr><td colspan="3" style="padding:4px 10px 8px 50px;background:#f8fafb;">' +
-      '<table width="100%" cellpadding="4" cellspacing="0" border="1" style="border-collapse:collapse;font-size:10px;">' + rows.join('') + '</table>' +
-      '</td></tr>';
+    return '</table>' +
+      '<table style="width:100%;table-layout:fixed;border-collapse:collapse;margin:0 0 8px 0;' +
+      'border:1px solid #b8c4cc;border-top:none;">' +
+      '<tr><td style="background:#f8fafb;padding:6px 10px 8px 50px;">' +
+      '<table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:10px;">' + rows.join('') + '</table>' +
+      '</td></tr></table>' +
+      '<table style="' + 'width:100%;border-collapse:collapse;border:1px solid #b8c4cc;border-top:none;' + '">';
   }
 
   function photoRow(dataUrl, caption) {
@@ -482,22 +491,28 @@ rowAct('2.1','Record Atmospheric Conditions at start of production shift and eve
         h=data['atm_hum_'+i],  p=data['atm_pres_'+i];
     if(!t&&!c&&!h&&!p) return '';
     return '<tr>' +
-      '<td width="25%" style="padding:3px 8px;border:1px solid #dce8ed;">' + val(t) + '</td>' +
-      '<td width="25%" style="padding:3px 8px;border:1px solid #dce8ed;">' + val(c) + '</td>' +
-      '<td width="25%" style="padding:3px 8px;border:1px solid #dce8ed;">' + val(h) + '</td>' +
-      '<td width="25%" style="padding:3px 8px;border:1px solid #dce8ed;">' + val(p) + '</td>' +
+      '<td style="width:25%;padding:4px 8px;border:1px solid #dce8ed;">' + val(t) + '</td>' +
+      '<td style="width:25%;padding:4px 8px;border:1px solid #dce8ed;">' + val(c) + '</td>' +
+      '<td style="width:25%;padding:4px 8px;border:1px solid #dce8ed;">' + val(h) + '</td>' +
+      '<td style="width:25%;padding:4px 8px;border:1px solid #dce8ed;">' + val(p) + '</td>' +
       '</tr>';
   }).join('');
   if(!rows) return '';
-  return '<tr><td colspan="3" style="padding:4px 10px 6px 50px;background:#f8fafb;">' +
-    '<table width="100%" cellpadding="4" cellspacing="0" border="1" style="border-collapse:collapse;font-size:10px;">' +
+  // De-nested: closes the outer STBL table, renders the readings as a
+  // standalone fixed-width table (so Docs doesn't collapse its columns),
+  // then reopens a matching table to continue the section.
+  return '</table>' +
+    '<table style="width:100%;table-layout:fixed;border-collapse:collapse;margin:0;border:1px solid #b8c4cc;border-top:none;">' +
+    '<tr><td style="padding:4px 10px 6px 50px;background:#f8fafb;">' +
+    '<table style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:10px;">' +
     '<tr style="background:#f0f4f6;">' +
-    '<th width="25%" style="text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Time</th>' +
-    '<th width="25%" style="text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Temp (°C)</th>' +
-    '<th width="25%" style="text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Humidity (%)</th>' +
-    '<th width="25%" style="text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;">Pressure (hPa)</th>' +
+    '<th style="width:25%;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;padding:4px 8px;">Time</th>' +
+    '<th style="width:25%;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;padding:4px 8px;">Temp (°C)</th>' +
+    '<th style="width:25%;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;padding:4px 8px;">Humidity (%)</th>' +
+    '<th style="width:25%;text-align:left;border:1px solid #dce8ed;color:#5a7a8a;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;padding:4px 8px;">Pressure (hPa)</th>' +
     '</tr>' + rows +
-    '</table></td></tr>';
+    '</table></td></tr></table>' +
+    '<table style="width:100%;border-collapse:collapse;border:1px solid #b8c4cc;border-top:none;">';
 })() +
 rowNotes(data.s21_notes, data.s21_sig) +
 '</table>\n\n' +
@@ -730,6 +745,8 @@ function testDoPost() {
     s61_manufacturer:'Tremco', s61_batch:'PIB-456', s61_product:'Tremflex 834',
     s61_date_receipt:'2026-02-01', s61_expiry:'2026-09-01',
     desiccantFillTime:'07:30', desiccantAssemTime:'08:10',
+    atm_time_1:'07:15', atm_temp_1:'23', atm_hum_1:'55', atm_pres_1:'1013',
+    atm_time_2:'11:15', atm_temp_2:'26', atm_hum_2:'50', atm_pres_2:'1012',
     photo41:'', photo51:'', photo61:'',
   };
 
