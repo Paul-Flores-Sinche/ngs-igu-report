@@ -734,10 +734,17 @@ input[type="file"] { display:none; }
         <td class="by-label">Report Completed By:</td>
         <td colspan="2" style="padding:0;">
           <div class="ident-persons">
-            <div class="ident-cell"><span class="ident-label">1.</span><input type="text" id="f_person1" placeholder="Name"></div>
+            <div class="ident-cell"><span class="ident-label">1.</span><input type="text" id="f_person1" placeholder="Name" oninput="toggleAutofillSigBtn()"></div>
             <div class="ident-cell"><span class="ident-label">2.</span><input type="text" id="f_person2" placeholder="Name"></div>
             <div class="ident-cell"><span class="ident-label">3.</span><input type="text" id="f_person3" placeholder="Name"></div>
             <div class="ident-cell"><span class="ident-label">4.</span><input type="text" id="f_person4" placeholder="Name"></div>
+          </div>
+          <div id="autofill-sig-wrap" style="display:none; padding:6px 4px 2px;">
+            <button type="button" id="autofill-sig-btn" onclick="fillAllSignatures()"
+              style="background:#2E86AB; color:#fff; border:none; border-radius:4px; padding:6px 12px; font-size:12px; font-weight:600; cursor:pointer; font-family:inherit;">
+              ✓ Use this name for all signatures below
+            </button>
+            <span style="font-size:11px; color:#4a6070; margin-left:8px;">Fills every empty signature field — you can still edit any one individually.</span>
           </div>
         </td>
       </tr>
@@ -3030,6 +3037,35 @@ if (restoreState()) {
   document.getElementById('s2_date').value = document.getElementById('f_date').value;
 } else {
   applyPreCheckedDefaults();
+}
+toggleAutofillSigBtn();
+
+// ─── Sign-once, apply-to-all signatures ─────────────────────────────────────
+// The paper form asks for a signature on every item, same as this digital
+// form — but typing a name into ~48 separate fields on a phone/tablet is far
+// more tedious than the quick repeated pen strokes signing 48 paper boxes
+// takes. This lets the worker type their name once and apply it to every
+// signature field that's still empty; any field can still be edited
+// individually (e.g. if a different person actually did that specific check).
+function toggleAutofillSigBtn() {
+  var wrap = document.getElementById('autofill-sig-wrap');
+  var name = document.getElementById('f_person1').value.trim();
+  if (wrap) wrap.style.display = name ? 'block' : 'none';
+}
+
+function fillAllSignatures() {
+  var name = document.getElementById('f_person1').value.trim();
+  if (!name) return;
+  var filled = 0;
+  document.querySelectorAll('input[id$="_sig"]').forEach(function(el) {
+    if (!el.value.trim()) {
+      el.value = name;
+      filled++;
+    }
+  });
+  refreshAll();
+  saveState();
+  showToast(filled ? ('Signed ' + filled + ' item' + (filled === 1 ? '' : 's') + ' as ' + name) : 'All signatures already filled');
 }
 
 // ─── Pre-checked defaults (per Dr. Rana, 15/07/2026) ────────────────────────
