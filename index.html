@@ -3286,6 +3286,19 @@ function setPF(btn) {
   }
   row.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+
+  // Auto-fill Activity Completed = Yes once every Pass/Fail row in this item is marked Pass.
+  // Only applies when the toggle hasn't been set yet, so a worker's manual choice is never overwritten.
+  if (btn.classList.contains('pass')) {
+    const st2 = evalItem(item);
+    const allPass = st2.pfRows.every(r => r.querySelector('.pf-btn.active.pass'));
+    if (allPass && st2.tg && !st2.tg.querySelector('.toggle.yes, .toggle.no')) {
+      const yesBtn = st2.tg.querySelector('button[onclick*="\'yes\'"]');
+      if (yesBtn) yesBtn.classList.add('yes');
+      updateProgress();
+    }
+  }
+
   updateSummary();
   saveState();
   refreshAll();
